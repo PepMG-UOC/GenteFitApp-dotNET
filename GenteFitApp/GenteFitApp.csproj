@@ -58,6 +58,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conrolers\ConexionERP.cs" />
+    <Compile Include="Conrolers\ConsultasBase.cs" />
     <Compile Include="Modelo\Actividad.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
     </Compile>
@@ -97,6 +99,8 @@
     <Compile Include="Modelo\Sala.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vistas\frmCalendario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,8 +113,6 @@
     <Compile Include="Vistas\frmEventos.Designer.cs">
       <DependentUpon>frmEventos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vistas\UserControlBlank.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -123,12 +125,6 @@
     <Compile Include="Vistas\UserControlDias.Designer.cs">
       <DependentUpon>UserControlDias.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Vistas\frmCalendario.resx">
-      <DependentUpon>frmCalendario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\frmEventos.resx">
-      <DependentUpon>frmEventos.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -138,11 +134,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Vistas\UserControlBlank.resx">
-      <DependentUpon>UserControlBlank.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\UserControlDias.resx">
-      <DependentUpon>UserControlDias.cs</DependentUpon>
+    <EmbeddedResource Include="Vistas\frmCalendario.resx">
+      <DependentUpon>frmCalendario.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Modelo\EntyFrmwGenteFitDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -165,9 +158,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Conrolers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Modelo\EntyFrmwGenteFitDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

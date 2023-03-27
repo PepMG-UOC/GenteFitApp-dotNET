@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GenteFitApp
+namespace GenteFitApp.Vistas
 {
     public partial class UserControlDias : UserControl
     {

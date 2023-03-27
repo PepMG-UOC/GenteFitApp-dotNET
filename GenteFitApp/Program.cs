@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GenteFitApp.Vistas;
 
 namespace GenteFitApp
 {
@@ -16,7 +17,7 @@ namespace GenteFitApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmCalendario());
+            Application.Run(new Vistas.frmCalendario());
         }
     }
 }
