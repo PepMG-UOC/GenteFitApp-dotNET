@@ -1,4 +1,4 @@
-﻿namespace GenteFitApp
+﻿namespace GenteFitApp.Vistas
 {
     partial class UserControlBlank
     {
