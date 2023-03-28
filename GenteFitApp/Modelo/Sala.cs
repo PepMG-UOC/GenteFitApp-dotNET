@@ -11,10 +11,7 @@ namespace GenteFitApp.Modelo
 {
     using System;
     using System.Collections.Generic;
-    using System.Xml.Serialization;
-
-    [Serializable]
-    [XmlRoot("Sala")]
+    
     public partial class Sala
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,14 +21,11 @@ namespace GenteFitApp.Modelo
         }
     
         public int id_Sala { get; set; }
-
-        [XmlElement("NumPlazas")]
+        
         public int numPlazas { get; set; }
-
-        [XmlElement("DimensionM2")]
+                
         public Nullable<int> dimensionM2 { get; set; }
-
-        [XmlIgnore]
+       
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Clase> Clase { get; set; }
     }

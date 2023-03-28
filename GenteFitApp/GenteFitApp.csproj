@@ -62,6 +62,7 @@
     <Compile Include="Conrolers\ConexionERP.cs" />
     <Compile Include="Conrolers\ConsultasBase.cs" />
     <Compile Include="Conrolers\GestionCentro.cs" />
+    <Compile Include="Conrolers\Usuarios.cs" />
     <Compile Include="Modelo\Actividad.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
     </Compile>
@@ -115,6 +116,12 @@
     <Compile Include="Vistas\frmEventos.Designer.cs">
       <DependentUpon>frmEventos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\frmImportExportXML.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\frmImportExportXML.Designer.cs">
+      <DependentUpon>frmImportExportXML.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\frmTempSala.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +151,9 @@
     </Compile>
     <EmbeddedResource Include="Vistas\frmCalendario.resx">
       <DependentUpon>frmCalendario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\frmImportExportXML.resx">
+      <DependentUpon>frmImportExportXML.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\frmTempSala.resx">
       <DependentUpon>frmTempSala.cs</DependentUpon>
