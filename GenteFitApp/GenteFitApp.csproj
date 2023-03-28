@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Conrolers\ConexionERP.cs" />
     <Compile Include="Conrolers\ConsultasBase.cs" />
+    <Compile Include="Conrolers\GestionCentro.cs" />
     <Compile Include="Modelo\Actividad.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
     </Compile>
