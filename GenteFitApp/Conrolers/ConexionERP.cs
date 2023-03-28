@@ -11,11 +11,11 @@ namespace GenteFitApp.Conrolers
 {
     public class ConexionERP
     {
+        string tete = @"C:\Users\Pep-Admin\Documents\PEP\_UOC\sala";
         public void crearXmlSala(int IDSala, string filePath)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
-            {
-                
+            {                
                 Sala miSala = dBGfit.Sala.Find(IDSala);
                 SerializarXmlSala(miSala, filePath);
             }
@@ -30,5 +30,8 @@ namespace GenteFitApp.Conrolers
                 serializer.Serialize(writer, sala);
             }
         }
+
+
+
     }
 }

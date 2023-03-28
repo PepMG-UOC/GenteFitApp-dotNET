@@ -42,7 +42,7 @@ namespace GenteFitApp.Conrolers
 
         // ---
 
-        public void altaSala(int numPlazas, int dimensionM2)
+        public static void altaSala(int numPlazas, int dimensionM2)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
@@ -53,6 +53,29 @@ namespace GenteFitApp.Conrolers
                 };
                 dBGfit.Sala.Add(nuevaSala);
                 dBGfit.SaveChanges();
+            }
+        }
+
+        public static Sala getSala(int IdSala)
+        {
+             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                return dBGfit.Sala.Find(IdSala);                
+            }
+        }
+
+
+        public void bajaSala(int IDSala)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                Sala borrarSala = dBGfit.Sala.Find(IDSala);
+
+                if (borrarSala != null)
+                {
+                    dBGfit.Sala.Remove(borrarSala);
+                    dBGfit.SaveChanges();
+                }
             }
         }
 

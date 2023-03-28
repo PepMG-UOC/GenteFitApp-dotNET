@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -114,6 +115,12 @@
     <Compile Include="Vistas\frmEventos.Designer.cs">
       <DependentUpon>frmEventos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\frmTempSala.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\frmTempSala.Designer.cs">
+      <DependentUpon>frmTempSala.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\UserControlBlank.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -137,6 +144,9 @@
     </Compile>
     <EmbeddedResource Include="Vistas\frmCalendario.resx">
       <DependentUpon>frmCalendario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\frmTempSala.resx">
+      <DependentUpon>frmTempSala.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Modelo\EntyFrmwGenteFitDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
