@@ -10,7 +10,7 @@ namespace GenteFitApp.Conrolers
 {
     public class ConsultasBase
     {
-        public List<Clase> listarClases()
+        public static List<Clase> listarClases()
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
@@ -18,7 +18,7 @@ namespace GenteFitApp.Conrolers
             }  
         }
 
-        public List<Actividad> listarActividades() 
+        public static List<Actividad> listarActividades() 
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
@@ -26,7 +26,7 @@ namespace GenteFitApp.Conrolers
             }
         }
 
-        public List<Reserva> listaReservasCliente(int IDCliente)
+        public static List<Reserva> listarReservasCliente(int IDCliente)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
@@ -34,7 +34,7 @@ namespace GenteFitApp.Conrolers
             }
         }
 
-        public List<Reserva> listaReservasClase(int IDClase)
+        public static List<Reserva> listarReservasClase(int IDClase)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {  
@@ -42,7 +42,15 @@ namespace GenteFitApp.Conrolers
             }
         }
 
-        public int getPlazasClase(int IDClase) 
+        public static List<Reserva> listarReservas()
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                return dBGfit.Reserva.ToList();
+            }
+        }
+
+        public static int getPlazasClase(int IDClase) 
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
@@ -52,7 +60,7 @@ namespace GenteFitApp.Conrolers
             }
         }
 
-        public List<DateTime> listarFechasActividad(int IDActividad)
+        public static List<DateTime> listarFechasActividad(int IDActividad)
         {
             List<DateTime> listaHorarios = new List<DateTime>();
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
