@@ -21,7 +21,8 @@ namespace GenteFitApp.Modelo
         }
     
         public int id_Cliente { get; set; }
-        public System.DateTime fechaAlta { get; set; }
+        public int personaID { get; set; }
+        public Nullable<System.DateTime> fechaAlta { get; set; }
     
         public virtual Persona Persona { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

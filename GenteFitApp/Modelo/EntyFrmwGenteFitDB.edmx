@@ -9,8 +9,8 @@
           <Key>
             <PropertyRef Name="id_Actividad" />
           </Key>
-          <Property Name="id_Actividad" Type="int" Nullable="false" />
-          <Property Name="nombre" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_Actividad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="descripcion" Type="nvarchar" MaxLength="150" />
           <Property Name="monitorID" Type="int" Nullable="false" />
         </EntityType>
@@ -18,7 +18,8 @@
           <Key>
             <PropertyRef Name="id_Admin" />
           </Key>
-          <Property Name="id_Admin" Type="int" Nullable="false" />
+          <Property Name="id_Admin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="personaID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Clase">
           <Key>
@@ -33,16 +34,18 @@
           <Key>
             <PropertyRef Name="id_Cliente" />
           </Key>
-          <Property Name="id_Cliente" Type="int" Nullable="false" />
-          <Property Name="fechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="id_Cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="personaID" Type="int" Nullable="false" />
+          <Property Name="fechaAlta" Type="datetime" />
         </EntityType>
         <EntityType Name="Monitor">
           <Key>
             <PropertyRef Name="id_Monitor" />
           </Key>
-          <Property Name="id_Monitor" Type="int" Nullable="false" />
-          <Property Name="precioHora" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="fechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="id_Monitor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="personaID" Type="int" Nullable="false" />
+          <Property Name="precioHora" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="fechaAlta" Type="datetime" />
         </EntityType>
         <EntityType Name="Persona">
           <Key>
@@ -51,8 +54,7 @@
           <Property Name="id_Persona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="apellido1" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="apellido2" Type="nvarchar" MaxLength="50" />
+          <Property Name="apellido1" Type="nvarchar" MaxLength="50" />
           <Property Name="direccion" Type="nvarchar" MaxLength="50" />
           <Property Name="codigoPostal" Type="int" />
           <Property Name="provincia" Type="nvarchar" MaxLength="50" />
@@ -79,25 +81,25 @@
         </EntityType>
         <Association Name="FK_Actividad_Monitor">
           <End Role="Monitor" Type="Self.Monitor" Multiplicity="1" />
-          <End Role="Actividad" Type="Self.Actividad" Multiplicity="0..1" />
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Monitor">
               <PropertyRef Name="id_Monitor" />
             </Principal>
             <Dependent Role="Actividad">
-              <PropertyRef Name="id_Actividad" />
+              <PropertyRef Name="monitorID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Administrador_Persona">
           <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
-          <End Role="Administrador" Type="Self.Administrador" Multiplicity="0..1" />
+          <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persona">
               <PropertyRef Name="id_Persona" />
             </Principal>
             <Dependent Role="Administrador">
-              <PropertyRef Name="id_Admin" />
+              <PropertyRef Name="personaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -127,25 +129,25 @@
         </Association>
         <Association Name="FK_Cliente_Persona">
           <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persona">
               <PropertyRef Name="id_Persona" />
             </Principal>
             <Dependent Role="Cliente">
-              <PropertyRef Name="id_Cliente" />
+              <PropertyRef Name="personaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Monitor_Persona">
           <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
-          <End Role="Monitor" Type="Self.Monitor" Multiplicity="0..1" />
+          <End Role="Monitor" Type="Self.Monitor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persona">
               <PropertyRef Name="id_Persona" />
             </Principal>
             <Dependent Role="Monitor">
-              <PropertyRef Name="id_Monitor" />
+              <PropertyRef Name="personaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -224,8 +226,8 @@
           <Key>
             <PropertyRef Name="id_Actividad" />
           </Key>
-          <Property Name="id_Actividad" Type="Int32" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="id_Actividad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="monitorID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Monitor" Relationship="Self.FK_Actividad_Monitor" FromRole="Actividad" ToRole="Monitor" />
@@ -235,7 +237,8 @@
           <Key>
             <PropertyRef Name="id_Admin" />
           </Key>
-          <Property Name="id_Admin" Type="Int32" Nullable="false" />
+          <Property Name="id_Admin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="personaID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Persona" Relationship="Self.FK_Administrador_Persona" FromRole="Administrador" ToRole="Persona" />
         </EntityType>
         <EntityType Name="Clase">
@@ -254,8 +257,9 @@
           <Key>
             <PropertyRef Name="id_Cliente" />
           </Key>
-          <Property Name="id_Cliente" Type="Int32" Nullable="false" />
-          <Property Name="fechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_Cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="personaID" Type="Int32" Nullable="false" />
+          <Property Name="fechaAlta" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Persona" Relationship="Self.FK_Cliente_Persona" FromRole="Cliente" ToRole="Persona" />
           <NavigationProperty Name="Reserva" Relationship="Self.FK_Reserva_Cliente" FromRole="Cliente" ToRole="Reserva" />
         </EntityType>
@@ -263,9 +267,10 @@
           <Key>
             <PropertyRef Name="id_Monitor" />
           </Key>
-          <Property Name="id_Monitor" Type="Int32" Nullable="false" />
-          <Property Name="precioHora" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="fechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_Monitor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="personaID" Type="Int32" Nullable="false" />
+          <Property Name="precioHora" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="fechaAlta" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Actividad" Relationship="Self.FK_Actividad_Monitor" FromRole="Monitor" ToRole="Actividad" />
           <NavigationProperty Name="Persona" Relationship="Self.FK_Monitor_Persona" FromRole="Monitor" ToRole="Persona" />
         </EntityType>
@@ -276,8 +281,7 @@
           <Property Name="id_Persona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="apellido1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="apellido2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="apellido1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="codigoPostal" Type="Int32" />
           <Property Name="provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -310,13 +314,13 @@
         </EntityType>
         <Association Name="FK_Actividad_Monitor">
           <End Role="Monitor" Type="Self.Monitor" Multiplicity="1" />
-          <End Role="Actividad" Type="Self.Actividad" Multiplicity="0..1" />
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Monitor">
               <PropertyRef Name="id_Monitor" />
             </Principal>
             <Dependent Role="Actividad">
-              <PropertyRef Name="id_Actividad" />
+              <PropertyRef Name="monitorID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -334,13 +338,13 @@
         </Association>
         <Association Name="FK_Administrador_Persona">
           <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
-          <End Role="Administrador" Type="Self.Administrador" Multiplicity="0..1" />
+          <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persona">
               <PropertyRef Name="id_Persona" />
             </Principal>
             <Dependent Role="Administrador">
-              <PropertyRef Name="id_Admin" />
+              <PropertyRef Name="personaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -370,13 +374,13 @@
         </Association>
         <Association Name="FK_Cliente_Persona">
           <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persona">
               <PropertyRef Name="id_Persona" />
             </Principal>
             <Dependent Role="Cliente">
-              <PropertyRef Name="id_Cliente" />
+              <PropertyRef Name="personaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -394,13 +398,13 @@
         </Association>
         <Association Name="FK_Monitor_Persona">
           <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
-          <End Role="Monitor" Type="Self.Monitor" Multiplicity="0..1" />
+          <End Role="Monitor" Type="Self.Monitor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persona">
               <PropertyRef Name="id_Persona" />
             </Principal>
             <Dependent Role="Monitor">
-              <PropertyRef Name="id_Monitor" />
+              <PropertyRef Name="personaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -466,6 +470,7 @@
             <EntityTypeMapping TypeName="GenteFitDBModel.Administrador">
               <MappingFragment StoreEntitySet="Administrador">
                 <ScalarProperty Name="id_Admin" ColumnName="id_Admin" />
+                <ScalarProperty Name="personaID" ColumnName="personaID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -483,6 +488,7 @@
             <EntityTypeMapping TypeName="GenteFitDBModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
                 <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
+                <ScalarProperty Name="personaID" ColumnName="personaID" />
                 <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -491,6 +497,7 @@
             <EntityTypeMapping TypeName="GenteFitDBModel.Monitor">
               <MappingFragment StoreEntitySet="Monitor">
                 <ScalarProperty Name="id_Monitor" ColumnName="id_Monitor" />
+                <ScalarProperty Name="personaID" ColumnName="personaID" />
                 <ScalarProperty Name="precioHora" ColumnName="precioHora" />
                 <ScalarProperty Name="fechaAlta" ColumnName="fechaAlta" />
               </MappingFragment>
@@ -503,7 +510,6 @@
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="apellido1" ColumnName="apellido1" />
-                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
                 <ScalarProperty Name="codigoPostal" ColumnName="codigoPostal" />
                 <ScalarProperty Name="provincia" ColumnName="provincia" />

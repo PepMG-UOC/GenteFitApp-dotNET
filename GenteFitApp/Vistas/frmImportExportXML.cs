@@ -1,15 +1,6 @@
 ﻿using GenteFitApp.Conrolers;
-using GenteFitApp.Modelo;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GenteFitApp.Vistas
@@ -23,54 +14,53 @@ namespace GenteFitApp.Vistas
                
         private void cbTablaSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+           
             switch (cbTablaSelect.SelectedIndex)
             {
                 case 0: //Monitor
                     dataGridView1.DataSource = null;
-                    List<Monitor> listaMonitores = Usuarios.listarMonitores();
-                    dataGridView1.DataSource = listaMonitores;
+                    dataGridView1.DataSource = Usuarios.listarMonitores();                    
                     break;
                 case 1: //Cliente
                     dataGridView1.DataSource = null;
-                    List<Cliente> listaClientes = Usuarios.listarClientes();
-                    dataGridView1.DataSource = listaClientes;
+                    dataGridView1.DataSource = Usuarios.listarClientes();                    
                     break;
                 case 2: //Administrador
                     dataGridView1.DataSource = null;
-                    List<Administrador> listaAdministradores = Usuarios.listarAdministradores();
-                    dataGridView1.DataSource = listaAdministradores;
+                    dataGridView1.DataSource = Usuarios.listarAdministradores();                    
                     break;
                 case 3: //Sala
                     dataGridView1.DataSource = null;
-                    List<Sala> listaSalas = GestionCentro.listarSalas();
-                    dataGridView1.DataSource = listaSalas;
+                    dataGridView1.DataSource = GestionCentro.listarSalas();                    
                     break;
                 case 4: //Actividad
                     dataGridView1.DataSource = null;
-                    List<Actividad> listaActividades = GestionCentro.listarActividades();
-                    dataGridView1.DataSource = listaActividades;
+                    dataGridView1.DataSource = GestionCentro.listarActividades();
                     break;
                 case 5: //Clase
                     dataGridView1.DataSource = null;
-                    List<Clase> listaClases = GestionCentro.listarClases();
-                    dataGridView1.DataSource = listaClases;
+                    dataGridView1.DataSource = GestionCentro.listarClases();
                     break;
                 case 6: //Reserva
                     dataGridView1.DataSource = null;
-                    List<Reserva> listaReservas = ConsultasBase.listarReservas();
-                    dataGridView1.DataSource = listaReservas;
+                    dataGridView1.DataSource = ConsultasBase.listarReservas();
                     break;
             }
         }
 
         private void btnExport_Click(object sender, EventArgs e)
         {            
-                string filePath;
-                if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    filePath = folderBrowserDialog1.SelectedPath;
-                    switch (cbTablaSelect.SelectedIndex)
+            string filePath;
+            // Inicializo el folderBrowserdialog en la carpeta documentos del usuario.
+            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
+            folderBrowserDialog1.SelectedPath = documentsPath;
+
+            DialogResult result = folderBrowserDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            { 
+                filePath = folderBrowserDialog1.SelectedPath;
+                switch (cbTablaSelect.SelectedIndex)
                     {
                         case 0: //Monitor
 
@@ -83,12 +73,13 @@ namespace GenteFitApp.Vistas
 
                             break;
                         case 3: //Sala
-                            filePath = Path.Combine(filePath, "Sala");
-                            ConexionERP.crearXMLdeSala(filePath);
+                            filePath = Path.Combine(filePath, "Sala.xml");
+                            ConexionERP.XMLdeSala(filePath);
                             break;
                         case 4: //Actividad
-                           
-                            break;
+                            filePath= Path.Combine(filePath, "Actividad.xml");
+                            ConexionERP.XMLdeActividad(filePath);
+                        break;
                         case 5: //Clase
                            
                             break;

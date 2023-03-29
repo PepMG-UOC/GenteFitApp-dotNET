@@ -14,11 +14,19 @@ namespace GenteFitApp.Modelo
     
     public partial class Monitor
     {
-        public int id_Monitor { get; set; }
-        public Nullable<decimal> precioHora { get; set; }
-        public System.DateTime fechaAlta { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Monitor()
+        {
+            this.Actividad = new HashSet<Actividad>();
+        }
     
-        public virtual Actividad Actividad { get; set; }
+        public int id_Monitor { get; set; }
+        public int personaID { get; set; }
+        public Nullable<decimal> precioHora { get; set; }
+        public Nullable<System.DateTime> fechaAlta { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Actividad> Actividad { get; set; }
         public virtual Persona Persona { get; set; }
     }
 }
