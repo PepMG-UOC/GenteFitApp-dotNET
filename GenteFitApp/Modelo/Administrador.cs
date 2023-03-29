@@ -15,6 +15,7 @@ namespace GenteFitApp.Modelo
     public partial class Administrador
     {
         public int id_Admin { get; set; }
+        public int personaID { get; set; }
     
         public virtual Persona Persona { get; set; }
     }

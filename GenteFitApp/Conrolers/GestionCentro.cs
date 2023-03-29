@@ -39,14 +39,7 @@ namespace GenteFitApp.Conrolers
             }
         }
 
-        public static List<Actividad> listarActividades()
-        {
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
-            {
-                //return dBGfit.Sala.ToList();
-                return dBGfit.Actividad.ToList();
-            }
-        }
+       
 
         // ---
 
@@ -87,17 +80,34 @@ namespace GenteFitApp.Conrolers
             }
         }
 
-        public static List<Sala> listarSalas()
+        public static List<ActividadView> listarActividades()
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
-                return dBGfit.Sala.Select(s => new Sala
+                var actividades = dBGfit.Actividad.Select(s=> new ActividadView
+                {
+                    id_Actividad = s.id_Actividad,
+                    nombre = s.nombre,
+                    descripcion= s.descripcion,
+                    monitorID=s.monitorID
+                }).ToList();                
+                return actividades;
+            }
+        }
+
+        public static List<SalaView> listarSalas()
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {               
+                var salas = dBGfit.Sala.Select(s => new SalaView
                 {
                     id_Sala = s.id_Sala,
                     numPlazas = s.numPlazas,
                     dimensionM2 = s.dimensionM2
                 }).ToList();
-            }
+                return salas;
+            } 
+              
         }
 
         public static List<Clase> listarClases()

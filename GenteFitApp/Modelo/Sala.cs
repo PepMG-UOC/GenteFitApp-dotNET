@@ -21,11 +21,9 @@ namespace GenteFitApp.Modelo
         }
     
         public int id_Sala { get; set; }
-        
         public int numPlazas { get; set; }
-                
         public Nullable<int> dimensionM2 { get; set; }
-       
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Clase> Clase { get; set; }
     }
