@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -58,18 +59,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conrolers\ConexionERP.cs" />
+    <Compile Include="Conrolers\ConsultasBase.cs" />
+    <Compile Include="Conrolers\GestionCentro.cs" />
+    <Compile Include="Conrolers\Usuarios.cs" />
     <Compile Include="Modelo\Actividad.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\ActividadView.cs" />
     <Compile Include="Modelo\Administrador.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\AdministradorView.cs" />
     <Compile Include="Modelo\Clase.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\ClaseView.cs" />
     <Compile Include="Modelo\Cliente.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\ClienteView.cs" />
     <Compile Include="Modelo\EntyFrmwGenteFitDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -88,6 +97,7 @@
     <Compile Include="Modelo\Monitor.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\MonitorView.cs" />
     <Compile Include="Modelo\Persona.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
     </Compile>
@@ -97,6 +107,9 @@
     <Compile Include="Modelo\Sala.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\SalaView.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vistas\frmCalendario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,8 +122,18 @@
     <Compile Include="Vistas\frmEventos.Designer.cs">
       <DependentUpon>frmEventos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vistas\frmImportExportXML.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\frmImportExportXML.Designer.cs">
+      <DependentUpon>frmImportExportXML.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\frmTempSala.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\frmTempSala.Designer.cs">
+      <DependentUpon>frmTempSala.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\UserControlBlank.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -123,12 +146,6 @@
     <Compile Include="Vistas\UserControlDias.Designer.cs">
       <DependentUpon>UserControlDias.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Vistas\frmCalendario.resx">
-      <DependentUpon>frmCalendario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\frmEventos.resx">
-      <DependentUpon>frmEventos.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -138,11 +155,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Vistas\UserControlBlank.resx">
-      <DependentUpon>UserControlBlank.cs</DependentUpon>
+    <EmbeddedResource Include="Vistas\frmCalendario.resx">
+      <DependentUpon>frmCalendario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\UserControlDias.resx">
-      <DependentUpon>UserControlDias.cs</DependentUpon>
+    <EmbeddedResource Include="Vistas\frmImportExportXML.resx">
+      <DependentUpon>frmImportExportXML.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\frmTempSala.resx">
+      <DependentUpon>frmTempSala.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Modelo\EntyFrmwGenteFitDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -165,8 +185,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Conrolers\" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Modelo\EntyFrmwGenteFitDB.Context.tt">
@@ -179,9 +200,6 @@
       <DependentUpon>EntyFrmwGenteFitDB.edmx</DependentUpon>
       <LastGenOutput>EntyFrmwGenteFitDB.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

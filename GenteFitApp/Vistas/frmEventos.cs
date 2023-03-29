@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace GenteFitApp
+namespace GenteFitApp.Vistas
 {
     public partial class frmEventos : Form
     {
