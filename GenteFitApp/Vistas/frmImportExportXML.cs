@@ -98,5 +98,48 @@ namespace GenteFitApp.Vistas
 
             
         }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            string filePath;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                filePath = openFileDialog1.FileName;
+                string fileName = Path.GetFileName(filePath);
+
+                switch(fileName)
+                {
+                    case "Monitor.xml":
+
+                        break;
+                    case "Cliente.xml":
+
+                        break;
+                    case "Administrador.xml":
+
+                        break;
+                    case "Sala.xml":
+                        ConexionERP.updateBDDesdeXmlSala(filePath);
+                        break;
+                    case "Actividad.xml":
+                        ConexionERP.updateBDDesdeXmlActividad(filePath);
+                        break;
+                    case "Clase.xml":
+
+                        break;
+                    case "Reserva.xml":
+
+                        break;
+
+
+
+
+                }
+
+                
+            }
+            
+        }
     }
 }
