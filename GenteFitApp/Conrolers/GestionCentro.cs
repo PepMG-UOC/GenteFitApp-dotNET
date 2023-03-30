@@ -110,14 +110,37 @@ namespace GenteFitApp.Conrolers
               
         }
 
-        public static List<Clase> listarClases()
+        public static List<ClaseView> listarClases()
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
-                return dBGfit.Clase.ToList();
+                var clases = dBGfit.Clase.Select(c => new ClaseView
+                {
+                    id_Clase = c.id_Clase,
+                    actividadID = c.actividadID,
+                    salaID = c.salaID
+                }).ToList();
+
+                return clases;
             }
         }
 
+        public static List<ReservaView> listarReserva()
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                var reservas = dBGfit.Reserva.Select(r => new ReservaView
+                {
+                    id_Reserva = r.id_Reserva,
+                    posicion = r.posicion,
+                    claseID = r.claseID,
+                    clienteID = r.clienteID,
+                    confirmada = r.confirmada,
+                }).ToList();
+
+                return reservas;
+            }
+        }
 
 
 

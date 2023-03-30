@@ -101,9 +101,11 @@
     <Compile Include="Modelo\Persona.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\PersonaView.cs" />
     <Compile Include="Modelo\Reserva.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\ReservaView.cs" />
     <Compile Include="Modelo\Sala.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
     </Compile>

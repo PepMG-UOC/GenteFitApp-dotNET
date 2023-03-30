@@ -7,6 +7,7 @@ using GenteFitApp.Modelo;
 using System.Xml.Serialization;
 using System.IO;
 using System.Data.Entity;
+using System.Xml;
 
 namespace GenteFitApp.Conrolers
 {
@@ -18,7 +19,7 @@ namespace GenteFitApp.Conrolers
             {                
                 List<SalaView> listaSalas = GestionCentro.listarSalas();
                 // Serializar el objeto en formato XML
-                XmlSerializer serializer = new XmlSerializer(typeof(List<SalaView>), new XmlRootAttribute("Salas"));
+                XmlSerializer serializer = new XmlSerializer(typeof(List<SalaView>), new XmlRootAttribute("SalaLst"));
                 using (TextWriter writer = new StreamWriter(filePath))
                 {
                     serializer.Serialize(writer, listaSalas);
@@ -31,7 +32,7 @@ namespace GenteFitApp.Conrolers
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
                 List<ActividadView> listaActividades = GestionCentro.listarActividades();
-                XmlSerializer serializer = new XmlSerializer(typeof(List<ActividadView>), new XmlRootAttribute("Actividad"));
+                XmlSerializer serializer = new XmlSerializer(typeof(List<ActividadView>), new XmlRootAttribute("ActividadLst"));
                 using (TextWriter writer = new StreamWriter(filePath))
                 {
                     serializer.Serialize(writer, listaActividades);
@@ -43,19 +44,19 @@ namespace GenteFitApp.Conrolers
 
         public static void updateBDDesdeXmlSala(string filePath)
         {
-            // Leer el archivo XML y deserializarlo en una lista de objetos SalaView
-            List<SalaView> salasXml;
-            XmlSerializer serializer = new XmlSerializer(typeof(List<SalaView>));
-            using (TextReader reader = new StreamReader(filePath))
+            SalaLst salasXmlLst = new SalaLst();
+            XmlSerializer serializer = new XmlSerializer(typeof(SalaLst));
+            using (StreamReader reader = new StreamReader(filePath))
             {
-                salasXml = (List<SalaView>)serializer.Deserialize(reader);
+                salasXmlLst = (SalaLst)serializer.Deserialize(reader);
+                // hacer algo con la lista de salas...
             }
 
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
                 // Recuperar todas las salas de la BD
                 var salasBD = dBGfit.Sala.ToList();
-                foreach (var salaXml in salasXml)
+                foreach (var salaXml in salasXmlLst.Salas)
                 {
                     // Buscar si la sala ya existe en la BD
                     var salaBD = salasBD.FirstOrDefault(s => s.id_Sala == salaXml.id_Sala);
@@ -81,7 +82,7 @@ namespace GenteFitApp.Conrolers
                 // Eliminar las salas de la BD que no aparecen en el archivo XML
                 foreach (var salaBD in salasBD)
                 {
-                    var salaXml = salasXml.FirstOrDefault(s => s.id_Sala == salaBD.id_Sala);
+                    var salaXml = salasXmlLst.Salas.FirstOrDefault(s => s.id_Sala == salaBD.id_Sala);
                     if (salaXml == null)
                     {
                         dBGfit.Sala.Remove(salaBD);
@@ -91,6 +92,59 @@ namespace GenteFitApp.Conrolers
                 dBGfit.SaveChanges();
             }
         }
+
+        public static void updateBDDesdeXmlActividad(string filePath)
+        {
+            ActividadLst ActividadXmlLst = new ActividadLst();
+            XmlSerializer serializer = new XmlSerializer(typeof(ActividadLst));
+            using (StreamReader reader = new StreamReader(filePath))
+            {
+                ActividadXmlLst = (ActividadLst)serializer.Deserialize(reader);
+                // hacer algo con la lista de Actividad...
+            }
+
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                // Recuperar todas las Actividad de la BD
+                var ActividadesBD = dBGfit.Actividad.ToList();
+                foreach (var ActividadXml in ActividadXmlLst.Actividades)
+                {
+                    // Buscar si la Actividad ya existe en la BD
+                    var ActividadBD = ActividadesBD.FirstOrDefault(s => s.id_Actividad == ActividadXml.id_Actividad);
+                    if (ActividadBD != null)
+                    {
+                        ActividadBD.nombre = ActividadXml.nombre;
+                        ActividadBD.descripcion = ActividadXml.descripcion;
+                        ActividadBD.monitorID = ActividadXml.monitorID;                        
+                        dBGfit.Entry(ActividadBD).State = EntityState.Modified;
+                    }
+                    else
+                    {
+                        // La Actividad no existe en la BD, crear un nuevo objeto Actividad y agregarlo
+                        var ActividadNueva = new Actividad
+                        {
+                            id_Actividad = ActividadXml.id_Actividad,
+                            nombre = ActividadXml.nombre,
+                            descripcion = ActividadXml.descripcion,
+                            monitorID = ActividadXml.monitorID
+                        };
+                        dBGfit.Actividad.Add(ActividadNueva);
+                    }
+                }
+                // Eliminar las Actividades de la BD que no aparecen en el archivo XML
+                foreach (var ActividadBD in ActividadesBD)
+                {
+                    var ActividadXml = ActividadXmlLst.Actividades.FirstOrDefault(s => s.id_Actividad == ActividadBD.id_Actividad);
+                    if (ActividadXml == null)
+                    {
+                        dBGfit.Actividad.Remove(ActividadBD);
+                    }
+                }
+                // Guardar los cambios en la BD
+                dBGfit.SaveChanges();
+            }
+        }
+
 
 
 
