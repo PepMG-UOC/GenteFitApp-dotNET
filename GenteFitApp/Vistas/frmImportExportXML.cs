@@ -15,36 +15,40 @@ namespace GenteFitApp.Vistas
         private void cbTablaSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
            
-            switch (cbTablaSelect.SelectedIndex)
+            switch (cbTablaSelect.SelectedItem)
             {
-                case 0: //Monitor
-                    dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = Usuarios.listarMonitores();                    
-                    break;
-                case 1: //Cliente
-                    dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = Usuarios.listarClientes();                    
-                    break;
-                case 2: //Administrador
-                    dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = Usuarios.listarAdministradores();                    
-                    break;
-                case 3: //Sala
-                    dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = GestionCentro.listarSalas();                    
-                    break;
-                case 4: //Actividad
+                case "Actividad":
                     dataGridView1.DataSource = null;
                     dataGridView1.DataSource = GestionCentro.listarActividades();
                     break;
-                case 5: //Clase
+                case "Administrador":
+                    dataGridView1.DataSource = null;
+                    dataGridView1.DataSource = Usuarios.listarAdministradores();
+                    break;
+                case "Clase":
                     dataGridView1.DataSource = null;
                     dataGridView1.DataSource = GestionCentro.listarClases();
                     break;
-                case 6: //Reserva
+                case "Cliente":
+                    dataGridView1.DataSource = null;
+                    dataGridView1.DataSource = Usuarios.listarClientes();
+                    break;
+                case "Monitor":
+                    dataGridView1.DataSource = null;
+                    dataGridView1.DataSource = Usuarios.listarMonitores();                   
+                    break;
+                case "Persona":
+                    dataGridView1.DataSource = null;
+                    dataGridView1.DataSource = Usuarios.listarPersonas();
+                    break;
+                case "Reserva":
                     dataGridView1.DataSource = null;
                     dataGridView1.DataSource = ConsultasBase.listarReservas();
                     break;
+                case "Sala":
+                    dataGridView1.DataSource = null;
+                    dataGridView1.DataSource = GestionCentro.listarSalas();                    
+                    break;   
             }
         }
 
@@ -60,48 +64,50 @@ namespace GenteFitApp.Vistas
             if (result == DialogResult.OK)
             { 
                 filePath = folderBrowserDialog1.SelectedPath;
-                switch (cbTablaSelect.SelectedIndex)
-                    {
-                        case 0: //Monitor
-
-
-                            break;
-                        case 1: //Cliente
-
-                            break;
-                        case 2: //Administrador
-
-                            break;
-                        case 3: //Sala
-                            filePath = Path.Combine(filePath, "Sala.xml");
-                            ConexionERP.XMLdeSala(filePath);
-                            break;
-                        case 4: //Actividad
-                            filePath= Path.Combine(filePath, "Actividad.xml");
-                            ConexionERP.XMLdeActividad(filePath);
-                        break;
-                        case 5: //Clase
-                           
-                            break;
-                        case 6: //Reserva
-                           
-                            break;
-                    }
-
-
-                }
-                else
+                switch (cbTablaSelect.SelectedItem)
                 {
-
+                    case "Actividad":
+                        filePath = Path.Combine(filePath, "Actividad.xml");
+                        ConexionERP.ActividadToXML(filePath);
+                        break;
+                    case "Administrador":
+                        filePath = Path.Combine(filePath, "Administrador.xml");
+                        ConexionERP.AdministradorToXML(filePath);
+                        break;
+                    case "Clase":
+                        filePath = Path.Combine(filePath, "Clase.xml");
+                        ConexionERP.ClaseToXML(filePath);
+                        break;
+                    case "Cliente":
+                        filePath = Path.Combine(filePath, "Cliente.xml");
+                        ConexionERP.ClienteToXML(filePath);
+                        break;
+                    case "Monitor":
+                        filePath = Path.Combine(filePath, "Monitor.xml");
+                        ConexionERP.MonitorToXML(filePath);
+                        break;
+                    case "Persona":
+                        filePath = Path.Combine(filePath, "Persona.xml");
+                        ConexionERP.PersonaToXML(filePath);
+                        break;
+                    case "Reserva":
+                        filePath = Path.Combine(filePath, "Reserva.xml");
+                        ConexionERP.ReservaToXML(filePath);
+                        break;
+                    case "Sala":
+                        filePath = Path.Combine(filePath, "Sala.xml");
+                        ConexionERP.SalaToXML(filePath);
+                        break;                    
                 }
-
-
-            
+                MessageBox.Show("El archivo XML se a Exportado con exito.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }             
         }
 
         private void btnImport_Click(object sender, EventArgs e)
         {
             string filePath;
+            cbTablaSelect.SelectedItem = null;
+            dataGridView1.DataSource = null;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -110,36 +116,33 @@ namespace GenteFitApp.Vistas
 
                 switch(fileName)
                 {
-                    case "Monitor.xml":
-
-                        break;
-                    case "Cliente.xml":
-
+                    case "Actividad.xml":
+                        ConexionERP.XmlToActividad(filePath);
                         break;
                     case "Administrador.xml":
-
-                        break;
-                    case "Sala.xml":
-                        ConexionERP.updateBDDesdeXmlSala(filePath);
-                        break;
-                    case "Actividad.xml":
-                        ConexionERP.updateBDDesdeXmlActividad(filePath);
+                        ConexionERP.XmlToAdministrador(filePath);
                         break;
                     case "Clase.xml":
-
+                        ConexionERP.XmlToClase(filePath);
+                        break;
+                    case "Cliente.xml":
+                        ConexionERP.XmlToCliente(filePath);
+                        break;
+                    case "Monitor.xml":
+                        ConexionERP.XmlToMonitor(filePath);
+                        break;
+                    case "Persona.xml":
+                        ConexionERP.XmlToPersona(filePath);
                         break;
                     case "Reserva.xml":
-
+                        ConexionERP.XmlToReserva(filePath);
                         break;
-
-
-
-
+                    case "Sala.xml":
+                        ConexionERP.XmlToSala(filePath);
+                        break;
                 }
-
-                
-            }
-            
+                MessageBox.Show("El archivo XML se a Importado con exito.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }            
         }
     }
 }

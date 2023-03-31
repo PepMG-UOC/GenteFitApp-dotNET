@@ -46,10 +46,30 @@ namespace GenteFitApp.Conrolers
                 {
                     id_Cliente = cl.id_Cliente,
                     personaID = cl.personaID,
-                    fechaAlta = cl.fechaAlta,
+                    fechaAlta = cl.fechaAlta
                 }).ToList();
 
                 return clientes;
+            }
+        }
+
+        public static List<PersonaView> listarPersonas()
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                var Personas = dBGfit.Persona.Select(m => new PersonaView
+                {
+                    id_Persona= m.id_Persona,
+                    email= m.email,
+                    nombre= m.nombre,
+                    apellido1= m.apellido1,
+                    direccion= m.direccion,
+                    codigoPostal= m.codigoPostal,
+                    provincia= m.provincia,
+                    dniNifNie= m.dniNifNie,
+                    password= m.password
+                }).ToList();
+                return Personas;
             }
         }
 

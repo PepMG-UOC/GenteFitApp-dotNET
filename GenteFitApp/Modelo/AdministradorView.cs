@@ -7,8 +7,15 @@ using System.Xml.Serialization;
 
 namespace GenteFitApp.Modelo
 {
-    [Serializable]
-    [XmlRoot("Administrador")]
+
+    [XmlRoot("AdministradorLst")]
+    public class AdministradorLst
+    {
+        [XmlElement("AdministradorView")]
+        public List<AdministradorView> Administradores { get; set; }
+    }
+
+    [Serializable]    
     public class AdministradorView
     {
         public int id_Admin { get; set; }

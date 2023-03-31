@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 namespace GenteFitApp.Modelo
 {
     [XmlRoot("ReservaLst")]
-    public class Reservaist
+    public class ReservaLst
     {
         [XmlElement("ReservaLst")]
         public List<ReservaView> Reservas { get; set; }
