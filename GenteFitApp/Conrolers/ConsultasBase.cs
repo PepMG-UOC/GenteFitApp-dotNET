@@ -42,11 +42,20 @@ namespace GenteFitApp.Conrolers
             }
         }
 
-        public static List<Reserva> listarReservas()
+        public static List<ReservaView> listarReservas()
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
-                return dBGfit.Reserva.ToList();
+                var reservas = dBGfit.Reserva.Select(r => new ReservaView
+                {
+                    id_Reserva = r.id_Reserva,
+                    posicion = r.posicion,
+                    claseID = r.claseID,
+                    clienteID = r.clienteID,
+                    confirmada = r.confirmada,
+                }).ToList();
+
+                return reservas;
             }
         }
 

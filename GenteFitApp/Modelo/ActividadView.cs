@@ -1,10 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace GenteFitApp.Modelo
 {
-    [Serializable]
-    [XmlRoot("Actividad")]
+    [XmlRoot("ActividadLst")]
+    public class ActividadLst
+    {
+        [XmlElement("ActividadView")]
+        public List<ActividadView> Actividades { get; set; }
+    }
+
+
+    [Serializable]   
     public class ActividadView
     {
         public int id_Actividad { get; set; }
