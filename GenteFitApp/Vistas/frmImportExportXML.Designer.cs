@@ -114,7 +114,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbTablaSelect);
             this.Name = "frmImportExportXML";
-            this.Text = "frmImportExportXML";
+            this.Text = "Import-Export XMLs";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
