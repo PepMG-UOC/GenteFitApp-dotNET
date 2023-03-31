@@ -7,8 +7,15 @@ using System.Xml.Serialization;
 
 namespace GenteFitApp.Modelo
 {
+    [XmlRoot("ClaseLst")]
+    public class ClaseLst
+    {
+        [XmlElement("ClaseView")]
+        public List<ClaseView> Clases { get; set; }
+    }
+
+
     [Serializable]
-    [XmlRoot("Clase")]
     public class ClaseView
     {
         public int id_Clase { get; set; }

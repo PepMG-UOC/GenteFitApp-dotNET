@@ -1,10 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace GenteFitApp.Modelo
 {
-    [Serializable]
-    [XmlRoot("Monitor")]
+    [XmlRoot("MonitorLst")]
+    public class MonitorLst
+    {
+        [XmlElement("MonitorView")]
+        public List<MonitorView> Monitores { get; set; }
+    }
+
+    [Serializable]    
     public class MonitorView
     {
         public int id_Monitor { get; set; }

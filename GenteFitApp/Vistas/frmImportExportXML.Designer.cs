@@ -43,16 +43,18 @@
             this.cbTablaSelect.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.cbTablaSelect.FormattingEnabled = true;
             this.cbTablaSelect.Items.AddRange(new object[] {
-            "Monitor",
-            "Cliente",
-            "Administrador",
-            "Sala",
             "Actividad",
+            "Administrador",
             "Clase",
-            "Reserva"});
+            "Cliente",
+            "Monitor",
+            "Persona",
+            "Reserva",
+            "Sala"});
             this.cbTablaSelect.Location = new System.Drawing.Point(26, 62);
             this.cbTablaSelect.Name = "cbTablaSelect";
             this.cbTablaSelect.Size = new System.Drawing.Size(169, 29);
+            this.cbTablaSelect.Sorted = true;
             this.cbTablaSelect.TabIndex = 0;
             this.cbTablaSelect.SelectedIndexChanged += new System.EventHandler(this.cbTablaSelect_SelectedIndexChanged);
             // 
@@ -68,6 +70,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(251, 62);
             this.dataGridView1.Name = "dataGridView1";
@@ -111,7 +114,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbTablaSelect);
             this.Name = "frmImportExportXML";
-            this.Text = "frmImportExportXML";
+            this.Text = "Import-Export XMLs";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
