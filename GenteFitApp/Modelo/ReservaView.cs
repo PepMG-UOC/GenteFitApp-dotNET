@@ -7,7 +7,7 @@ namespace GenteFitApp.Modelo
     [XmlRoot("ReservaLst")]
     public class ReservaLst
     {
-        [XmlElement("ReservaLst")]
+        [XmlElement("ReservaView")]
         public List<ReservaView> Reservas { get; set; }
     }
 
