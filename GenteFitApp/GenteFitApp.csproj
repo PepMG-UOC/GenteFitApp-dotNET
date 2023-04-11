@@ -62,6 +62,7 @@
     <Compile Include="Conrolers\ConexionERP.cs" />
     <Compile Include="Conrolers\ConsultasBase.cs" />
     <Compile Include="Conrolers\GestionCentro.cs" />
+    <Compile Include="Conrolers\Session.cs" />
     <Compile Include="Conrolers\Usuarios.cs" />
     <Compile Include="Modelo\Actividad.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
@@ -112,6 +113,11 @@
     <Compile Include="Modelo\SalaView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\frmCalendario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,24 @@
     </Compile>
     <Compile Include="Vistas\frmImportExportXML.Designer.cs">
       <DependentUpon>frmImportExportXML.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\frmLogging.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\frmLogging.Designer.cs">
+      <DependentUpon>frmLogging.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\frmMenuAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\frmMenuAdmin.Designer.cs">
+      <DependentUpon>frmMenuAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\frmMenuCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\frmMenuCliente.Designer.cs">
+      <DependentUpon>frmMenuCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\frmTempSala.cs">
       <SubType>Form</SubType>
@@ -150,18 +174,23 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Vistas\frmCalendario.resx">
       <DependentUpon>frmCalendario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\frmImportExportXML.resx">
       <DependentUpon>frmImportExportXML.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\frmLogging.resx">
+      <DependentUpon>frmLogging.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\frmMenuAdmin.resx">
+      <DependentUpon>frmMenuAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\frmMenuCliente.resx">
+      <DependentUpon>frmMenuCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\frmTempSala.resx">
       <DependentUpon>frmTempSala.cs</DependentUpon>
@@ -202,6 +231,14 @@
       <DependentUpon>EntyFrmwGenteFitDB.edmx</DependentUpon>
       <LastGenOutput>EntyFrmwGenteFitDB.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\mnuAdmGestUser.PNG" />
+    <None Include="Resources\mnuAdmGestReservas.PNG" />
+    <None Include="Resources\mnuAdmGestCentro.PNG" />
+    <None Include="Resources\GenteFit.Entrena_y_vive.png" />
+    <None Include="Resources\mnuClMiClases.PNG" />
+    <None Include="Resources\mnuClClases.PNG" />
+    <None Include="Resources\User-avatar.svg.png" />
+    <None Include="Resources\keypass.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
