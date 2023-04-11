@@ -16,8 +16,8 @@ namespace GenteFitApp
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Vistas.frmImportExportXML());  
+            Application.SetCompatibleTextRenderingDefault(false);            
+            Application.Run(new Vistas.frmLogging());
         }
     }
 }

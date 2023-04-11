@@ -73,7 +73,15 @@ namespace GenteFitApp.Conrolers
             }
         }
 
+        public static bool logging(string eMail, string password)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                
+            }
 
+            return false;
+        }
 
     }
 }
