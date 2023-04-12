@@ -2,20 +2,25 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GenteFitApp.Conrolers;
 
 namespace GenteFitApp.Vistas
 {
     public partial class frmCalendario : Form
     {
-        int mes, año;
-        public static int static_mes, static_año;
+        public static int mes, año, dia;
+        public int mesActual, añoActual, diaActual;
         private string origen;
+        TextoSeleccionable evento;
+        public DateTime ahora;
+
         public frmCalendario(string orig)
         {
             InitializeComponent();
@@ -24,19 +29,22 @@ namespace GenteFitApp.Vistas
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            ahora = DateTime.Now;
+            mesActual = ahora.Month;
+            añoActual = ahora.Year;
+            diaActual = ahora.Day;
             muestraDias();
         }
         private void muestraDias()
         {
-            DateTime ahora = DateTime.Now;
-            mes = ahora.Month;
-            año = ahora.Year;
+            
+            mes = mesActual;
+            año = añoActual;
+            dia = diaActual;
 
             string mesNombre = DateTimeFormatInfo.CurrentInfo.GetMonthName(mes).ToUpper();
             lbMesAnyo.Text = mesNombre + " " + año;
-
-            static_mes = mes;
-            static_año = año;
+            
             // Determinamos primer dia del mes.
             DateTime inicioDeMes = new DateTime(año, mes, 1);
 
@@ -54,16 +62,22 @@ namespace GenteFitApp.Vistas
             for(int i= 1; i<=dias; i++)
             {
                 UserControlDias ucdias = new UserControlDias();
-                ucdias.dias(i);
+                // ucdias = rellenaDia(i, mes, año);
+                if (i == diaActual && mes == mesActual && año == añoActual)
+                {
+                    ucdias.dias(i, Color.Blue);
+
+                    evento = new TextoSeleccionable { Texto = "Speening", BackColor = Color.Green };
+                    var labelEvento = new Label { Text = evento.Texto, BackColor = evento.BackColor };
+                    ucdias.insertaEvento(labelEvento);
+                }
+                else ucdias.dias(i, Color.White);
+
                 diasContenedor.Controls.Add(ucdias);
             }
         }
 
-        public class textoSeleccionable
-        {
-            public string Texto { get; set; }
-            public Color BackColor { get; set; }
-        }
+      
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
@@ -78,8 +92,7 @@ namespace GenteFitApp.Vistas
                     frmMenuAdmin menuAdmin = new frmMenuAdmin();
                     menuAdmin.Show();
                     this.Close();
-                    break;
-                    
+                    break;                    
             }
         }
 
@@ -94,8 +107,7 @@ namespace GenteFitApp.Vistas
                 mes = 12;
                 año--;
             }
-            static_mes = mes;
-            static_año = año;
+            
             string mesNombre = DateTimeFormatInfo.CurrentInfo.GetMonthName(mes).ToUpper();
             lbMesAnyo.Text = mesNombre + " " + año;
 
@@ -115,7 +127,14 @@ namespace GenteFitApp.Vistas
             for (int i = 1; i <= dias; i++)
             {
                 UserControlDias ucdias = new UserControlDias();
-                ucdias.dias(i);
+                if (i == diaActual && mes == mesActual && año == añoActual)
+                {
+                    ucdias.dias(i, Color.Blue);
+                    evento = new TextoSeleccionable { Texto = "Speening", BackColor = Color.Green };
+                    var labelEvento = new Label { Text = evento.Texto, BackColor = evento.BackColor };
+                    ucdias.insertaEvento(labelEvento);
+                }
+                else ucdias.dias(i, Color.White);
                 diasContenedor.Controls.Add(ucdias);
             }
         }
@@ -130,10 +149,8 @@ namespace GenteFitApp.Vistas
             {
                 mes = 1;
                 año++;
-            }
-            
-            static_mes = mes;
-            static_año = año;
+            }            
+           
             string mesNombre = DateTimeFormatInfo.CurrentInfo.GetMonthName(mes).ToUpper();
             lbMesAnyo.Text = mesNombre + " " + año;
 
@@ -153,9 +170,17 @@ namespace GenteFitApp.Vistas
             for (int i = 1; i <= dias; i++)
             {
                 UserControlDias ucdias = new UserControlDias();
-                ucdias.dias(i);
+                if (i == diaActual && mes == mesActual && año == añoActual)
+                {
+                    ucdias.dias(i, Color.Blue);
+                    evento = new TextoSeleccionable { Texto = "Speening", BackColor = Color.Green };
+                    var labelEvento = new Label { Text = evento.Texto, BackColor = evento.BackColor };
+                    ucdias.insertaEvento(labelEvento);
+                }
+                else ucdias.dias(i, Color.White);
                 diasContenedor.Controls.Add(ucdias);
             }
         }
     }
+    
 }

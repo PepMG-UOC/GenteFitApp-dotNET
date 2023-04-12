@@ -20,7 +20,7 @@ namespace GenteFitApp.Vistas
 
         private void frmEventos_Load(object sender, EventArgs e)
         {
-            txtbxFecha.Text = UserControlDias.static_dia + "/" + frmCalendario.static_mes + "/" +  frmCalendario.static_año;
+            txtbxFecha.Text = UserControlDias.dia + "/" + frmCalendario.mes + "/" +  frmCalendario.año;
         }
     }
 }

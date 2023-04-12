@@ -38,6 +38,7 @@
             // 
             this.lbdias.AutoSize = true;
             this.lbdias.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
+            this.lbdias.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lbdias.Location = new System.Drawing.Point(5, 5);
             this.lbdias.Name = "lbdias";
             this.lbdias.Size = new System.Drawing.Size(28, 21);

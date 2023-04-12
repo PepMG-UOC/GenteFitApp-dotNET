@@ -12,7 +12,7 @@ namespace GenteFitApp.Vistas
 {
     public partial class UserControlDias : UserControl
     {
-        public static string static_dia;
+        public static string dia;
 
         public UserControlDias()
         {
@@ -23,22 +23,24 @@ namespace GenteFitApp.Vistas
         {
 
         }
-        public void dias(int numdia)
+        public void dias(int numdia, Color colorNum)
         {
-            lbdias.Text = numdia + "";
-
+            lbdias.Text = numdia.ToString();
+            lbdias.BackColor = colorNum;
         }
 
+        public void insertaEvento(Label evento)
+        {
+            fLPClase.Controls.Add(evento);
+        }
         private void UserControlDias_Click(object sender, EventArgs e)
         {
-            static_dia = lbdias.Text;
+            dia = lbdias.Text;
             frmEventos _frmEvento = new frmEventos();
             _frmEvento.Show();
         }
 
-        //Metodo para mostrar Evento
-
-
+        
 
     }
 }
