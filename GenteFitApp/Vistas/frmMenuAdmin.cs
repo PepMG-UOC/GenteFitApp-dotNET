@@ -35,8 +35,7 @@ namespace GenteFitApp.Vistas
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Session.Usermail = null;
-            Session.Password = null;
+            Session.idPersona = null;
 
             frmLogging loggingForm = new frmLogging();
             loggingForm.Show();

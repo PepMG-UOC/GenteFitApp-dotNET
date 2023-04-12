@@ -26,6 +26,7 @@ namespace GenteFitApp.Vistas
         public void dias(int numdia)
         {
             lbdias.Text = numdia + "";
+
         }
 
         private void UserControlDias_Click(object sender, EventArgs e)

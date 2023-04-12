@@ -15,9 +15,11 @@ namespace GenteFitApp.Vistas
     {
         int mes, año;
         public static int static_mes, static_año;
-        public frmCalendario()
+        private string origen;
+        public frmCalendario(string orig)
         {
             InitializeComponent();
+            origen = orig;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -54,6 +56,30 @@ namespace GenteFitApp.Vistas
                 UserControlDias ucdias = new UserControlDias();
                 ucdias.dias(i);
                 diasContenedor.Controls.Add(ucdias);
+            }
+        }
+
+        public class textoSeleccionable
+        {
+            public string Texto { get; set; }
+            public Color BackColor { get; set; }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            switch (origen)
+            {
+                case "cliente":
+                    frmMenuCliente menuCliente = new frmMenuCliente();
+                    menuCliente.Show();
+                    this.Close();
+                    break;
+                case "admin":
+                    frmMenuAdmin menuAdmin = new frmMenuAdmin();
+                    menuAdmin.Show();
+                    this.Close();
+                    break;
+                    
             }
         }
 

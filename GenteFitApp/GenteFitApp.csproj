@@ -195,6 +195,9 @@
     <EmbeddedResource Include="Vistas\frmTempSala.resx">
       <DependentUpon>frmTempSala.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\UserControlDias.resx">
+      <DependentUpon>UserControlDias.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="Modelo\EntyFrmwGenteFitDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>EntyFrmwGenteFitDB.Designer.cs</LastGenOutput>
