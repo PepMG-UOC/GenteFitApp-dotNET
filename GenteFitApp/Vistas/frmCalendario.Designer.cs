@@ -44,6 +44,7 @@
             // 
             // diasContenedor
             // 
+            this.diasContenedor.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.diasContenedor.Location = new System.Drawing.Point(38, 85);
             this.diasContenedor.Name = "diasContenedor";
             this.diasContenedor.Size = new System.Drawing.Size(1201, 553);
@@ -51,6 +52,7 @@
             // 
             // btnSiguiente
             // 
+            this.btnSiguiente.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnSiguiente.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.btnSiguiente.Location = new System.Drawing.Point(1076, 651);
             this.btnSiguiente.Name = "btnSiguiente";
@@ -62,6 +64,7 @@
             // 
             // btnAnterior
             // 
+            this.btnAnterior.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnAnterior.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.btnAnterior.Location = new System.Drawing.Point(945, 651);
             this.btnAnterior.Name = "btnAnterior";
@@ -73,6 +76,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(95, 61);
@@ -83,6 +87,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(260, 61);
@@ -93,6 +98,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(606, 61);
@@ -103,6 +109,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(425, 61);
@@ -113,6 +120,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(941, 61);
@@ -123,6 +131,7 @@
             // 
             // label6
             // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(770, 61);
@@ -133,6 +142,7 @@
             // 
             // label7
             // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(1105, 61);
@@ -143,6 +153,7 @@
             // 
             // lbMesAnyo
             // 
+            this.lbMesAnyo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbMesAnyo.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbMesAnyo.Location = new System.Drawing.Point(425, 9);
             this.lbMesAnyo.Name = "lbMesAnyo";
@@ -153,6 +164,7 @@
             // 
             // btnSalir
             // 
+            this.btnSalir.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnSalir.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.btnSalir.Location = new System.Drawing.Point(99, 651);
             this.btnSalir.Name = "btnSalir";
@@ -160,6 +172,7 @@
             this.btnSalir.TabIndex = 12;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // frmCalendario
             // 
@@ -182,6 +195,7 @@
             this.Name = "frmCalendario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCalendario";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

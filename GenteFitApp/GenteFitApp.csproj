@@ -15,6 +15,22 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Publish-CSharp\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,6 +50,21 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>04A7385641F702A20F2D16BE6C1A03AC9D2D84C1</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>GenteFitApp_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\GenteFit.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -61,7 +92,9 @@
   <ItemGroup>
     <Compile Include="Conrolers\ConexionERP.cs" />
     <Compile Include="Conrolers\ConsultasBase.cs" />
+    <Compile Include="Conrolers\EventosCalendar.cs" />
     <Compile Include="Conrolers\GestionCentro.cs" />
+    <Compile Include="Conrolers\Session.cs" />
     <Compile Include="Conrolers\Usuarios.cs" />
     <Compile Include="Modelo\Actividad.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
@@ -74,6 +107,7 @@
     <Compile Include="Modelo\Clase.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\ClaseEvento.cs" />
     <Compile Include="Modelo\ClaseView.cs" />
     <Compile Include="Modelo\Cliente.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
@@ -112,6 +146,11 @@
     <Compile Include="Modelo\SalaView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\frmCalendario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +168,24 @@
     </Compile>
     <Compile Include="Vistas\frmImportExportXML.Designer.cs">
       <DependentUpon>frmImportExportXML.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\frmLogging.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\frmLogging.Designer.cs">
+      <DependentUpon>frmLogging.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\frmMenuAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\frmMenuAdmin.Designer.cs">
+      <DependentUpon>frmMenuAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\frmMenuCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\frmMenuCliente.Designer.cs">
+      <DependentUpon>frmMenuCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\frmTempSala.cs">
       <SubType>Form</SubType>
@@ -150,26 +207,38 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Vistas\frmCalendario.resx">
       <DependentUpon>frmCalendario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\frmEventos.resx">
+      <DependentUpon>frmEventos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\frmImportExportXML.resx">
       <DependentUpon>frmImportExportXML.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\frmLogging.resx">
+      <DependentUpon>frmLogging.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\frmMenuAdmin.resx">
+      <DependentUpon>frmMenuAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\frmMenuCliente.resx">
+      <DependentUpon>frmMenuCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\frmTempSala.resx">
       <DependentUpon>frmTempSala.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\UserControlDias.resx">
+      <DependentUpon>UserControlDias.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Modelo\EntyFrmwGenteFitDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>EntyFrmwGenteFitDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="GenteFitApp_TemporaryKey.pfx" />
     <None Include="Modelo\EntyFrmwGenteFitDB.edmx.diagram">
       <DependentUpon>EntyFrmwGenteFitDB.edmx</DependentUpon>
     </None>
@@ -187,7 +256,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
@@ -202,6 +282,16 @@
       <DependentUpon>EntyFrmwGenteFitDB.edmx</DependentUpon>
       <LastGenOutput>EntyFrmwGenteFitDB.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\ExitBtn.png" />
+    <None Include="Resources\GenteFit.ico" />
+    <None Include="Resources\mnuAdmGestUser.PNG" />
+    <None Include="Resources\mnuAdmGestReservas.PNG" />
+    <None Include="Resources\mnuAdmGestCentro.PNG" />
+    <None Include="Resources\GenteFit.Entrena_y_vive.png" />
+    <None Include="Resources\mnuClMiClases.PNG" />
+    <None Include="Resources\mnuClClases.PNG" />
+    <None Include="Resources\User-avatar.svg.png" />
+    <None Include="Resources\keypass.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

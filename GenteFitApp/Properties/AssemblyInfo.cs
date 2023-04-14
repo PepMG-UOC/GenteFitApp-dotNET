@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
 [assembly: AssemblyTitle("GenteFitApp")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Aplicacion Escritorio para paneles Tactiles del Gimnasio")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("DotNET")]
 [assembly: AssemblyProduct("GenteFitApp")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]

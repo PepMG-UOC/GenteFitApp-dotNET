@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace GenteFitApp.Conrolers
 {
@@ -73,7 +74,46 @@ namespace GenteFitApp.Conrolers
             }
         }
 
+        public static bool esCliente(int? idPersona)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                var cliente = dBGfit.Cliente.FirstOrDefault(c => c.personaID == idPersona);
+                return cliente != null;
+            }
+        }
 
+        public static bool esMonitor(int? idPersona)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                var monitor = dBGfit.Monitor.FirstOrDefault(m => m.personaID == idPersona);
+                return monitor != null;
+            }
+        }
+
+        public static bool esAdministrador(int? idPersona)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                var administrador = dBGfit.Administrador.FirstOrDefault(a => a.personaID == idPersona);
+                return administrador != null;
+            }
+        }
+
+        public static bool logging(string eMail, string password)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                if (dBGfit.Persona.Where(p => p.email == eMail && p.password == password).Any())
+                {
+                    Persona persona = dBGfit.Persona.Single(p => p.email == eMail && p.password == password);
+                    Session.idPersona = persona.id_Persona;
+                    return true;                   
+                }
+            }
+            return false;            
+        }
 
     }
 }
