@@ -63,6 +63,26 @@ namespace GenteFitApp.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ExitBtn {
+            get {
+                object obj = ResourceManager.GetObject("ExitBtn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
+        /// </summary>
+        internal static System.Drawing.Icon GenteFit {
+            get {
+                object obj = ResourceManager.GetObject("GenteFit", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap GenteFit_Entrena_y_vive {
             get {
                 object obj = ResourceManager.GetObject("GenteFit_Entrena_y_vive", resourceCulture);

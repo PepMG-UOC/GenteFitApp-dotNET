@@ -13,9 +13,16 @@ namespace GenteFitApp.Vistas
 {
     public partial class frmMenuCliente : Form
     {
+        public frmMenuCliente()
+        {
+            InitializeComponent();
+        }
+
         private void pbClases_Click(object sender, EventArgs e)
         {
-
+            frmCalendario clientCalendar = new frmCalendario("cliente");
+            clientCalendar.Show();
+            this.Close();
         }
 
         private void pbMisClases_Click(object sender, EventArgs e)
@@ -25,8 +32,8 @@ namespace GenteFitApp.Vistas
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Session.Usermail = null;
-            Session.Password = null;
+            Session.idPersona = null;           
+            
 
             frmLogging loggingForm = new frmLogging();
             loggingForm.Show();

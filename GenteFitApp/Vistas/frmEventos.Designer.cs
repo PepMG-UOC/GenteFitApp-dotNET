@@ -31,17 +31,19 @@
             this.txtbxFecha = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.txtbxActividad = new System.Windows.Forms.TextBox();
+            this.txtbxDescrip = new System.Windows.Forms.TextBox();
+            this.btnApuntarme = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtbxPlazas = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.txtbxListaEspera = new System.Windows.Forms.TextBox();
+            this.txtbxHora = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtbxAforo = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtbxFecha
@@ -73,15 +75,15 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Actividad";
             // 
-            // btnGuardar
+            // btnCancelar
             // 
-            this.btnGuardar.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.btnGuardar.Location = new System.Drawing.Point(27, 304);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(135, 40);
-            this.btnGuardar.TabIndex = 13;
-            this.btnGuardar.Text = "Cancelar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
+            this.btnCancelar.Location = new System.Drawing.Point(27, 395);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(135, 40);
+            this.btnCancelar.TabIndex = 13;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -93,34 +95,34 @@
             this.label3.TabIndex = 15;
             this.label3.Text = "Hora";
             // 
-            // textBox2
+            // txtbxActividad
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.textBox2.Location = new System.Drawing.Point(27, 43);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(182, 29);
-            this.textBox2.TabIndex = 16;
+            this.txtbxActividad.Enabled = false;
+            this.txtbxActividad.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
+            this.txtbxActividad.Location = new System.Drawing.Point(27, 43);
+            this.txtbxActividad.Name = "txtbxActividad";
+            this.txtbxActividad.Size = new System.Drawing.Size(182, 29);
+            this.txtbxActividad.TabIndex = 16;
             // 
-            // textBox3
+            // txtbxDescrip
             // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.textBox3.Location = new System.Drawing.Point(27, 166);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(346, 65);
-            this.textBox3.TabIndex = 17;
+            this.txtbxDescrip.Enabled = false;
+            this.txtbxDescrip.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
+            this.txtbxDescrip.Location = new System.Drawing.Point(27, 166);
+            this.txtbxDescrip.Multiline = true;
+            this.txtbxDescrip.Name = "txtbxDescrip";
+            this.txtbxDescrip.Size = new System.Drawing.Size(346, 65);
+            this.txtbxDescrip.TabIndex = 17;
             // 
-            // button1
+            // btnApuntarme
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.button1.Location = new System.Drawing.Point(238, 304);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(135, 40);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Apuntarme";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnApuntarme.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
+            this.btnApuntarme.Location = new System.Drawing.Point(238, 395);
+            this.btnApuntarme.Name = "btnApuntarme";
+            this.btnApuntarme.Size = new System.Drawing.Size(135, 40);
+            this.btnApuntarme.TabIndex = 18;
+            this.btnApuntarme.Text = "Apuntarme";
+            this.btnApuntarme.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -132,68 +134,91 @@
             this.label4.TabIndex = 19;
             this.label4.Text = "Descripción";
             // 
-            // textBox4
+            // txtbxPlazas
             // 
-            this.textBox4.Enabled = false;
-            this.textBox4.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.textBox4.Location = new System.Drawing.Point(97, 246);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(68, 29);
-            this.textBox4.TabIndex = 20;
+            this.txtbxPlazas.Enabled = false;
+            this.txtbxPlazas.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
+            this.txtbxPlazas.Location = new System.Drawing.Point(165, 293);
+            this.txtbxPlazas.Name = "txtbxPlazas";
+            this.txtbxPlazas.Size = new System.Drawing.Size(68, 29);
+            this.txtbxPlazas.TabIndex = 20;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.label5.Location = new System.Drawing.Point(34, 249);
+            this.label5.Location = new System.Drawing.Point(34, 296);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 21);
+            this.label5.Size = new System.Drawing.Size(102, 21);
             this.label5.TabIndex = 21;
-            this.label5.Text = "Plazas";
+            this.label5.Text = "Plazas libres";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.label6.Location = new System.Drawing.Point(201, 249);
+            this.label6.Location = new System.Drawing.Point(34, 341);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(99, 21);
+            this.label6.Size = new System.Drawing.Size(123, 21);
             this.label6.TabIndex = 23;
-            this.label6.Text = "Lista Espera";
+            this.label6.Text = "Lista de espera";
             // 
-            // textBox5
+            // txtbxListaEspera
             // 
-            this.textBox5.Enabled = false;
-            this.textBox5.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.textBox5.Location = new System.Drawing.Point(305, 246);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(68, 29);
-            this.textBox5.TabIndex = 22;
+            this.txtbxListaEspera.Enabled = false;
+            this.txtbxListaEspera.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
+            this.txtbxListaEspera.Location = new System.Drawing.Point(165, 338);
+            this.txtbxListaEspera.Name = "txtbxListaEspera";
+            this.txtbxListaEspera.Size = new System.Drawing.Size(68, 29);
+            this.txtbxListaEspera.TabIndex = 22;
             // 
-            // listBox1
+            // txtbxHora
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(253, 104);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 30);
-            this.listBox1.TabIndex = 24;
+            this.txtbxHora.Enabled = false;
+            this.txtbxHora.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
+            this.txtbxHora.Location = new System.Drawing.Point(257, 104);
+            this.txtbxHora.Name = "txtbxHora";
+            this.txtbxHora.Size = new System.Drawing.Size(116, 29);
+            this.txtbxHora.TabIndex = 24;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
+            this.label7.Location = new System.Drawing.Point(34, 252);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(120, 21);
+            this.label7.TabIndex = 26;
+            this.label7.Text = "Aforo Máximo";
+            // 
+            // txtbxAforo
+            // 
+            this.txtbxAforo.Enabled = false;
+            this.txtbxAforo.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
+            this.txtbxAforo.Location = new System.Drawing.Point(165, 249);
+            this.txtbxAforo.Name = "txtbxAforo";
+            this.txtbxAforo.Size = new System.Drawing.Size(68, 29);
+            this.txtbxAforo.TabIndex = 25;
             // 
             // frmEventos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(406, 372);
-            this.Controls.Add(this.listBox1);
+            this.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.ClientSize = new System.Drawing.Size(406, 456);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtbxAforo);
+            this.Controls.Add(this.txtbxHora);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txtbxListaEspera);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txtbxPlazas);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.btnApuntarme);
+            this.Controls.Add(this.txtbxDescrip);
+            this.Controls.Add(this.txtbxActividad);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnGuardar);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtbxFecha);
@@ -211,16 +236,18 @@
         private System.Windows.Forms.TextBox txtbxFecha;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtbxActividad;
+        private System.Windows.Forms.TextBox txtbxDescrip;
+        private System.Windows.Forms.Button btnApuntarme;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtbxPlazas;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.TextBox txtbxListaEspera;
+        private System.Windows.Forms.TextBox txtbxHora;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtbxAforo;
     }
 }

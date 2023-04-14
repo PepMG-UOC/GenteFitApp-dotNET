@@ -60,16 +60,28 @@ namespace GenteFitApp.Vistas
         private void btnAccede_Click(object sender, EventArgs e)
         {
             if(Usuarios.logging(tbEmail.Text,tbPassw.Text))
-            {
-                Session.Usermail = tbEmail.Text;
-                Session.Password = tbPassw.Text;
-
+            {                
+                if (Usuarios.esCliente(Session.idPersona) || Usuarios.esMonitor(Session.idPersona))                
+                {
+                    frmMenuCliente menuCliente = new frmMenuCliente();
+                    menuCliente.Show();
+                }
+                else if (Usuarios.esAdministrador(Session.idPersona))                
+                {
+                    frmMenuAdmin menuAdmin = new frmMenuAdmin();
+                    menuAdmin.Show();
+                }
                 this.Close();
             }
             else
             {
                 MessageBox.Show("Credenciales inválidas. Intente de nuevo.");
             }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

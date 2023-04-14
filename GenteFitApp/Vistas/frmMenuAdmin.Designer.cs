@@ -111,6 +111,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmMenuAdmin";
             this.Text = "frmMenuAdmin";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.pbUsuarios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbReservas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCentro)).EndInit();

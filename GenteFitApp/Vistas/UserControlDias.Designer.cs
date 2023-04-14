@@ -28,89 +28,67 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lbdias = new System.Windows.Forms.Label();
-            this.lbEvent1 = new System.Windows.Forms.Label();
-            this.lbEvent2 = new System.Windows.Forms.Label();
-            this.lbEvent3 = new System.Windows.Forms.Label();
-            this.lbEvent4 = new System.Windows.Forms.Label();
-            this.lbEvent5 = new System.Windows.Forms.Label();
+            this.dGVEventos = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dGVEventos)).BeginInit();
             this.SuspendLayout();
             // 
             // lbdias
             // 
             this.lbdias.AutoSize = true;
             this.lbdias.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
+            this.lbdias.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lbdias.Location = new System.Drawing.Point(5, 5);
             this.lbdias.Name = "lbdias";
             this.lbdias.Size = new System.Drawing.Size(28, 21);
             this.lbdias.TabIndex = 0;
             this.lbdias.Text = "00";
             // 
-            // lbEvent1
+            // dGVEventos
             // 
-            this.lbEvent1.BackColor = System.Drawing.Color.White;
-            this.lbEvent1.Location = new System.Drawing.Point(39, 6);
-            this.lbEvent1.Name = "lbEvent1";
-            this.lbEvent1.Size = new System.Drawing.Size(100, 13);
-            this.lbEvent1.TabIndex = 1;
-            this.lbEvent1.Text = "Speening 19:30";
-            this.lbEvent1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbEvent2
-            // 
-            this.lbEvent2.BackColor = System.Drawing.Color.White;
-            this.lbEvent2.Location = new System.Drawing.Point(39, 20);
-            this.lbEvent2.Name = "lbEvent2";
-            this.lbEvent2.Size = new System.Drawing.Size(100, 13);
-            this.lbEvent2.TabIndex = 2;
-            this.lbEvent2.Text = "Speening 19:30";
-            this.lbEvent2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbEvent3
-            // 
-            this.lbEvent3.BackColor = System.Drawing.Color.White;
-            this.lbEvent3.Location = new System.Drawing.Point(39, 35);
-            this.lbEvent3.Name = "lbEvent3";
-            this.lbEvent3.Size = new System.Drawing.Size(100, 13);
-            this.lbEvent3.TabIndex = 3;
-            this.lbEvent3.Text = "Speening 19:30";
-            this.lbEvent3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbEvent4
-            // 
-            this.lbEvent4.BackColor = System.Drawing.Color.White;
-            this.lbEvent4.Location = new System.Drawing.Point(39, 50);
-            this.lbEvent4.Name = "lbEvent4";
-            this.lbEvent4.Size = new System.Drawing.Size(100, 13);
-            this.lbEvent4.TabIndex = 4;
-            this.lbEvent4.Text = "Speening 19:30";
-            this.lbEvent4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbEvent5
-            // 
-            this.lbEvent5.BackColor = System.Drawing.Color.White;
-            this.lbEvent5.Location = new System.Drawing.Point(39, 64);
-            this.lbEvent5.Name = "lbEvent5";
-            this.lbEvent5.Size = new System.Drawing.Size(100, 13);
-            this.lbEvent5.TabIndex = 5;
-            this.lbEvent5.Text = "Speening 19:30";
-            this.lbEvent5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dGVEventos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+            this.dGVEventos.BackgroundColor = System.Drawing.Color.White;
+            this.dGVEventos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dGVEventos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dGVEventos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGVEventos.ColumnHeadersVisible = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dGVEventos.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dGVEventos.Location = new System.Drawing.Point(30, 5);
+            this.dGVEventos.Name = "dGVEventos";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dGVEventos.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dGVEventos.RowHeadersVisible = false;
+            this.dGVEventos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dGVEventos.Size = new System.Drawing.Size(132, 77);
+            this.dGVEventos.TabIndex = 1;
+            this.dGVEventos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVEventos_CellClick);
             // 
             // UserControlDias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.lbEvent5);
-            this.Controls.Add(this.lbEvent4);
-            this.Controls.Add(this.lbEvent3);
-            this.Controls.Add(this.lbEvent2);
-            this.Controls.Add(this.lbEvent1);
+            this.Controls.Add(this.dGVEventos);
             this.Controls.Add(this.lbdias);
             this.Name = "UserControlDias";
             this.Size = new System.Drawing.Size(165, 85);
             this.Load += new System.EventHandler(this.UserControlDias_Load);
-            this.Click += new System.EventHandler(this.UserControlDias_Click);
+            ((System.ComponentModel.ISupportInitialize)(this.dGVEventos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -119,10 +97,6 @@
         #endregion
 
         private System.Windows.Forms.Label lbdias;
-        private System.Windows.Forms.Label lbEvent1;
-        private System.Windows.Forms.Label lbEvent2;
-        private System.Windows.Forms.Label lbEvent3;
-        private System.Windows.Forms.Label lbEvent4;
-        private System.Windows.Forms.Label lbEvent5;
+        private System.Windows.Forms.DataGridView dGVEventos;
     }
 }

@@ -16,8 +16,10 @@ namespace GenteFitApp
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);            
-            Application.Run(new Vistas.frmLogging());
+            Application.SetCompatibleTextRenderingDefault(false);
+            frmLogging logging = new frmLogging();
+            logging.Show();
+            Application.Run();
         }
     }
 }
