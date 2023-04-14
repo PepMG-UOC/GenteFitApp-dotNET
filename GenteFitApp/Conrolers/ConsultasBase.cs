@@ -35,17 +35,19 @@ namespace GenteFitApp.Conrolers
         {
             using (var dbContext = new GenteFitDBEntities())
             {
-                var clases = dbContext.Clase.Where(c => c.fechaHora.Date == fecha.Date)
-                                            .Include(c => c.Actividad)
-                                            .Include(c => c.Sala)
-                                            .ToList();
+                var clases = dbContext.Clase.Where(c => DbFunctions.TruncateTime(c.fechaHora) == fecha.Date)
+                                    .Include(c => c.Actividad)
+                                    .Include(c => c.Sala)
+                                    .ToList();
 
                 var clasesEventos = clases.Select(c => new ClaseEvento
                 {
                     id_Clase = c.id_Clase,
+                    fechaHora = c.fechaHora,
                     nombreActividad = c.Actividad.nombre,
                     descripcionActividad = c.Actividad.descripcion,
-                    numPlazasSala = c.Sala.numPlazas
+                    numPlazasSala = c.Sala.numPlazas,
+                    numReservas = dbContext.Reserva.Count(r => r.claseID == c.id_Clase)
                 }).ToList();
                 return clasesEventos;
             }

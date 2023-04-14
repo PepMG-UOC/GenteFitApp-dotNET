@@ -213,6 +213,9 @@
     <EmbeddedResource Include="Vistas\frmCalendario.resx">
       <DependentUpon>frmCalendario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\frmEventos.resx">
+      <DependentUpon>frmEventos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\frmImportExportXML.resx">
       <DependentUpon>frmImportExportXML.cs</DependentUpon>
     </EmbeddedResource>

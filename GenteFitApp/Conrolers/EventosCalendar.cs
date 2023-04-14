@@ -23,8 +23,10 @@ namespace GenteFitApp.Conrolers
             
             UserControlDias ucdias = new UserControlDias();
             ConsultasBase.ObtenerClasesPorFecha(fecha);
-            //if(fecha.Date == ahora.Date)            
-            //{      
+            ucdias.dias(fecha.Day);
+            ucdias.CargaClasesDelDia(fecha);
+            //if (fecha.Date == ahora.Date)
+            //{
             //    evento = new TextoSeleccionable { Texto = "Speening", BackColor = Color.Green };
             //    var labelEvento = new Label { Text = evento.Texto, BackColor = evento.BackColor };
             //    ucdias.insertaEvento(labelEvento);
@@ -39,11 +41,6 @@ namespace GenteFitApp.Conrolers
     }
 
 
-
-    public static class FechaHora
-    {
-
-    }
 
     public class TextoSeleccionable
     {
