@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,38 @@ namespace GenteFitApp.Conrolers
             {
                 return dBGfit.Clase.ToList();
             }  
+        }
+
+        //public List<Clase> ObtenerClasesPorFecha(int esteDia, int esteMes, int esteAño)
+        //{
+        //    using (var db = new GenteFitDBEntities())
+        //    {
+        //        var fechaBusqueda = new DateTime(esteAño, esteMes, esteDia);
+        //        var clases = from c in db.Clase
+        //                     where c.fechaHora.Date == fechaBusqueda.Date
+        //                     select c;
+        //        return clases.ToList();
+        //    }
+        //}
+
+        public static List<ClaseEvento> ObtenerClasesPorFecha(DateTime fecha)
+        {
+            using (var dbContext = new GenteFitDBEntities())
+            {
+                var clases = dbContext.Clase.Where(c => c.fechaHora.Date == fecha.Date)
+                                            .Include(c => c.Actividad)
+                                            .Include(c => c.Sala)
+                                            .ToList();
+
+                var clasesEventos = clases.Select(c => new ClaseEvento
+                {
+                    id_Clase = c.id_Clase,
+                    nombreActividad = c.Actividad.nombre,
+                    descripcionActividad = c.Actividad.descripcion,
+                    numPlazasSala = c.Sala.numPlazas
+                }).ToList();
+                return clasesEventos;
+            }
         }
 
         public static List<Actividad> listarActividades() 

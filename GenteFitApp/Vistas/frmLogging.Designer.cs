@@ -35,6 +35,7 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tbPassw = new System.Windows.Forms.TextBox();
             this.btnAccede = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -54,6 +55,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Image = global::GenteFitApp.Properties.Resources.GenteFit_Entrena_y_vive;
             this.pictureBox1.Location = new System.Drawing.Point(448, 57);
             this.pictureBox1.Name = "pictureBox1";
@@ -109,11 +111,26 @@
             this.btnAccede.UseVisualStyleBackColor = true;
             this.btnAccede.Click += new System.EventHandler(this.btnAccede_Click);
             // 
+            // btnExit
+            // 
+            this.btnExit.BackgroundImage = global::GenteFitApp.Properties.Resources.ExitBtn;
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnExit.FlatAppearance.BorderSize = 0;
+            this.btnExit.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Location = new System.Drawing.Point(12, 12);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(48, 46);
+            this.btnExit.TabIndex = 6;
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // frmLogging
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1267, 714);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnAccede);
             this.Controls.Add(this.tbPassw);
             this.Controls.Add(this.pictureBox3);
@@ -141,5 +158,6 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.TextBox tbPassw;
         private System.Windows.Forms.Button btnAccede;
+        private System.Windows.Forms.Button btnExit;
     }
 }

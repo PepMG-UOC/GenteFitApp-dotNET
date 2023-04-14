@@ -23,24 +23,32 @@ namespace GenteFitApp.Vistas
         {
 
         }
-        public void dias(int numdia, Color colorNum)
+        public void dias(int numdia)
         {
-            lbdias.Text = numdia.ToString();
-            lbdias.BackColor = colorNum;
+            lbdias.Text = numdia.ToString();            
         }
 
         public void insertaEvento(Label evento)
         {
+            evento.Click += new EventHandler(abreEvento);
             fLPClase.Controls.Add(evento);
         }
         private void UserControlDias_Click(object sender, EventArgs e)
         {
-            dia = lbdias.Text;
+           
+        }
+
+        private void abreEvento(object sender, EventArgs e)
+        {
+            Label label = (Label)sender;
+            string activ = label.Text;
+
+           // dia = lbdias.Text;
             frmEventos _frmEvento = new frmEventos();
             _frmEvento.Show();
         }
 
-        
+
 
     }
 }

@@ -107,6 +107,7 @@
     <Compile Include="Modelo\Clase.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\ClaseEvento.cs" />
     <Compile Include="Modelo\ClaseView.cs" />
     <Compile Include="Modelo\Cliente.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
@@ -278,6 +279,7 @@
       <DependentUpon>EntyFrmwGenteFitDB.edmx</DependentUpon>
       <LastGenOutput>EntyFrmwGenteFitDB.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\ExitBtn.png" />
     <None Include="Resources\GenteFit.ico" />
     <None Include="Resources\mnuAdmGestUser.PNG" />
     <None Include="Resources\mnuAdmGestReservas.PNG" />

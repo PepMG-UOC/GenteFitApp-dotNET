@@ -17,8 +17,7 @@ namespace GenteFitApp.Vistas
     {
         public static int mes, año, dia;
         public int mesActual, añoActual, diaActual;
-        private string origen;
-        TextoSeleccionable evento;
+        private string origen;        
         public DateTime ahora;
 
         public frmCalendario(string orig)
@@ -30,21 +29,15 @@ namespace GenteFitApp.Vistas
         private void Form1_Load(object sender, EventArgs e)
         {
             ahora = DateTime.Now;
-            mesActual = ahora.Month;
-            añoActual = ahora.Year;
-            diaActual = ahora.Day;
+            mes = mesActual = ahora.Month;
+            año = añoActual = ahora.Year;
+            dia = diaActual = ahora.Day;            
             muestraDias();
         }
         private void muestraDias()
-        {
-            
-            mes = mesActual;
-            año = añoActual;
-            dia = diaActual;
-
+        {        
             string mesNombre = DateTimeFormatInfo.CurrentInfo.GetMonthName(mes).ToUpper();
-            lbMesAnyo.Text = mesNombre + " " + año;
-            
+            lbMesAnyo.Text = mesNombre + " " + año;            
             // Determinamos primer dia del mes.
             DateTime inicioDeMes = new DateTime(año, mes, 1);
 
@@ -61,23 +54,40 @@ namespace GenteFitApp.Vistas
             // creamos un usercontrol para los dias existentes del mes
             for(int i= 1; i<=dias; i++)
             {
-                UserControlDias ucdias = new UserControlDias();
-                // ucdias = rellenaDia(i, mes, año);
-                if (i == diaActual && mes == mesActual && año == añoActual)
-                {
-                    ucdias.dias(i, Color.Blue);
-
-                    evento = new TextoSeleccionable { Texto = "Speening", BackColor = Color.Green };
-                    var labelEvento = new Label { Text = evento.Texto, BackColor = evento.BackColor };
-                    ucdias.insertaEvento(labelEvento);
-                }
-                else ucdias.dias(i, Color.White);
-
-                diasContenedor.Controls.Add(ucdias);
+                DateTime fecha = DateTime.Parse($"{año}-{mes}-{i}");
+                diasContenedor.Controls.Add(EventosCalendar.rellenaDia(fecha));
             }
         }
+            
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            // limpiamos el contenedor del mes
+            diasContenedor.Controls.Clear();
+            // decrementa un mes
+            mes--;
+            // decrementa un año
+            if (mes <= 0)
+            {
+                mes = 12;
+                año--;
+            }
+            muestraDias();
+        }
 
-      
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            // limpiamos el contenedor del mes
+            diasContenedor.Controls.Clear();
+            // incrementa un mes
+            mes++;
+            // incrementa un año
+            if (mes >= 12) 
+            {
+                mes = 1;
+                año++;
+            }
+            muestraDias();            
+        }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
@@ -92,93 +102,7 @@ namespace GenteFitApp.Vistas
                     frmMenuAdmin menuAdmin = new frmMenuAdmin();
                     menuAdmin.Show();
                     this.Close();
-                    break;                    
-            }
-        }
-
-        private void btnAnterior_Click(object sender, EventArgs e)
-        {
-            // limpiamos el contenedor del mes
-            diasContenedor.Controls.Clear();
-            // decrementa un mes
-            mes--;
-            if (mes <= 0)
-            {
-                mes = 12;
-                año--;
-            }
-            
-            string mesNombre = DateTimeFormatInfo.CurrentInfo.GetMonthName(mes).ToUpper();
-            lbMesAnyo.Text = mesNombre + " " + año;
-
-            DateTime inicioDeMes = new DateTime(año, mes, 1);
-
-            int dias = DateTime.DaysInMonth(año, mes);
-            int diasDelaSemana = Convert.ToInt32(inicioDeMes.DayOfWeek.ToString("d"));
-            if (diasDelaSemana == 0) diasDelaSemana = 7;
-            // creamos un usercontrol en blanco para los dias sobrantes del mes
-            for (int i = 1; i < diasDelaSemana; i++)
-            {
-                UserControlBlank ucblank = new UserControlBlank();
-                diasContenedor.Controls.Add(ucblank);
-            }
-
-            // creamos un usercontrol para los dias existentes del mes
-            for (int i = 1; i <= dias; i++)
-            {
-                UserControlDias ucdias = new UserControlDias();
-                if (i == diaActual && mes == mesActual && año == añoActual)
-                {
-                    ucdias.dias(i, Color.Blue);
-                    evento = new TextoSeleccionable { Texto = "Speening", BackColor = Color.Green };
-                    var labelEvento = new Label { Text = evento.Texto, BackColor = evento.BackColor };
-                    ucdias.insertaEvento(labelEvento);
-                }
-                else ucdias.dias(i, Color.White);
-                diasContenedor.Controls.Add(ucdias);
-            }
-        }
-
-        private void btnSiguiente_Click(object sender, EventArgs e)
-        {
-            // limpiamos el contenedor del mes
-            diasContenedor.Controls.Clear();
-            // incrementa un mes
-            mes++;
-            if (mes >= 12) 
-            {
-                mes = 1;
-                año++;
-            }            
-           
-            string mesNombre = DateTimeFormatInfo.CurrentInfo.GetMonthName(mes).ToUpper();
-            lbMesAnyo.Text = mesNombre + " " + año;
-
-            DateTime inicioDeMes = new DateTime(año, mes, 1);
-
-            int dias = DateTime.DaysInMonth(año, mes);
-            int diasDelaSemana = Convert.ToInt32(inicioDeMes.DayOfWeek.ToString("d"));
-            if (diasDelaSemana == 0) diasDelaSemana = 7;
-            // creamos un usercontrol en blanco para los dias sobrantes del mes
-            for (int i = 1; i < diasDelaSemana; i++)
-            {
-                UserControlBlank ucblank = new UserControlBlank();
-                diasContenedor.Controls.Add(ucblank);
-            }
-
-            // creamos un usercontrol para los dias existentes del mes
-            for (int i = 1; i <= dias; i++)
-            {
-                UserControlDias ucdias = new UserControlDias();
-                if (i == diaActual && mes == mesActual && año == añoActual)
-                {
-                    ucdias.dias(i, Color.Blue);
-                    evento = new TextoSeleccionable { Texto = "Speening", BackColor = Color.Green };
-                    var labelEvento = new Label { Text = evento.Texto, BackColor = evento.BackColor };
-                    ucdias.insertaEvento(labelEvento);
-                }
-                else ucdias.dias(i, Color.White);
-                diasContenedor.Controls.Add(ucdias);
+                    break;
             }
         }
     }

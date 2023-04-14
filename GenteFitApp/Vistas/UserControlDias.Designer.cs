@@ -30,8 +30,6 @@
         {
             this.lbdias = new System.Windows.Forms.Label();
             this.fLPClase = new System.Windows.Forms.FlowLayoutPanel();
-            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
             // lbdias
@@ -53,11 +51,6 @@
             this.fLPClase.Size = new System.Drawing.Size(123, 77);
             this.fLPClase.TabIndex = 1;
             // 
-            // fileSystemWatcher1
-            // 
-            this.fileSystemWatcher1.EnableRaisingEvents = true;
-            this.fileSystemWatcher1.SynchronizingObject = this;
-            // 
             // UserControlDias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -68,8 +61,6 @@
             this.Name = "UserControlDias";
             this.Size = new System.Drawing.Size(165, 85);
             this.Load += new System.EventHandler(this.UserControlDias_Load);
-            this.Click += new System.EventHandler(this.UserControlDias_Click);
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -79,6 +70,5 @@
 
         private System.Windows.Forms.Label lbdias;
         private System.Windows.Forms.FlowLayoutPanel fLPClase;
-        private System.IO.FileSystemWatcher fileSystemWatcher1;
     }
 }
