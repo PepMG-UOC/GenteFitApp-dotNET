@@ -404,6 +404,7 @@ namespace GenteFitApp.Conrolers
                         PersonaBD.email= PersonaXml.email;
                         PersonaBD.nombre= PersonaXml.nombre;
                         PersonaBD.apellido1= PersonaXml.apellido1;
+                        PersonaBD.apellido2 = PersonaXml.apellido2;
                         PersonaBD.direccion= PersonaXml.direccion;
                         PersonaBD.codigoPostal= PersonaXml.codigoPostal;
                         PersonaBD.provincia= PersonaXml.provincia;
@@ -421,6 +422,7 @@ namespace GenteFitApp.Conrolers
                             email= PersonaXml.email,
                             nombre= PersonaXml.nombre,
                             apellido1= PersonaXml.apellido1,
+                            apellido2= PersonaXml.apellido2,
                             direccion= PersonaXml.direccion,
                             codigoPostal= PersonaXml.codigoPostal,
                             provincia= PersonaXml.provincia,

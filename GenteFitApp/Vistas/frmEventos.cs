@@ -17,8 +17,8 @@ namespace GenteFitApp.Vistas
     {
         private Clase estaClase;
         private Reserva miReserva;
-        private int idCliente;
-        private int idMonitor;
+        private Cliente cliente;
+        private Monitor monitor;
         private int numReservas;
         public frmEventos(int IDClase)
         {
@@ -28,18 +28,18 @@ namespace GenteFitApp.Vistas
 
         private void frmEventos_Load(object sender, EventArgs e)
         {
-            //txtbxFecha.Text = frmCalendario.dia + "/" + frmCalendario.mes + "/" +  frmCalendario.año;
             txtbxActividad.Text = estaClase.Actividad.nombre;
             txtbxFecha.Text = estaClase.fechaHora.ToString("dd/MM/yyyy");
             txtbxHora.Text = estaClase.fechaHora.ToString("HH:mm");
             txtbxDescrip.Text = estaClase.Actividad.descripcion;
             txtbxAforo.Text = estaClase.Sala.numPlazas.ToString();
             numReservas = ConsultasBase.reservasDeClase(estaClase);
-            idCliente = Usuarios.idClienteDePersona(Session.idPersona);
-            idMonitor = Usuarios.idMonitorDePersona(Session.idPersona);
-            miReserva = EventosCalendar.getReservaClaseCliente(estaClase.id_Clase, idCliente);
-            if (idCliente!=0)
+            cliente = Usuarios.getClienteDePersona(Session.idPersona);
+            monitor = Usuarios.getMonitorDePersona(Session.idPersona);
+            
+            if (cliente != null)
             {
+                miReserva = EventosCalendar.getReservaClaseCliente(estaClase.id_Clase, cliente.id_Cliente);
                 // Calcular plazas
                 if (miReserva != null)
                 {
@@ -70,7 +70,7 @@ namespace GenteFitApp.Vistas
             Reserva nuevaReserva = new Reserva();
             nuevaReserva.posicion = numReservas + 1;
             nuevaReserva.claseID = estaClase.id_Clase;
-            nuevaReserva.clienteID = idCliente;
+            nuevaReserva.clienteID = cliente.id_Cliente;
             if (nuevaReserva.posicion <= estaClase.Sala.numPlazas) nuevaReserva.confirmada = true;
             else nuevaReserva.confirmada = false;
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())

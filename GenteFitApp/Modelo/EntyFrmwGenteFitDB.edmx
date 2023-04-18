@@ -55,6 +55,7 @@
           <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="apellido1" Type="nvarchar" MaxLength="50" />
+          <Property Name="apellido2" Type="nvarchar" MaxLength="50" />
           <Property Name="direccion" Type="nvarchar" MaxLength="50" />
           <Property Name="codigoPostal" Type="int" />
           <Property Name="provincia" Type="nvarchar" MaxLength="50" />
@@ -282,6 +283,7 @@
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="apellido1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="apellido2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="codigoPostal" Type="Int32" />
           <Property Name="provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -510,6 +512,7 @@
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
                 <ScalarProperty Name="codigoPostal" ColumnName="codigoPostal" />
                 <ScalarProperty Name="provincia" ColumnName="provincia" />

@@ -75,6 +75,7 @@
             this.tbEmail.TabIndex = 2;
             this.tbEmail.Text = "eMail";
             this.tbEmail.Enter += new System.EventHandler(this.tbEmail_Enter);
+            this.tbEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbEmail_KeyDown);
             this.tbEmail.Leave += new System.EventHandler(this.tbEmail_Leave);
             // 
             // pictureBox3
@@ -96,9 +97,8 @@
             this.tbPassw.Name = "tbPassw";
             this.tbPassw.Size = new System.Drawing.Size(203, 29);
             this.tbPassw.TabIndex = 4;
-            this.tbPassw.Text = "password";
-            this.tbPassw.Enter += new System.EventHandler(this.tbPassw_Enter);
-            this.tbPassw.Leave += new System.EventHandler(this.tbPassw_Leave);
+            this.tbPassw.UseSystemPasswordChar = true;
+            this.tbPassw.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbPassw_KeyDown);
             // 
             // btnAccede
             // 

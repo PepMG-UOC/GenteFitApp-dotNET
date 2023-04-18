@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
+using System.Data.Entity;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
@@ -13,6 +15,20 @@ namespace GenteFitApp.Conrolers
 {
     public class Usuarios
     {
+        public static bool formatoEmailCorrecto(string eMailCheck)
+        {
+            String sFormato;
+            sFormato = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+            if (Regex.IsMatch(eMailCheck, sFormato))
+            {
+                if (Regex.Replace(eMailCheck, sFormato, String.Empty).Length == 0)
+                {
+                    return true;
+                }
+                else return false;                
+            } else return false;
+        }
+
         public static List<AdministradorView> listarAdministradores()
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
@@ -67,6 +83,7 @@ namespace GenteFitApp.Conrolers
                     email= m.email,
                     nombre= m.nombre,
                     apellido1= m.apellido1,
+                    apellido2= m.apellido2,
                     direccion= m.direccion,
                     codigoPostal= m.codigoPostal,
                     provincia= m.provincia,
@@ -77,34 +94,31 @@ namespace GenteFitApp.Conrolers
             }
         }
 
-        public static int idClienteDePersona(int idPersona)
+        public static Cliente getClienteDePersona(int idPersona)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
                 var cliente = dBGfit.Cliente.FirstOrDefault(c => c.personaID == idPersona);
-                if (cliente != null) return cliente.id_Cliente;
-                else return 0;                
+                return cliente;                                
             }
         }
 
       
-        public static int idMonitorDePersona(int idPersona)
+        public static Monitor getMonitorDePersona(int idPersona)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
                 var monitor = dBGfit.Monitor.FirstOrDefault(m => m.personaID == idPersona);
-                if (monitor != null) return monitor.id_Monitor;
-                else return 0;
+                return monitor;                
             }
         }
 
-        public static int idAdminDePersona(int? idPersona)
+        public static Administrador getAdminDePersona(int idPersona)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
                 var administrador = dBGfit.Administrador.FirstOrDefault(a => a.personaID == idPersona);
-                if (administrador != null) return administrador.id_Admin;
-                else return 0;
+                return administrador;                
             }
         }
 
@@ -126,10 +140,13 @@ namespace GenteFitApp.Conrolers
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
-                Persona persona = dBGfit.Persona.FirstOrDefault(p => p.email == eMail);
+                Persona persona = dBGfit.Persona
+                    .Include(p => p.Administrador)
+                    .Include(p => p.Cliente)
+                    .Include(p => p.Monitor)
+                    .FirstOrDefault(p => p.email == eMail);
                 return persona;
             }
-
         }
 
     }
