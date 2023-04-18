@@ -1,6 +1,9 @@
 ﻿using GenteFitApp.Modelo;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -74,30 +77,34 @@ namespace GenteFitApp.Conrolers
             }
         }
 
-        public static bool esCliente(int? idPersona)
+        public static int idClienteDePersona(int idPersona)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
                 var cliente = dBGfit.Cliente.FirstOrDefault(c => c.personaID == idPersona);
-                return cliente != null;
+                if (cliente != null) return cliente.id_Cliente;
+                else return 0;                
             }
         }
 
-        public static bool esMonitor(int? idPersona)
+      
+        public static int idMonitorDePersona(int idPersona)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
                 var monitor = dBGfit.Monitor.FirstOrDefault(m => m.personaID == idPersona);
-                return monitor != null;
+                if (monitor != null) return monitor.id_Monitor;
+                else return 0;
             }
         }
 
-        public static bool esAdministrador(int? idPersona)
+        public static int idAdminDePersona(int? idPersona)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
                 var administrador = dBGfit.Administrador.FirstOrDefault(a => a.personaID == idPersona);
-                return administrador != null;
+                if (administrador != null) return administrador.id_Admin;
+                else return 0;
             }
         }
 
@@ -113,6 +120,16 @@ namespace GenteFitApp.Conrolers
                 }
             }
             return false;            
+        }
+
+        public static Persona personaByMail(string eMail)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                Persona persona = dBGfit.Persona.FirstOrDefault(p => p.email == eMail);
+                return persona;
+            }
+
         }
 
     }

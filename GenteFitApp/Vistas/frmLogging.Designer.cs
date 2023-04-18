@@ -36,6 +36,7 @@
             this.tbPassw = new System.Windows.Forms.TextBox();
             this.btnAccede = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.entityCommand1 = new System.Data.Entity.Core.EntityClient.EntityCommand();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -125,6 +126,14 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // entityCommand1
+            // 
+            this.entityCommand1.CommandTimeout = 0;
+            this.entityCommand1.CommandTree = null;
+            this.entityCommand1.Connection = null;
+            this.entityCommand1.EnablePlanCaching = true;
+            this.entityCommand1.Transaction = null;
+            // 
             // frmLogging
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -159,5 +168,6 @@
         private System.Windows.Forms.TextBox tbPassw;
         private System.Windows.Forms.Button btnAccede;
         private System.Windows.Forms.Button btnExit;
+        private System.Data.Entity.Core.EntityClient.EntityCommand entityCommand1;
     }
 }

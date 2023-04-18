@@ -1,4 +1,5 @@
-﻿using GenteFitApp.Modelo;
+﻿using GenteFitApp.Conrolers;
+using GenteFitApp.Modelo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,31 +15,91 @@ namespace GenteFitApp.Vistas
 {
     public partial class frmEventos : Form
     {
-        private ClaseEvento estaClase;
-        public frmEventos(ClaseEvento estaClase)
+        private Clase estaClase;
+        private Reserva miReserva;
+        private int idCliente;
+        private int idMonitor;
+        private int numReservas;
+        public frmEventos(int IDClase)
         {
             InitializeComponent();
-            this.estaClase = estaClase;
+            this.estaClase = ConsultasBase.getClasebyID(IDClase);            
         }
 
         private void frmEventos_Load(object sender, EventArgs e)
         {
             //txtbxFecha.Text = frmCalendario.dia + "/" + frmCalendario.mes + "/" +  frmCalendario.año;
-            txtbxActividad.Text = estaClase.nombreActividad.ToString();
+            txtbxActividad.Text = estaClase.Actividad.nombre;
             txtbxFecha.Text = estaClase.fechaHora.ToString("dd/MM/yyyy");
             txtbxHora.Text = estaClase.fechaHora.ToString("HH:mm");
-            txtbxDescrip.Text = estaClase.descripcionActividad.ToString();
-            txtbxAforo.Text = estaClase.numPlazasSala.ToString();
-            // Calcular plazas
-            if (estaClase.numPlazasSala >= estaClase.numReservas)
+            txtbxDescrip.Text = estaClase.Actividad.descripcion;
+            txtbxAforo.Text = estaClase.Sala.numPlazas.ToString();
+            numReservas = ConsultasBase.reservasDeClase(estaClase);
+            idCliente = Usuarios.idClienteDePersona(Session.idPersona);
+            idMonitor = Usuarios.idMonitorDePersona(Session.idPersona);
+            miReserva = EventosCalendar.getReservaClaseCliente(estaClase.id_Clase, idCliente);
+            if (idCliente!=0)
             {
-                txtbxPlazas.Text = (estaClase.numPlazasSala - estaClase.numReservas).ToString();
-            } else
-            {
-                txtbxPlazas.Text = "0";
-                txtbxListaEspera.Text = (estaClase.numReservas - estaClase.numPlazasSala).ToString();
-            }           
+                // Calcular plazas
+                if (miReserva != null)
+                {
+                    btnApunta.Visible = false;
+                    btnDesapunta.Visible = true;
+                }
+                else
+                {
+                    btnApunta.Visible = true;
+                    btnDesapunta.Visible = false;
+                }
+                if (estaClase.Sala.numPlazas >= numReservas)
+                {
+                    txtbxPlazas.Text = (estaClase.Sala.numPlazas - numReservas).ToString();
+                }
+                else
+                {
+                    txtbxPlazas.Text = "";
+                    txtbxListaEspera.Text = (numReservas - estaClase.Sala.numPlazas).ToString();
+                }
+            }
+                     
 
+        }
+
+        private void btnApunta_Click(object sender, EventArgs e)
+        {
+            Reserva nuevaReserva = new Reserva();
+            nuevaReserva.posicion = numReservas + 1;
+            nuevaReserva.claseID = estaClase.id_Clase;
+            nuevaReserva.clienteID = idCliente;
+            if (nuevaReserva.posicion <= estaClase.Sala.numPlazas) nuevaReserva.confirmada = true;
+            else nuevaReserva.confirmada = false;
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                dBGfit.Reserva.Add(nuevaReserva);
+                dBGfit.SaveChanges();
+                MessageBox.Show("Reserva correctamente");
+                this.Close();
+            }
+        }
+
+        private void btnDesapunta_Click(object sender, EventArgs e)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                if (miReserva != null)
+                {
+                    dBGfit.Reserva.Attach(miReserva);
+                    dBGfit.Reserva.Remove(miReserva);
+                    dBGfit.SaveChanges();
+                    MessageBox.Show("Reserva eliminada correctamente");
+                    this.Close();
+                }
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

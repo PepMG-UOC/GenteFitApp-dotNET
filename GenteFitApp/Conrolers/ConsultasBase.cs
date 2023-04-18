@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using GenteFitApp.Modelo;
@@ -15,41 +16,44 @@ namespace GenteFitApp.Conrolers
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
-                return dBGfit.Clase.ToList();
+                var clases = dBGfit.Clase
+                    .Include(c => c.Actividad)
+                    .Include(c => c.Sala)
+                    .ToList();
+                return clases;
             }  
         }
-
-        //public List<Clase> ObtenerClasesPorFecha(int esteDia, int esteMes, int esteAño)
-        //{
-        //    using (var db = new GenteFitDBEntities())
-        //    {
-        //        var fechaBusqueda = new DateTime(esteAño, esteMes, esteDia);
-        //        var clases = from c in db.Clase
-        //                     where c.fechaHora.Date == fechaBusqueda.Date
-        //                     select c;
-        //        return clases.ToList();
-        //    }
-        //}
-
-        public static List<ClaseEvento> ObtenerClasesPorFecha(DateTime fecha)
+                
+        public static List<Clase> listarClasesPorFecha(DateTime fecha)
         {
-            using (var dbContext = new GenteFitDBEntities())
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
-                var clases = dbContext.Clase.Where(c => DbFunctions.TruncateTime(c.fechaHora) == fecha.Date)
-                                    .Include(c => c.Actividad)
-                                    .Include(c => c.Sala)
-                                    .ToList();
+                var clases = dBGfit.Clase.Where(c => DbFunctions.TruncateTime(c.fechaHora) == fecha.Date)
+                    .Include(c => c.Actividad)
+                    .Include(c => c.Sala)
+                    .ToList();
+                return clases;
+            }
+        }
+           
+        public static int reservasDeClase(Clase estaClase)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                return dBGfit.Reserva.Count(r => r.claseID == estaClase.id_Clase);
+            }
+                
+        }
 
-                var clasesEventos = clases.Select(c => new ClaseEvento
-                {
-                    id_Clase = c.id_Clase,
-                    fechaHora = c.fechaHora,
-                    nombreActividad = c.Actividad.nombre,
-                    descripcionActividad = c.Actividad.descripcion,
-                    numPlazasSala = c.Sala.numPlazas,
-                    numReservas = dbContext.Reserva.Count(r => r.claseID == c.id_Clase)
-                }).ToList();
-                return clasesEventos;
+        public static Clase getClasebyID(int IDClase)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                Clase myClase = dBGfit.Clase
+                    .Include(c => c.Actividad)
+                    .Include(c => c.Sala)
+                    .FirstOrDefault(c => c.id_Clase == IDClase);
+                return myClase;
             }
         }
 
@@ -57,7 +61,10 @@ namespace GenteFitApp.Conrolers
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
-                return dBGfit.Actividad.ToList();
+                var actividades = dBGfit.Actividad
+                    .Include(a => a.Monitor)
+                    .ToList();
+                return actividades;                
             }
         }
 
@@ -91,16 +98,6 @@ namespace GenteFitApp.Conrolers
                 }).ToList();
 
                 return reservas;
-            }
-        }
-
-        public static int getPlazasClase(int IDClase) 
-        {
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
-            {
-                Clase estaClase = dBGfit.Clase.Find(IDClase);
-                Sala enSala = dBGfit.Sala.Find(estaClase.salaID);
-                return enSala.numPlazas;
             }
         }
 

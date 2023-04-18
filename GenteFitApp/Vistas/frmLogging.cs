@@ -61,12 +61,12 @@ namespace GenteFitApp.Vistas
         {
             if(Usuarios.logging(tbEmail.Text,tbPassw.Text))
             {                
-                if (Usuarios.esCliente(Session.idPersona) || Usuarios.esMonitor(Session.idPersona))                
+                if (Usuarios.idClienteDePersona(Session.idPersona)!=0 || Usuarios.idMonitorDePersona(Session.idPersona)!=0)                
                 {
                     frmMenuCliente menuCliente = new frmMenuCliente();
                     menuCliente.Show();
                 }
-                else if (Usuarios.esAdministrador(Session.idPersona))                
+                else if (Usuarios.idAdminDePersona(Session.idPersona)!=0)                
                 {
                     frmMenuAdmin menuAdmin = new frmMenuAdmin();
                     menuAdmin.Show();

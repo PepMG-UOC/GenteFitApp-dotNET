@@ -17,34 +17,41 @@ namespace GenteFitApp.Conrolers
         
 
         public static UserControlDias rellenaDia (DateTime fecha)
-        {
-            TextoSeleccionable evento;
+        {            
             DateTime ahora = DateTime.Now;
             
             UserControlDias ucdias = new UserControlDias();
-            ConsultasBase.ObtenerClasesPorFecha(fecha);
+            //ConsultasBase.ObtenerClasesPorFecha(fecha);
             ucdias.dias(fecha.Day);
-            ucdias.CargaClasesDelDia(fecha);
-            //if (fecha.Date == ahora.Date)
-            //{
-            //    evento = new TextoSeleccionable { Texto = "Speening", BackColor = Color.Green };
-            //    var labelEvento = new Label { Text = evento.Texto, BackColor = evento.BackColor };
-            //    ucdias.insertaEvento(labelEvento);
-            //    ucdias.dias(fecha.Day);
-            //}
-            //else ucdias.dias(fecha.Day);
-
-
+            ucdias.CargaClasesDelDia(fecha);  
             return ucdias;
         }
 
+        public static Reserva getReservaClaseCliente(int IDclase, int IDCiente)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                var reservaEncontrada = dBGfit.Reserva
+                    .Include("Clase")
+                    .Include("Cliente")
+                   .FirstOrDefault(r => r.claseID == IDclase && r.clienteID == IDCiente);
+                return reservaEncontrada;
+            }
+        }
+
+        public static Color colorLinea(Clase miClase)
+        {
+            int numReservas = ConsultasBase.reservasDeClase(miClase);
+            if (miClase.Sala.numPlazas >= numReservas)
+            {
+                return Color.YellowGreen;
+            }
+            return Color.Yellow;
+        }
+
+
     }
 
+   
 
-
-    public class TextoSeleccionable
-    {
-        public string Texto { get; set; }
-        public Color BackColor { get; set; }
-    }
 }
