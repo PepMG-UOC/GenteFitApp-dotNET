@@ -154,9 +154,13 @@ namespace GenteFitApp.Vistas
                     nuevoMonitor.personaID = usuario.id_Persona;
                     nuevoMonitor.precioHora = decimal.Parse(tbSueldo.Text);
                     nuevoMonitor.fechaAlta = DateTime.Now;
+                    dBGfit.Monitor.Add(nuevoMonitor);
+                    dBGfit.SaveChanges();
                 } else if (rBAdmin.Checked)
                 {
-
+                    Administrador nuevoAdmin = new Administrador();
+                    nuevoAdmin.personaID= usuario.id_Persona;
+                    dBGfit.Administrador.Add(nuevoAdmin);
                 }                                
             }
             reseteaForm();
@@ -169,6 +173,14 @@ namespace GenteFitApp.Vistas
             {
                 dBGfit.Entry(usuario).State = EntityState.Modified;
                 dBGfit.SaveChanges();
+                if (rBMonitor.Checked)
+                {
+                    Monitor nuevoMonitor = new Monitor();
+                    nuevoMonitor.personaID = usuario.id_Persona;
+                    nuevoMonitor.precioHora = decimal.Parse(tbSueldo.Text);                    
+                    dBGfit.Entry(nuevoMonitor).State = EntityState.Modified;
+                    dBGfit.SaveChanges();
+                }
                 MessageBox.Show("Usuario modificado correctamente");
             }
             reseteaForm();
