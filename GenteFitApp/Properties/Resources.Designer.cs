@@ -93,9 +93,29 @@ namespace GenteFitApp.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap gestionUsuario {
+            get {
+                object obj = ResourceManager.GetObject("gestionUsuario", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap keypass {
             get {
                 object obj = ResourceManager.GetObject("keypass", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mailIcon {
+            get {
+                object obj = ResourceManager.GetObject("mailIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -21,6 +21,7 @@ namespace GenteFitApp.Modelo
         public string email { get; set; }
         public string nombre { get; set; }
         public string apellido1 { get; set; }
+        public string apellido2 { get; set; }
         public string direccion { get; set; }
         public int? codigoPostal { get; set; }
         public string provincia { get; set; }

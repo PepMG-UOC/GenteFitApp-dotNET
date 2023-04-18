@@ -31,6 +31,17 @@ namespace GenteFitApp.Vistas
                 tbEmail.Text = string.Empty;
             }
         }
+        private void tbEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (Usuarios.formatoEmailCorrecto(tbEmail.Text))
+                {
+                    e.SuppressKeyPress = true; // Evita que se produzca un sonido de "ding" al pulsar Enter
+                    tbPassw.Select(); // Selecciona el siguiente TextBox
+                } else MessageBox.Show("Formato de eMail Incorrecto. Intente de nuevo.");
+            }
+        }
 
         private void tbEmail_Leave(object sender, EventArgs e)
         {          
@@ -41,35 +52,29 @@ namespace GenteFitApp.Vistas
            
         }
 
-        private void tbPassw_Enter(object sender, EventArgs e)
+        private void tbPassw_KeyDown(object sender, KeyEventArgs e)
         {
-            if (tbPassw.Text == "password")
+            if (e.KeyCode == Keys.Enter)
             {
-                tbPassw.Text = string.Empty;
+                e.SuppressKeyPress = true;
+                btnAccede.PerformClick();
             }
         }
 
-        private void tbPassw_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(tbPassw.Text))               
-            {
-                tbPassw.Text = "password";
-            }
-        }
 
         private void btnAccede_Click(object sender, EventArgs e)
         {
-            if(Usuarios.logging(tbEmail.Text,tbPassw.Text))
-            {                
-                if (Usuarios.esCliente(Session.idPersona) || Usuarios.esMonitor(Session.idPersona))                
-                {
-                    frmMenuCliente menuCliente = new frmMenuCliente();
-                    menuCliente.Show();
-                }
-                else if (Usuarios.esAdministrador(Session.idPersona))                
+            if (Usuarios.logging(tbEmail.Text, tbPassw.Text))
+            {                    
+                if (Usuarios.getAdminDePersona(Session.idPersona) != null)
                 {
                     frmMenuAdmin menuAdmin = new frmMenuAdmin();
                     menuAdmin.Show();
+                } 
+                else
+                {
+                    frmMenuCliente menuCliente = new frmMenuCliente();
+                    menuCliente.Show();
                 }
                 this.Close();
             }
@@ -83,5 +88,7 @@ namespace GenteFitApp.Vistas
         {
             Application.Exit();
         }
+
+        
     }
 }

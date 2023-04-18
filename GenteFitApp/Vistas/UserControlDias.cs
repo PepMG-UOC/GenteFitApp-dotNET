@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -18,87 +19,79 @@ namespace GenteFitApp.Vistas
 
         public UserControlDias()
         {
-            InitializeComponent();
+            InitializeComponent();           
         }
 
-        private void UserControlDias_Load(object sender, EventArgs e)
-        {
-
-        }
         public void dias(int numdia)
         {
             lbdias.Text = numdia.ToString();            
         }
 
         public void CargaClasesDelDia(DateTime fecha)
-        {
-            var clasesEventos = ConsultasBase.ObtenerClasesPorFecha(fecha);
+        {            
+            Color micolor;
+            var clasesEventos = ConsultasBase.listarClasesPorFecha(fecha);
+
             dGVEventos.AutoGenerateColumns = false;
             dGVEventos.Columns.Clear();
-                        
+
+            var idClaseColumn = new DataGridViewTextBoxColumn();
+            idClaseColumn.DataPropertyName = "id_Clase";
+            idClaseColumn.Visible = false;
+            dGVEventos.Columns.Add(idClaseColumn);
+
             var fechaHoraColumn = new DataGridViewTextBoxColumn();
             fechaHoraColumn.DataPropertyName = "fechaHora";
+            fechaHoraColumn.DefaultCellStyle.Format = "HH:mm";
             dGVEventos.Columns.Add(fechaHoraColumn);
 
             var nombreActividadColumn = new DataGridViewTextBoxColumn();
             nombreActividadColumn.DataPropertyName = "nombreActividad";
-            fechaHoraColumn.DefaultCellStyle.Format = "HH:mm";
             dGVEventos.Columns.Add(nombreActividadColumn);
 
-            var idClaseColumn = new DataGridViewTextBoxColumn();
-            idClaseColumn.DataPropertyName = "id_Clase";           
-            idClaseColumn.Visible = false;
-            dGVEventos.Columns.Add(idClaseColumn);
-
-            var descripcionActividadColumn = new DataGridViewTextBoxColumn();
-            descripcionActividadColumn.DataPropertyName = "descripcionActividad";
-            descripcionActividadColumn.Visible = false;            
-            dGVEventos.Columns.Add(descripcionActividadColumn);
-
-            var numPlazasSalaColumn = new DataGridViewTextBoxColumn();
-            numPlazasSalaColumn.DataPropertyName = "numPlazasSala";
-            numPlazasSalaColumn.Visible = false;            
-            dGVEventos.Columns.Add(numPlazasSalaColumn);
-
-            var numReservasColumn = new DataGridViewTextBoxColumn();
-            numReservasColumn.DataPropertyName = "numReservas";
-            numReservasColumn.Visible = false;
-            dGVEventos.Columns.Add(numReservasColumn);
-
-            dGVEventos.DataSource= clasesEventos;
+            foreach (Clase unaclase in clasesEventos)
+            {
+                DataGridViewRow nuevaFila = new DataGridViewRow();
+                nuevaFila.CreateCells(dGVEventos, unaclase.id_Clase, unaclase.fechaHora, unaclase.Actividad.nombre);
+                if(unaclase.fechaHora>DateTime.Now) 
+                {
+                    micolor = EventosCalendar.colorLinea(unaclase);
+                    nuevaFila.DefaultCellStyle.BackColor = micolor;
+                    dGVEventos.ColumnHeadersDefaultCellStyle.BackColor = micolor;
+                    dGVEventos.DefaultCellStyle.SelectionBackColor = micolor;
+                    dGVEventos.DefaultCellStyle.ForeColor = Color.Black;
+                    dGVEventos.DefaultCellStyle.SelectionForeColor = Color.Black;
+                } 
+                else
+                {
+                    micolor = Color.Gray;
+                    nuevaFila.DefaultCellStyle.BackColor = micolor;
+                    dGVEventos.ColumnHeadersDefaultCellStyle.BackColor = micolor;
+                    dGVEventos.DefaultCellStyle.SelectionBackColor = micolor;
+                    dGVEventos.DefaultCellStyle.ForeColor = Color.Black;
+                    dGVEventos.DefaultCellStyle.SelectionForeColor = Color.Black;
+                    dGVEventos.Enabled= false;
+                }                
+                dGVEventos.Rows.Add(nuevaFila);
+                dGVEventos.ClearSelection();
+            }           
         }
-        //public void insertaEvento(Label evento)
-        //{
-        //   // evento.Click += new EventHandler(abreEvento);
-        //    dGVEventos.Controls.Add(evento);
-        //}
-        
-        //private void abreEvento(object sender, EventArgs e)
-        //{
-        //    Label label = (Label)sender;
-        //    string activ = label.Text;
-
-        //   // dia = lbdias.Text;
-        //    frmEventos _frmEvento = new frmEventos();
-        //    _frmEvento.Show();
-        //}
-
+  
         private void dGVEventos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
-                // Obtener la entidad ClaseEvento de la fila seleccionada
-                var claseEventoSeleccionada = (ClaseEvento)dGVEventos.Rows[e.RowIndex].DataBoundItem;
-
-                //// Usar la entidad seleccionada para realizar alguna acción
-                //int idClaseSeleccionada = claseEventoSeleccionada.id_Clase;
-                //string nombreActividadSeleccionada = claseEventoSeleccionada.nombreActividad;
-                //string descripcionActividadSeleccionada = claseEventoSeleccionada.descripcionActividad;
-                //int numPlazasSalaSeleccionada = claseEventoSeleccionada.numPlazasSala;
-                //DateTime fechaHoraSeleccionada = claseEventoSeleccionada.fechaHora;
-
-                frmEventos _frmEvento = new frmEventos(claseEventoSeleccionada);
-                _frmEvento.Show();
+                DataGridViewRow row = dGVEventos.Rows[e.RowIndex];
+                int idClase = Convert.ToInt32(row.Cells[0].Value);
+                dGVEventos.CurrentCell = null;
+                row.Selected = true;
+                if (idClase > 0)
+                {
+                    frmEventos _frmEvento = new frmEventos(idClase);
+                    _frmEvento.BringToFront();
+                    _frmEvento.Show();
+                }
+                
             }
         }
     }

@@ -36,6 +36,7 @@
             this.tbPassw = new System.Windows.Forms.TextBox();
             this.btnAccede = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.entityCommand1 = new System.Data.Entity.Core.EntityClient.EntityCommand();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -74,6 +75,7 @@
             this.tbEmail.TabIndex = 2;
             this.tbEmail.Text = "eMail";
             this.tbEmail.Enter += new System.EventHandler(this.tbEmail_Enter);
+            this.tbEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbEmail_KeyDown);
             this.tbEmail.Leave += new System.EventHandler(this.tbEmail_Leave);
             // 
             // pictureBox3
@@ -95,9 +97,8 @@
             this.tbPassw.Name = "tbPassw";
             this.tbPassw.Size = new System.Drawing.Size(203, 29);
             this.tbPassw.TabIndex = 4;
-            this.tbPassw.Text = "password";
-            this.tbPassw.Enter += new System.EventHandler(this.tbPassw_Enter);
-            this.tbPassw.Leave += new System.EventHandler(this.tbPassw_Leave);
+            this.tbPassw.UseSystemPasswordChar = true;
+            this.tbPassw.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbPassw_KeyDown);
             // 
             // btnAccede
             // 
@@ -124,6 +125,14 @@
             this.btnExit.TabIndex = 6;
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // entityCommand1
+            // 
+            this.entityCommand1.CommandTimeout = 0;
+            this.entityCommand1.CommandTree = null;
+            this.entityCommand1.Connection = null;
+            this.entityCommand1.EnablePlanCaching = true;
+            this.entityCommand1.Transaction = null;
             // 
             // frmLogging
             // 
@@ -159,5 +168,6 @@
         private System.Windows.Forms.TextBox tbPassw;
         private System.Windows.Forms.Button btnAccede;
         private System.Windows.Forms.Button btnExit;
+        private System.Data.Entity.Core.EntityClient.EntityCommand entityCommand1;
     }
 }
