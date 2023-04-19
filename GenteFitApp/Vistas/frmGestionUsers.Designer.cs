@@ -53,17 +53,19 @@
             this.rBAdmin = new System.Windows.Forms.RadioButton();
             this.gBTipo = new System.Windows.Forms.GroupBox();
             this.gBDetallesUser = new System.Windows.Forms.GroupBox();
-            this.tbApellido2 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.tbPass = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.tbApellido2 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.tbSueldo = new System.Windows.Forms.TextBox();
             this.lbSueldo = new System.Windows.Forms.Label();
             this.lbSueldo2 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.gBTipo.SuspendLayout();
             this.gBDetallesUser.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // btnVolver
@@ -360,26 +362,6 @@
             this.gBDetallesUser.TabIndex = 41;
             this.gBDetallesUser.TabStop = false;
             // 
-            // tbApellido2
-            // 
-            this.tbApellido2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbApellido2.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.tbApellido2.Location = new System.Drawing.Point(100, 145);
-            this.tbApellido2.Name = "tbApellido2";
-            this.tbApellido2.Size = new System.Drawing.Size(190, 29);
-            this.tbApellido2.TabIndex = 33;
-            // 
-            // label8
-            // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.label8.Location = new System.Drawing.Point(8, 148);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(86, 21);
-            this.label8.TabIndex = 34;
-            this.label8.Text = "Apellido 2";
-            // 
             // tbPass
             // 
             this.tbPass.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -399,6 +381,26 @@
             this.label9.Size = new System.Drawing.Size(82, 21);
             this.label9.TabIndex = 35;
             this.label9.Text = "Password";
+            // 
+            // tbApellido2
+            // 
+            this.tbApellido2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbApellido2.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
+            this.tbApellido2.Location = new System.Drawing.Point(100, 145);
+            this.tbApellido2.Name = "tbApellido2";
+            this.tbApellido2.Size = new System.Drawing.Size(190, 29);
+            this.tbApellido2.TabIndex = 33;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
+            this.label8.Location = new System.Drawing.Point(8, 148);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(86, 21);
+            this.label8.TabIndex = 34;
+            this.label8.Text = "Apellido 2";
             // 
             // tbSueldo
             // 
@@ -433,11 +435,23 @@
             this.lbSueldo2.TabIndex = 44;
             this.lbSueldo2.Text = "€/h";
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox3.Image = global::GenteFitApp.Properties.Resources.GenteFit_Entrena_y_vive;
+            this.pictureBox3.Location = new System.Drawing.Point(865, 380);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(168, 139);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 45;
+            this.pictureBox3.TabStop = false;
+            // 
             // frmGestionUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1267, 714);
+            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.lbSueldo2);
             this.Controls.Add(this.tbSueldo);
             this.Controls.Add(this.lbSueldo);
@@ -462,6 +476,7 @@
             this.gBTipo.PerformLayout();
             this.gBDetallesUser.ResumeLayout(false);
             this.gBDetallesUser.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -501,5 +516,6 @@
         private System.Windows.Forms.TextBox tbSueldo;
         private System.Windows.Forms.Label lbSueldo;
         private System.Windows.Forms.Label lbSueldo2;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }
