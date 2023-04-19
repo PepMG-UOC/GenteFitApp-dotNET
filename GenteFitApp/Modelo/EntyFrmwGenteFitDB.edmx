@@ -54,7 +54,8 @@
           <Property Name="id_Persona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="apellido1" Type="nvarchar" MaxLength="50" />
+          <Property Name="apellido1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellido2" Type="nvarchar" MaxLength="50" />
           <Property Name="direccion" Type="nvarchar" MaxLength="50" />
           <Property Name="codigoPostal" Type="int" />
           <Property Name="provincia" Type="nvarchar" MaxLength="50" />
@@ -80,7 +81,9 @@
           <Property Name="dimensionM2" Type="int" />
         </EntityType>
         <Association Name="FK_Actividad_Monitor">
-          <End Role="Monitor" Type="Self.Monitor" Multiplicity="1" />
+          <End Role="Monitor" Type="Self.Monitor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Actividad" Type="Self.Actividad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Monitor">
@@ -92,7 +95,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Administrador_Persona">
-          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persona">
@@ -104,7 +109,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Clase_Actividad">
-          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Clase" Type="Self.Clase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Actividad">
@@ -128,7 +135,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Cliente_Persona">
-          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persona">
@@ -140,7 +149,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Monitor_Persona">
-          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Monitor" Type="Self.Monitor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persona">
@@ -152,7 +163,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Reserva_Clase">
-          <End Role="Clase" Type="Self.Clase" Multiplicity="1" />
+          <End Role="Clase" Type="Self.Clase" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clase">
@@ -281,7 +294,8 @@
           <Property Name="id_Persona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="apellido1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="apellido1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apellido2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="codigoPostal" Type="Int32" />
           <Property Name="provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -313,7 +327,9 @@
           <NavigationProperty Name="Clase" Relationship="Self.FK_Clase_Sala" FromRole="Sala" ToRole="Clase" />
         </EntityType>
         <Association Name="FK_Actividad_Monitor">
-          <End Role="Monitor" Type="Self.Monitor" Multiplicity="1" />
+          <End Role="Monitor" Type="Self.Monitor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Actividad" Type="Self.Actividad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Monitor">
@@ -325,7 +341,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Clase_Actividad">
-          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Clase" Type="Self.Clase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Actividad">
@@ -337,7 +355,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Administrador_Persona">
-          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persona">
@@ -361,7 +381,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Reserva_Clase">
-          <End Role="Clase" Type="Self.Clase" Multiplicity="1" />
+          <End Role="Clase" Type="Self.Clase" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clase">
@@ -373,7 +395,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Cliente_Persona">
-          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persona">
@@ -397,7 +421,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Monitor_Persona">
-          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Monitor" Type="Self.Monitor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persona">
@@ -510,6 +536,7 @@
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
                 <ScalarProperty Name="codigoPostal" ColumnName="codigoPostal" />
                 <ScalarProperty Name="provincia" ColumnName="provincia" />

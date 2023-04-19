@@ -20,7 +20,9 @@ namespace GenteFitApp.Vistas
 
         private void pbUsuarios_Click(object sender, EventArgs e)
         {
-
+            frmGestionUsers gestionUsers = new frmGestionUsers();
+            gestionUsers.Show();
+            this.Close();
         }
 
         private void pbReservas_Click(object sender, EventArgs e)
@@ -37,7 +39,7 @@ namespace GenteFitApp.Vistas
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Session.idPersona = null;
+            Session.idPersona = 0;
 
             frmLogging loggingForm = new frmLogging();
             loggingForm.Show();

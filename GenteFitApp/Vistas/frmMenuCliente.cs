@@ -32,7 +32,7 @@ namespace GenteFitApp.Vistas
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Session.idPersona = null;           
+            Session.idPersona = 0;           
             
 
             frmLogging loggingForm = new frmLogging();

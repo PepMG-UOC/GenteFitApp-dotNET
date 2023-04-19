@@ -19,6 +19,8 @@ namespace GenteFitApp
             Application.SetCompatibleTextRenderingDefault(false);
             frmLogging logging = new frmLogging();
             logging.Show();
+            //frmImportExportXML importa = new frmImportExportXML();
+            //importa.Show();
             Application.Run();
         }
     }
