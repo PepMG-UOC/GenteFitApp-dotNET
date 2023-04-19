@@ -32,8 +32,10 @@ namespace GenteFitApp.Vistas
 
         private void pbCentro_Click(object sender, EventArgs e)
         {
-            frmImportExportXML importaExportaXML= new frmImportExportXML();
-            importaExportaXML.Show();
+            frmGestionCentro gestionCentro = new frmGestionCentro();
+            gestionCentro.Show();
+            //frmImportExportXML importaExportaXML= new frmImportExportXML();
+            //importaExportaXML.Show();
             this.Close();
         }
 
