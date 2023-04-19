@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="219663c21fce4a36b5d488dc8cbf4ae9" Name="Diagram1">
+      <Diagram DiagramId="0f1654bc6fec44508617f43f869272d6" Name="Diagram1">
         <EntityTypeShape EntityType="GenteFitDBModel.Actividad" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="GenteFitDBModel.Administrador" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="GenteFitDBModel.Clase" Width="1.5" PointX="7.5" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="GenteFitDBModel.Cliente" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GenteFitDBModel.Monitor" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GenteFitDBModel.Persona" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GenteFitDBModel.Persona" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="GenteFitDBModel.Reserva" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
         <EntityTypeShape EntityType="GenteFitDBModel.Sala" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
         <AssociationConnector Association="GenteFitDBModel.FK_Actividad_Monitor" ManuallyRouted="false" />

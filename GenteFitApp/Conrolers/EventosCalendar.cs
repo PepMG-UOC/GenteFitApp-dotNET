@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -38,6 +39,20 @@ namespace GenteFitApp.Conrolers
                 return reservaEncontrada;
             }
         }
+
+        public static void eliminaReservasDeCliente(int idCliente)
+        {
+            using (var dBGfit = new GenteFitDBEntities()) 
+            {
+                var reservasAEliminar = dBGfit.Reserva.Where(r => r.clienteID == idCliente);
+
+                foreach (var reserva in reservasAEliminar)
+                {
+                    dBGfit.Reserva.Remove(reserva);
+                }
+                dBGfit.SaveChanges();
+            }
+        }        
 
         public static Color colorLinea(Clase miClase)
         {

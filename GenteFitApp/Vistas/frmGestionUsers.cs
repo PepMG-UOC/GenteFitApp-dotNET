@@ -188,7 +188,9 @@ namespace GenteFitApp.Vistas
 
         private void btnBaja_Click(object sender, EventArgs e)
         {
-
+            cargaDatosToUsuario();
+            Usuarios.bajaUsuario(usuario.id_Persona);            
+            reseteaForm();
         }
 
         private void cargaDatosToUsuario()

@@ -107,7 +107,6 @@
     <Compile Include="Modelo\Clase.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modelo\ClaseEvento.cs" />
     <Compile Include="Modelo\ClaseView.cs" />
     <Compile Include="Modelo\Cliente.cs">
       <DependentUpon>EntyFrmwGenteFitDB.tt</DependentUpon>
@@ -244,11 +243,11 @@
     <EmbeddedResource Include="Vistas\UserControlDias.resx">
       <DependentUpon>UserControlDias.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="GenteFitApp_TemporaryKey.pfx" />
     <EntityDeploy Include="Modelo\EntyFrmwGenteFitDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>EntyFrmwGenteFitDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="GenteFitApp_TemporaryKey.pfx" />
     <None Include="Modelo\EntyFrmwGenteFitDB.edmx.diagram">
       <DependentUpon>EntyFrmwGenteFitDB.edmx</DependentUpon>
     </None>
@@ -282,16 +281,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Modelo\EntyFrmwGenteFitDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EntyFrmwGenteFitDB.edmx</DependentUpon>
-      <LastGenOutput>EntyFrmwGenteFitDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Modelo\EntyFrmwGenteFitDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EntyFrmwGenteFitDB.edmx</DependentUpon>
-      <LastGenOutput>EntyFrmwGenteFitDB.cs</LastGenOutput>
-    </Content>
     <None Include="Resources\mailIcon.png" />
     <None Include="Resources\gestionUsuario.PNG" />
     <None Include="Resources\ExitBtn.png" />
@@ -304,6 +293,18 @@
     <None Include="Resources\mnuClClases.PNG" />
     <None Include="Resources\User-avatar.svg.png" />
     <None Include="Resources\keypass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modelo\EntyFrmwGenteFitDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EntyFrmwGenteFitDB.edmx</DependentUpon>
+      <LastGenOutput>EntyFrmwGenteFitDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Modelo\EntyFrmwGenteFitDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EntyFrmwGenteFitDB.edmx</DependentUpon>
+      <LastGenOutput>EntyFrmwGenteFitDB.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

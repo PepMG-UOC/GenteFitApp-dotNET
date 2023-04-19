@@ -1,15 +1,11 @@
 ﻿using GenteFitApp.Modelo;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
-using System.Drawing;
 using System.Linq;
 using System.Data.Entity;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Windows.Forms;
+
 
 namespace GenteFitApp.Conrolers
 {
@@ -108,7 +104,7 @@ namespace GenteFitApp.Conrolers
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
-                var monitor = dBGfit.Monitor.FirstOrDefault(m => m.personaID == idPersona);
+                var monitor = dBGfit.Monitor.FirstOrDefault(m => m.personaID == idPersona);                    
                 return monitor;                
             }
         }
@@ -148,6 +144,88 @@ namespace GenteFitApp.Conrolers
                 return persona;
             }
         }
+        private static void bajaCliente(int idCliente)
+        {
+
+            EventosCalendar.eliminaReservasDeCliente(idCliente);
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                var cliente = dBGfit.Cliente.Find(idCliente);
+                dBGfit.Cliente.Remove(cliente);
+                dBGfit.SaveChanges();
+            }
+        }
+        private static void eliminaMonitorCascada(int idMonitor)
+        {
+            using (var dBGfit = new GenteFitDBEntities())
+            {
+                var monitor = dBGfit.Monitor.Find(idMonitor);
+                foreach (var actividad in monitor.Actividad.ToList())
+                {
+                    // Eliminar todas las Clases que pertenecen a la Actividad
+                    foreach (var clase in actividad.Clase.ToList())
+                    {
+                        // Eliminar todas las Reservas que pertenecen a la Clase
+                        foreach (var reserva in clase.Reserva.ToList())
+                        {
+                            dBGfit.Reserva.Remove(reserva);
+                        }
+                        dBGfit.Clase.Remove(clase);
+                    }
+                    dBGfit.Actividad.Remove(actividad);
+                }
+                dBGfit.Monitor.Remove(monitor);
+                dBGfit.SaveChanges();
+            }
+        }
+
+        public static void bajaUsuario(int idPersona)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                var person = dBGfit.Persona.Find(idPersona);
+                int ctrl = 0;
+                Cliente esCliente = getClienteDePersona(idPersona);
+                Monitor esMonitor = getMonitorDePersona(idPersona);
+                Administrador esAdmin = getAdminDePersona(idPersona);
+                if (esCliente != null)
+                {
+                    bajaCliente(esCliente.id_Cliente); 
+                    ctrl = 1;
+                }
+                if (esMonitor != null)
+                {                   
+                        eliminaMonitorCascada(esMonitor.id_Monitor);
+                        ctrl = 1;
+                }
+                if (esAdmin != null)
+                {
+                    int cantAdmin = dBGfit.Administrador.Count();
+                    if (cantAdmin <= 1)
+                    {
+                        MessageBox.Show("no puede borrarse el unico administrador");                       
+                    }
+                    else
+                    {
+                        dBGfit.Administrador.Remove(esAdmin);
+                        ctrl = 1;
+                    }
+                }
+                if(ctrl == 1)
+                {                    
+                    dBGfit.Persona.Remove(person);
+                    dBGfit.SaveChanges();
+                    MessageBox.Show("El usuario se eliminó correctamente");
+                } else
+                {
+                    MessageBox.Show("El usuario no pudo borrarse");
+                }
+                
+            }            
+        }
+
+
+
 
     }
 }
