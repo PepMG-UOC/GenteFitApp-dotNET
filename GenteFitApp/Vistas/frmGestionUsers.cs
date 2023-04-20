@@ -135,6 +135,7 @@ namespace GenteFitApp.Vistas
         }
         private void btnAlta_Click(object sender, EventArgs e)
         {
+            usuario = new Persona();
             cargaDatosToUsuario();
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
