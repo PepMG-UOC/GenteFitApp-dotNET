@@ -24,6 +24,9 @@ namespace GenteFitApp.Vistas
 
         private void pBActividades_Click(object sender, EventArgs e)
         {
+            frmActividades actividadesfrm = new frmActividades();
+            actividadesfrm.Show();
+            this.Close();
 
         }
 

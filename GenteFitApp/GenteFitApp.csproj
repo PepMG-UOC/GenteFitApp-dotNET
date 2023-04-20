@@ -150,6 +150,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\frmActividades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\frmActividades.Designer.cs">
+      <DependentUpon>frmActividades.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\frmCalendario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -220,6 +226,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\frmActividades.resx">
+      <DependentUpon>frmActividades.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\frmCalendario.resx">
       <DependentUpon>frmCalendario.cs</DependentUpon>

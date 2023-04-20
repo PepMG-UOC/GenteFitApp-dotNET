@@ -20,7 +20,7 @@ namespace GenteFitApp.Vistas
         }
 
         private void comboBox1_Click(object sender, EventArgs e)
-        {
+        {            
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
                 var idSalas = dBGfit.Sala.Select(s => s.id_Sala).ToList();
@@ -53,7 +53,7 @@ namespace GenteFitApp.Vistas
             Sala estaSala = new Sala();
             if (comboBox1.SelectedValue != null)
             {
-                estaSala = GestionCentro.getSala((int)comboBox1.SelectedValue);
+                estaSala = GestionCentro.getSalaById((int)comboBox1.SelectedValue);
             }
             tbVnum.Text = estaSala.id_Sala.ToString();
             tbVNPlazas.Text = estaSala.numPlazas.ToString();
@@ -72,7 +72,7 @@ namespace GenteFitApp.Vistas
         {            
             if (comboBox2.SelectedValue != null)
             {
-                GestionCentro.bajaSala((int)comboBox2.SelectedValue);
+                GestionCentro.bajaSalaById((int)comboBox2.SelectedValue);
                 comboBox2.SelectedIndex = -1;
                 MessageBox.Show("La sala se ha eliminado correctamente.");
             }

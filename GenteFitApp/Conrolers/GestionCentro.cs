@@ -11,7 +11,7 @@ namespace GenteFitApp.Conrolers
 {
     public class GestionCentro
     {
-        public void altaActividad(string nombre, string descripcion, int monitorID)
+        public static void altaActividad(string nombre, string descripcion, int monitorID)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
@@ -27,7 +27,17 @@ namespace GenteFitApp.Conrolers
             }
         }
 
-        public void bajaActividad(int IDActividad)
+        public static Actividad getActividadById(int IDActividad)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                return dBGfit.Actividad.Include(a => a.Monitor)
+                    .Include(a => a.Clase)
+                    .FirstOrDefault(a => a.id_Actividad == IDActividad);
+            }
+        }
+
+        public static void bajaActividad(int IDActividad)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
@@ -59,27 +69,27 @@ namespace GenteFitApp.Conrolers
             }
         }
 
-        public static Sala getSala(int IdSala)
+        public static Sala getSalaById(int IdSala)
         {
-             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
-                return dBGfit.Sala.Find(IdSala);                
+                return dBGfit.Sala.Include(s => s.Clase)
+                    .FirstOrDefault(s => s.id_Sala== IdSala);                                 
             }
         }
 
 
-        public static void bajaSala(int IDSala)
+        public static void bajaSalaById(int IDSala)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
-                Sala sala = dBGfit.Sala.FirstOrDefault(s => s.id_Sala == IDSala);
+                Sala sala = getSalaById(IDSala);                
                 if (sala != null)                
-                {
-                    List<Clase> clases = dBGfit.Clase.Where(c => c.salaID == IDSala).ToList();
-                    foreach (Clase clase in clases)
+                {                    
+                    foreach (Clase clase in sala.Clase)
                     {
                         List<Reserva> reservas = dBGfit.Reserva.Where(r => r.claseID == clase.id_Clase).ToList();
-                        foreach (Reserva reserva in reservas)
+                        foreach (Reserva reserva in clase.Reserva)
                         {
                             dBGfit.Reserva.Remove(reserva);
                         }
@@ -88,6 +98,22 @@ namespace GenteFitApp.Conrolers
                     dBGfit.Sala.Remove(sala);
                     dBGfit.SaveChanges();
                 }
+            }
+        }
+
+        public static void altaClase()
+        {
+
+        }
+
+        public static Clase getClaseByID(int id)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                return dBGfit.Clase.Include(c => c.Actividad)
+                    .Include(c => c.Sala)
+                    .Include(c => c.Reserva)
+                    .FirstOrDefault(c => c.id_Clase == id);
             }
         }
 

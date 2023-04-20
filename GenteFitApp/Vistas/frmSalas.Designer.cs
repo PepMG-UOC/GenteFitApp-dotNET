@@ -30,7 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.btnMostrar = new System.Windows.Forms.Button();
-            this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tbVDimen = new System.Windows.Forms.TextBox();
             this.tbVNPlazas = new System.Windows.Forms.TextBox();
@@ -341,7 +340,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnMostrar;
-        private System.DirectoryServices.DirectoryEntry directoryEntry1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
