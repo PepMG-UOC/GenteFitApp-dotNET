@@ -30,7 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.btnMostrar = new System.Windows.Forms.Button();
-            this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tbVDimen = new System.Windows.Forms.TextBox();
             this.tbVNPlazas = new System.Windows.Forms.TextBox();
@@ -50,7 +49,7 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBSalas)).BeginInit();
@@ -255,6 +254,7 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 29);
             this.comboBox1.TabIndex = 26;
             this.comboBox1.ValueMember = "id_Sala";
+            this.comboBox1.Click += new System.EventHandler(this.comboBox1_Click);
             // 
             // label9
             // 
@@ -278,16 +278,17 @@
             this.label10.TabIndex = 29;
             this.label10.Text = "Sala";
             // 
-            // button1
+            // btnEliminar
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.button1.Location = new System.Drawing.Point(809, 448);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 35);
-            this.button1.TabIndex = 30;
-            this.button1.Text = "Eliminar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnEliminar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnEliminar.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
+            this.btnEliminar.Location = new System.Drawing.Point(809, 448);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(87, 35);
+            this.btnEliminar.TabIndex = 30;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // comboBox2
             // 
@@ -300,6 +301,7 @@
             this.comboBox2.Size = new System.Drawing.Size(121, 29);
             this.comboBox2.TabIndex = 31;
             this.comboBox2.ValueMember = "id_Sala";
+            this.comboBox2.Click += new System.EventHandler(this.comboBox2_Click);
             // 
             // frmSalas
             // 
@@ -307,7 +309,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1267, 714);
             this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.comboBox1);
@@ -326,7 +328,6 @@
             this.Name = "frmSalas";
             this.Text = "frmTempSala";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.frmSalas_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBSalas)).EndInit();
@@ -339,7 +340,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnMostrar;
-        private System.DirectoryServices.DirectoryEntry directoryEntry1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
@@ -359,7 +359,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.ComboBox comboBox2;
     }
 }

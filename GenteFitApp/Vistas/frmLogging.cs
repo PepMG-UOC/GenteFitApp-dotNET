@@ -89,6 +89,10 @@ namespace GenteFitApp.Vistas
             Application.Exit();
         }
 
-        
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            frmImportExportXML importaExportaXML = new frmImportExportXML();
+            importaExportaXML.ShowDialog();
+        }
     }
 }

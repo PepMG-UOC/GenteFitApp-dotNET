@@ -24,6 +24,9 @@ namespace GenteFitApp.Vistas
 
         private void pBActividades_Click(object sender, EventArgs e)
         {
+            frmActividades actividadesfrm = new frmActividades();
+            actividadesfrm.Show();
+            this.Close();
 
         }
 
@@ -39,6 +42,12 @@ namespace GenteFitApp.Vistas
             frmMenuAdmin menuAdmin = new frmMenuAdmin();
             menuAdmin.Show();
             this.Close();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            frmImportExportXML importaExportaXML = new frmImportExportXML();
+            importaExportaXML.ShowDialog();
         }
     }
 }

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Data.Entity;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Runtime.Remoting.Contexts;
 
 
 namespace GenteFitApp.Conrolers
@@ -90,6 +92,36 @@ namespace GenteFitApp.Conrolers
             }
         }
 
+        //public static Persona getPersonadeMonitor(int idMonitor)
+        //{
+        //    using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+        //    {
+
+        //        dBGfit.Persona.Where(p => p.id_Persona == idMonitor)
+        //    }
+        //}
+        //public static Monitor getMonitor(int idMonitor)
+        //{
+        //    using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+        //    {
+
+        //        var monitor = dBGfit.Monitor.Where(m => m.id_Monitor == idMonitor);
+        //        return monitor;
+        //    }
+
+        //}
+        public static Monitor getMonitorById(int id)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                return dBGfit.Monitor.Include(m => m.Actividad)
+                                     .Include(m => m.Persona)
+                                     .FirstOrDefault(m => m.id_Monitor == id);
+            }
+                
+        }
+
+
         public static Cliente getClienteDePersona(int idPersona)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
@@ -141,6 +173,19 @@ namespace GenteFitApp.Conrolers
                     .Include(p => p.Cliente)
                     .Include(p => p.Monitor)
                     .FirstOrDefault(p => p.email == eMail);
+                return persona;
+            }
+        }
+
+        public static Persona getPersonaById(int id)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                Persona persona = dBGfit.Persona
+                    .Include(p => p.Administrador)
+                    .Include(p => p.Cliente)
+                    .Include(p => p.Monitor)
+                    .FirstOrDefault(p => p.id_Persona == id);
                 return persona;
             }
         }
