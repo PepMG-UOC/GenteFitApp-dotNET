@@ -99,7 +99,7 @@ namespace GenteFitApp.Vistas
                         ConexionERP.SalaToXML(filePath);
                         break;                    
                 }
-                MessageBox.Show("El archivo XML se a Exportado con exito.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("El archivo XML se a Exportado con exito.");
             }             
         }
 
@@ -141,7 +141,7 @@ namespace GenteFitApp.Vistas
                         ConexionERP.XmlToSala(filePath);
                         break;
                 }
-                MessageBox.Show("El archivo XML se a Importado con exito.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("El archivo XML se a Importado con exito.");
             }            
         }
     }

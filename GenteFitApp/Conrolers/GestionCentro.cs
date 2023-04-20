@@ -1,7 +1,9 @@
 ﻿using GenteFitApp.Modelo;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -66,15 +68,24 @@ namespace GenteFitApp.Conrolers
         }
 
 
-        public void bajaSala(int IDSala)
+        public static void bajaSala(int IDSala)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
-                Sala borrarSala = dBGfit.Sala.Find(IDSala);
-
-                if (borrarSala != null)
+                Sala sala = dBGfit.Sala.FirstOrDefault(s => s.id_Sala == IDSala);
+                if (sala != null)                
                 {
-                    dBGfit.Sala.Remove(borrarSala);
+                    List<Clase> clases = dBGfit.Clase.Where(c => c.salaID == IDSala).ToList();
+                    foreach (Clase clase in clases)
+                    {
+                        List<Reserva> reservas = dBGfit.Reserva.Where(r => r.claseID == clase.id_Clase).ToList();
+                        foreach (Reserva reserva in reservas)
+                        {
+                            dBGfit.Reserva.Remove(reserva);
+                        }
+                        dBGfit.Clase.Remove(clase);
+                    }
+                    dBGfit.Sala.Remove(sala);
                     dBGfit.SaveChanges();
                 }
             }
