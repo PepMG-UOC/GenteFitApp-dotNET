@@ -9,6 +9,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Runtime.Remoting.Contexts;
 
 
+
 namespace GenteFitApp.Conrolers
 {
     public class Usuarios
@@ -189,6 +190,61 @@ namespace GenteFitApp.Conrolers
                 return persona;
             }
         }
+
+        public static bool altaUsuario(bool esCliente, bool esMonitor, bool esAdmin, TextBox tbSueldo, Persona usuario)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                dBGfit.Persona.Add(usuario);
+                dBGfit.SaveChanges();
+                if (esCliente)
+                {
+                    Cliente nuevoCliente = new Cliente();
+                    nuevoCliente.personaID = usuario.id_Persona;
+                    nuevoCliente.fechaAlta = DateTime.Now;
+                    dBGfit.Cliente.Add(nuevoCliente);
+                    dBGfit.SaveChanges();
+                    return true;
+                }
+                else if (esMonitor)//
+                {
+                    Monitor nuevoMonitor = new Monitor();
+                    nuevoMonitor.personaID = usuario.id_Persona;
+                    nuevoMonitor.precioHora = decimal.Parse(tbSueldo.Text);
+                    nuevoMonitor.fechaAlta = DateTime.Now;
+                    dBGfit.Monitor.Add(nuevoMonitor);
+                    dBGfit.SaveChanges();
+                    return true; ;
+                }
+                else if (esAdmin)//
+                {
+                    Administrador nuevoAdmin = new Administrador();
+                    nuevoAdmin.personaID = usuario.id_Persona;
+                    dBGfit.Administrador.Add(nuevoAdmin);
+                    dBGfit.SaveChanges();
+                    return true;
+                }
+                else return false;
+            }
+        }
+
+        public static bool modificarUsuario(bool esMonitor, TextBox tbSueldo,Persona usuario)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                dBGfit.Entry(usuario).State = EntityState.Modified;
+                dBGfit.SaveChanges();
+                if (esMonitor)
+                {
+                    Monitor nuevoMonitor = new Monitor();
+                    nuevoMonitor.personaID = usuario.id_Persona;
+                    nuevoMonitor.precioHora = decimal.Parse(tbSueldo.Text);
+                    dBGfit.Entry(nuevoMonitor).State = EntityState.Modified;
+                    dBGfit.SaveChanges();
+                }
+                return true;                
+            }
+        }
         private static void bajaCliente(int idCliente)
         {
 
@@ -200,7 +256,7 @@ namespace GenteFitApp.Conrolers
                 dBGfit.SaveChanges();
             }
         }
-        private static void eliminaMonitorCascada(int idMonitor)
+        private static void bajaMonitorCascada(int idMonitor)
         {
             using (var dBGfit = new GenteFitDBEntities())
             {
@@ -240,7 +296,7 @@ namespace GenteFitApp.Conrolers
                 }
                 if (esMonitor != null)
                 {                   
-                        eliminaMonitorCascada(esMonitor.id_Monitor);
+                        bajaMonitorCascada(esMonitor.id_Monitor);
                         ctrl = 1;
                 }
                 if (esAdmin != null)

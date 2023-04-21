@@ -49,7 +49,7 @@ namespace GenteFitApp.Vistas
             nombreActividadColumn.DataPropertyName = "nombreActividad";
             dGVEventos.Columns.Add(nombreActividadColumn);
 
-            foreach (Clase unaclase in clasesEventos)
+            foreach (var unaclase in clasesEventos)
             {
                 DataGridViewRow nuevaFila = new DataGridViewRow();
                 nuevaFila.CreateCells(dGVEventos, unaclase.id_Clase, unaclase.fechaHora, unaclase.Actividad.nombre);
