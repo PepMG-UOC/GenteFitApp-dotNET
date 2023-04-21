@@ -261,7 +261,6 @@
     <EmbeddedResource Include="Vistas\UserControlDias.resx">
       <DependentUpon>UserControlDias.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="GenteFitApp_TemporaryKey.pfx" />
     <EntityDeploy Include="Modelo\EntyFrmwGenteFitDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>EntyFrmwGenteFitDB.Designer.cs</LastGenOutput>
