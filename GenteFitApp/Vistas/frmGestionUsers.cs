@@ -135,26 +135,60 @@ namespace GenteFitApp.Vistas
         }
         private void btnAlta_Click(object sender, EventArgs e)
         {
-            bool esCliente = rBCliente.Checked;
-            bool esMonitor = rBMonitor.Checked;
-            bool esAdmin = rBAdmin.Checked;
             usuario = new Persona();
             cargaDatosToUsuario();
-            if(Usuarios.altaUsuario(esCliente, esMonitor, esAdmin, tbSueldo, usuario))
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
-                MessageBox.Show("Usuario añadido correctamente");
-            } else MessageBox.Show("Usuario no se ha podido añadir");
+                dBGfit.Persona.Add(usuario);
+                dBGfit.SaveChanges();
+                if (rBCliente.Checked)
+                {
+                    Cliente nuevoCliente = new Cliente();
+                    nuevoCliente.personaID = usuario.id_Persona;
+                    nuevoCliente.fechaAlta = DateTime.Now;
+                    dBGfit.Cliente.Add(nuevoCliente);
+                    dBGfit.SaveChanges();
+                    MessageBox.Show("Cliente añadido correctamente");
+                }
+                else if (rBMonitor.Checked)
+                {
+                    Monitor nuevoMonitor = new Monitor();
+                    nuevoMonitor.personaID = usuario.id_Persona;
+                    nuevoMonitor.precioHora = decimal.Parse(tbSueldo.Text);
+                    nuevoMonitor.fechaAlta = DateTime.Now;
+                    dBGfit.Monitor.Add(nuevoMonitor);
+                    dBGfit.SaveChanges();
+                    MessageBox.Show("Monitor añadido correctamente");
+                }
+                else if (rBAdmin.Checked)
+                {
+                    Administrador nuevoAdmin = new Administrador();
+                    nuevoAdmin.personaID = usuario.id_Persona;
+                    dBGfit.Administrador.Add(nuevoAdmin);
+                    dBGfit.SaveChanges();
+                    MessageBox.Show("Administrador añadido correctamente");
+                }
+            }
             reseteaForm();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            bool esMonitor = rBMonitor.Checked;
             cargaDatosToUsuario();
-            if(Usuarios.modificarUsuario(esMonitor, tbSueldo, usuario))
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
+                dBGfit.Entry(usuario).State = EntityState.Modified;
+                dBGfit.SaveChanges();
+                if (rBMonitor.Checked)
+                {
+                    Monitor nuevoMonitor = new Monitor();
+                    nuevoMonitor.personaID = usuario.id_Persona;
+                    nuevoMonitor.precioHora = decimal.Parse(tbSueldo.Text);
+                    dBGfit.Entry(nuevoMonitor).State = EntityState.Modified;
+                    dBGfit.SaveChanges();
+                }
                 MessageBox.Show("Usuario modificado correctamente");
-            } else MessageBox.Show("Usuario no puede modificarse");
+            }
             reseteaForm();
         }
 

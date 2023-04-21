@@ -54,14 +54,7 @@ namespace GenteFitApp.Conrolers
 
 
         // ---
-        public static List<int> getIDsSalas()
-        {
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
-            {
-                var idSalas = dBGfit.Sala.Select(s => s.id_Sala).ToList();
-                return idSalas;
-            }
-        }
+        
         public static void altaSala(int numPlazas, int dimensionM2)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
