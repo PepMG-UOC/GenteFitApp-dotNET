@@ -32,15 +32,15 @@ namespace GenteFitApp.Vistas
         private void btnMostrar_Click(object sender, EventArgs e)
         {
             Actividad estaActividad= new Actividad();            
-            if(cBMostrar!=null)
+            if(cBMostrar.SelectedValue != null)
             {
                 estaActividad = GestionCentro.getActividadById((int)cBMostrar.SelectedValue);
-            }
-            tbVNombre.Text = estaActividad.nombre;
-            tbVDescrip.Text = estaActividad.descripcion;
-            var monitor = Usuarios.getMonitorById(estaActividad.Monitor.id_Monitor);            
-            tbVMonitor.Text = monitor.Persona.nombre + " " + monitor.Persona.apellido1;
-            cBMostrar.SelectedIndex = -1;            
+                tbVNombre.Text = estaActividad.nombre;
+                tbVDescrip.Text = estaActividad.descripcion;
+                var monitor = Usuarios.getMonitorById(estaActividad.Monitor.id_Monitor);
+                tbVMonitor.Text = monitor.Persona.nombre + " " + monitor.Persona.apellido1;
+                cBMostrar.SelectedIndex = -1;
+            }                        
         }
 
         private void cBMonitor_Click(object sender, EventArgs e)

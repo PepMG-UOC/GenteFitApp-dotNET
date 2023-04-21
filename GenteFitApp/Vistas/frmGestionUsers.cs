@@ -30,7 +30,7 @@ namespace GenteFitApp.Vistas
 
         private void reseteaForm()
         {
-            tbEmail.Text = "eMail";
+            //tbEmail.Text = "eMail";
             foreach (Control control in gBDetallesUser.Controls)
             {
                 if (control is TextBox textBox)
@@ -80,6 +80,9 @@ namespace GenteFitApp.Vistas
                         cargaUsuarioEnForm();
                     } else
                     {
+                        reseteaForm();
+                        gBDetallesUser.Enabled = true;
+                        gBTipo.Enabled = true;
                         btnAlta.Visible = true;
                         btnBaja.Visible=true;
                         e.SuppressKeyPress = true;

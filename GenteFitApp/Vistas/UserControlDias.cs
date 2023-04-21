@@ -72,7 +72,7 @@ namespace GenteFitApp.Vistas
                     dGVEventos.DefaultCellStyle.SelectionForeColor = Color.Black;
                     dGVEventos.Enabled= false;
                 }                
-                dGVEventos.Rows.Add(nuevaFila);
+                dGVEventos.Rows.Add(nuevaFila);                
                 dGVEventos.ClearSelection();
             }           
         }
