@@ -27,28 +27,38 @@ namespace GenteFitApp.Conrolers
             }
         }
 
-        public static Actividad getActividadById(int IDActividad)
+        public static Actividad getActividadByNombre(string nombre)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
                 return dBGfit.Actividad.Include(a => a.Monitor)
                     .Include(a => a.Clase)
-                    .FirstOrDefault(a => a.id_Actividad == IDActividad);
+                    .FirstOrDefault(a => a.nombre == nombre);
             }
         }
-
-        public static void bajaActividad(int IDActividad)
+        public static List<string> getNombresActividades()
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
-                Actividad borrarActividad = dBGfit.Actividad.Find(IDActividad);
-
-                if (borrarActividad != null)
+                List<string> list = new List<string>();
+                var actividadesList = dBGfit.Actividad.ToList();
+                foreach(Actividad activ in actividadesList)
                 {
-                    dBGfit.Actividad.Remove(borrarActividad);
-                    dBGfit.SaveChanges();
+                    list.Add(activ.nombre);
                 }
+                return list;
             }
+        }
+
+        public static void bajaActividad(Actividad actividad)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                Actividad actividadAEliminar = dBGfit.Actividad.FirstOrDefault(a => a.id_Actividad == actividad.id_Actividad);
+                borrarClasesDeActividad(actividadAEliminar);
+                dBGfit.Actividad.Remove(actividadAEliminar);
+                dBGfit.SaveChanges();
+            }               
         }
 
 
@@ -163,6 +173,20 @@ namespace GenteFitApp.Conrolers
                 return clases;
             }
         } 
+        public static void borrarClasesDeActividad(Actividad actividad)
+        {
+            // Eliminar todas las Clases que pertenecen a la Actividad
+            using (var dBGfit = new GenteFitDBEntities())
+            {
+                Actividad actividadAEliminar = dBGfit.Actividad.FirstOrDefault(a => a.id_Actividad == actividad.id_Actividad);
+                foreach (var clase in actividadAEliminar.Clase.ToList())
+                {
+                    EventosCalendar.borraReservasDeClase(clase);
+                    dBGfit.Clase.Remove(clase);
+                }
+                dBGfit.SaveChanges();
+            }
+        }
 
 
 

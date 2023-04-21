@@ -98,6 +98,7 @@
             this.tbVDimen.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.tbVDimen.Location = new System.Drawing.Point(157, 111);
             this.tbVDimen.Name = "tbVDimen";
+            this.tbVDimen.ReadOnly = true;
             this.tbVDimen.Size = new System.Drawing.Size(100, 29);
             this.tbVDimen.TabIndex = 6;
             // 
@@ -106,6 +107,7 @@
             this.tbVNPlazas.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.tbVNPlazas.Location = new System.Drawing.Point(157, 76);
             this.tbVNPlazas.Name = "tbVNPlazas";
+            this.tbVNPlazas.ReadOnly = true;
             this.tbVNPlazas.Size = new System.Drawing.Size(100, 29);
             this.tbVNPlazas.TabIndex = 5;
             // 
@@ -114,6 +116,7 @@
             this.tbVnum.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.tbVnum.Location = new System.Drawing.Point(157, 41);
             this.tbVnum.Name = "tbVnum";
+            this.tbVnum.ReadOnly = true;
             this.tbVnum.Size = new System.Drawing.Size(100, 29);
             this.tbVnum.TabIndex = 4;
             // 

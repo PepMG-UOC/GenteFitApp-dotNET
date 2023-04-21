@@ -67,6 +67,7 @@
             this.cBEliminar.Size = new System.Drawing.Size(121, 29);
             this.cBEliminar.TabIndex = 47;
             this.cBEliminar.ValueMember = "id_Actividad";
+            this.cBEliminar.Click += new System.EventHandler(this.cBEliminar_Click);
             // 
             // btnEliminar
             // 
@@ -78,6 +79,7 @@
             this.btnEliminar.TabIndex = 46;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // label10
             // 
@@ -147,6 +149,7 @@
             this.btnCrear.TabIndex = 40;
             this.btnCrear.Text = "Crear";
             this.btnCrear.UseVisualStyleBackColor = true;
+            this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
             // 
             // label6
             // 
@@ -178,6 +181,7 @@
             this.tbVMonitor.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.tbVMonitor.Location = new System.Drawing.Point(125, 152);
             this.tbVMonitor.Name = "tbVMonitor";
+            this.tbVMonitor.ReadOnly = true;
             this.tbVMonitor.Size = new System.Drawing.Size(159, 29);
             this.tbVMonitor.TabIndex = 6;
             // 
@@ -187,6 +191,7 @@
             this.tbVDescrip.Location = new System.Drawing.Point(125, 61);
             this.tbVDescrip.Multiline = true;
             this.tbVDescrip.Name = "tbVDescrip";
+            this.tbVDescrip.ReadOnly = true;
             this.tbVDescrip.Size = new System.Drawing.Size(159, 78);
             this.tbVDescrip.TabIndex = 5;
             // 
@@ -195,6 +200,7 @@
             this.tbVNombre.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.tbVNombre.Location = new System.Drawing.Point(125, 18);
             this.tbVNombre.Name = "tbVNombre";
+            this.tbVNombre.ReadOnly = true;
             this.tbVNombre.Size = new System.Drawing.Size(159, 29);
             this.tbVNombre.TabIndex = 4;
             // 
@@ -260,6 +266,7 @@
             this.tbDescripcion.Name = "tbDescripcion";
             this.tbDescripcion.Size = new System.Drawing.Size(159, 66);
             this.tbDescripcion.TabIndex = 52;
+            this.tbDescripcion.Enter += new System.EventHandler(this.tbDescripcion_Enter);
             // 
             // tbNombre
             // 
@@ -269,6 +276,7 @@
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(159, 29);
             this.tbNombre.TabIndex = 51;
+            this.tbNombre.Enter += new System.EventHandler(this.tbNombre_Enter);
             // 
             // label2
             // 
