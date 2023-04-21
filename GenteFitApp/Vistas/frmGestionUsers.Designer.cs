@@ -72,7 +72,7 @@
             // 
             this.btnVolver.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnVolver.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.btnVolver.Location = new System.Drawing.Point(69, 635);
+            this.btnVolver.Location = new System.Drawing.Point(99, 651);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(110, 40);
             this.btnVolver.TabIndex = 7;

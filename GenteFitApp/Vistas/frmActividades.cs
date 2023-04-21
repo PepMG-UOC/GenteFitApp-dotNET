@@ -43,7 +43,14 @@ namespace GenteFitApp.Vistas
             cBMostrar.SelectedIndex = -1;            
         }
 
+        private void cBMonitor_Click(object sender, EventArgs e)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                var monitoresShow = dBGfit.Monitor.ToList();
 
+            }
+        }
 
 
 
@@ -53,5 +60,7 @@ namespace GenteFitApp.Vistas
             gestionCentro.Show();
             this.Close();
         }
+
+        
     }
 }
