@@ -9,6 +9,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Runtime.Remoting.Contexts;
 
 
+
 namespace GenteFitApp.Conrolers
 {
     public class Usuarios
@@ -131,6 +132,35 @@ namespace GenteFitApp.Conrolers
             }
         }
 
+        public static List<string> getNombresMonitores() 
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                List<string> nombresMonitores = new List<string>();
+                var monitoresShow = dBGfit.Monitor.ToList();
+                foreach (Monitor monitor in monitoresShow)
+                {
+                    nombresMonitores.Add(monitor.Persona.nombre + " " + monitor.Persona.apellido1);
+                }
+               return nombresMonitores;
+            }
+        }
+
+        public static Monitor getMonitorByNombre(string nombre)
+        {            
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {               
+                var monitoresShow = dBGfit.Monitor.ToList();
+                foreach (Monitor monitor in monitoresShow)
+                {
+                    if((monitor.Persona.nombre + " " + monitor.Persona.apellido1) == nombre)
+                    {
+                        return monitor;
+                    }
+                }
+                return null;
+            }
+        }
       
         public static Monitor getMonitorDePersona(int idPersona)
         {
@@ -189,6 +219,24 @@ namespace GenteFitApp.Conrolers
                 return persona;
             }
         }
+
+        public static bool modificarUsuario(bool esMonitor, TextBox tbSueldo,Persona usuario)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                dBGfit.Entry(usuario).State = EntityState.Modified;
+                dBGfit.SaveChanges();
+                if (esMonitor)
+                {
+                    Monitor nuevoMonitor = new Monitor();
+                    nuevoMonitor.personaID = usuario.id_Persona;
+                    nuevoMonitor.precioHora = decimal.Parse(tbSueldo.Text);
+                    dBGfit.Entry(nuevoMonitor).State = EntityState.Modified;
+                    dBGfit.SaveChanges();
+                }
+                return true;                
+            }
+        }
         private static void bajaCliente(int idCliente)
         {
 
@@ -200,30 +248,33 @@ namespace GenteFitApp.Conrolers
                 dBGfit.SaveChanges();
             }
         }
-        private static void eliminaMonitorCascada(int idMonitor)
+        private static void bajaMonitorCascada(int idMonitor)
         {
             using (var dBGfit = new GenteFitDBEntities())
             {
                 var monitor = dBGfit.Monitor.Find(idMonitor);
-                foreach (var actividad in monitor.Actividad.ToList())
-                {
-                    // Eliminar todas las Clases que pertenecen a la Actividad
-                    foreach (var clase in actividad.Clase.ToList())
-                    {
-                        // Eliminar todas las Reservas que pertenecen a la Clase
-                        foreach (var reserva in clase.Reserva.ToList())
-                        {
-                            dBGfit.Reserva.Remove(reserva);
-                        }
-                        dBGfit.Clase.Remove(clase);
-                    }
-                    dBGfit.Actividad.Remove(actividad);
-                }
+                borrarActividadesDeMonitor(monitor);
+                //dBGfit.Entry(monitor).State = EntityState.Deleted;
                 dBGfit.Monitor.Remove(monitor);
                 dBGfit.SaveChanges();
             }
         }
 
+        private static void borrarActividadesDeMonitor(Monitor monitor)
+        {
+            // Eliminar todas las Actividades en las que esta el Monitor
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                Monitor monitorAEliminar = dBGfit.Monitor.FirstOrDefault(m => m.id_Monitor == monitor.id_Monitor);
+                foreach (var actividad in monitorAEliminar.Actividad.ToList())
+                {
+                    GestionCentro.borrarClasesDeActividad(actividad);
+                    dBGfit.Actividad.Remove(actividad);
+                }  
+                dBGfit.SaveChanges();
+            }
+            
+        }
         public static void bajaUsuario(int idPersona)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
@@ -240,7 +291,7 @@ namespace GenteFitApp.Conrolers
                 }
                 if (esMonitor != null)
                 {                   
-                        eliminaMonitorCascada(esMonitor.id_Monitor);
+                        bajaMonitorCascada(esMonitor.id_Monitor);
                         ctrl = 1;
                 }
                 if (esAdmin != null)

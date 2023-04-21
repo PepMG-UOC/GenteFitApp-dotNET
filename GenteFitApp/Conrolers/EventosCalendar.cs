@@ -57,11 +57,25 @@ namespace GenteFitApp.Conrolers
         public static Color colorLinea(Clase miClase)
         {
             int numReservas = ConsultasBase.reservasDeClase(miClase);
-            if (miClase.Sala.numPlazas >= numReservas)
+            if (miClase.Sala.numPlazas > numReservas)
             {
                 return Color.YellowGreen;
             }
             return Color.Yellow;
+        }
+
+        public static void borraReservasDeClase(Clase clase)
+        {
+            // Eliminar todas las Reservas que pertenecen a la Clase
+            using (var dBGfit = new GenteFitDBEntities())
+            {                
+                Clase claseeliminar = dBGfit.Clase.FirstOrDefault(c => c.id_Clase == clase.id_Clase);
+                foreach (var reserva in claseeliminar.Reserva.ToList())
+                {
+                    dBGfit.Reserva.Remove(reserva);
+                }
+                dBGfit.SaveChanges();
+            }
         }
 
 

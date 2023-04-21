@@ -19,25 +19,44 @@ namespace GenteFitApp.Vistas
             InitializeComponent();
         }
 
+        private void resetCamposNEW()
+        {
+            tbPlazas.Text = "";
+            tbDimension.Text = "";
+        }
+
+        private void resetCamposShow()
+        {
+            tbVnum.Text = "";
+            tbVNPlazas.Text = "";
+            tbVDimen.Text = "";
+        }
+
         private void comboBox1_Click(object sender, EventArgs e)
-        {            
+        {
+            comboBox2.SelectedIndex = -1;
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
                 var idSalas = dBGfit.Sala.Select(s => s.id_Sala).ToList();
                 comboBox1.DataSource = idSalas;
             }
+            resetCamposNEW();
         }
         private void comboBox2_Click(object sender, EventArgs e)
         {
+            comboBox1.SelectedIndex = -1;
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
                 var idSalas = dBGfit.Sala.Select(s => s.id_Sala).ToList();
                 comboBox2.DataSource = idSalas;
             }
+            resetCamposNEW();
+            resetCamposShow();
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
+            resetCamposShow();
             if (tbPlazas.Text!="")
             {
                 GestionCentro.altaSala(int.Parse(tbPlazas.Text), int.Parse(tbDimension.Text));

@@ -30,7 +30,7 @@ namespace GenteFitApp.Vistas
 
         private void reseteaForm()
         {
-            tbEmail.Text = "eMail";
+            //tbEmail.Text = "eMail";
             foreach (Control control in gBDetallesUser.Controls)
             {
                 if (control is TextBox textBox)
@@ -80,6 +80,9 @@ namespace GenteFitApp.Vistas
                         cargaUsuarioEnForm();
                     } else
                     {
+                        reseteaForm();
+                        gBDetallesUser.Enabled = true;
+                        gBTipo.Enabled = true;
                         btnAlta.Visible = true;
                         btnBaja.Visible=true;
                         e.SuppressKeyPress = true;
@@ -141,7 +144,7 @@ namespace GenteFitApp.Vistas
             {
                 dBGfit.Persona.Add(usuario);
                 dBGfit.SaveChanges();
-                if(rBCliente.Checked)
+                if (rBCliente.Checked)
                 {
                     Cliente nuevoCliente = new Cliente();
                     nuevoCliente.personaID = usuario.id_Persona;
@@ -149,7 +152,8 @@ namespace GenteFitApp.Vistas
                     dBGfit.Cliente.Add(nuevoCliente);
                     dBGfit.SaveChanges();
                     MessageBox.Show("Cliente añadido correctamente");
-                } else if (rBMonitor.Checked)
+                }
+                else if (rBMonitor.Checked)
                 {
                     Monitor nuevoMonitor = new Monitor();
                     nuevoMonitor.personaID = usuario.id_Persona;
@@ -158,14 +162,15 @@ namespace GenteFitApp.Vistas
                     dBGfit.Monitor.Add(nuevoMonitor);
                     dBGfit.SaveChanges();
                     MessageBox.Show("Monitor añadido correctamente");
-                } else if (rBAdmin.Checked)
+                }
+                else if (rBAdmin.Checked)
                 {
                     Administrador nuevoAdmin = new Administrador();
-                    nuevoAdmin.personaID= usuario.id_Persona;
+                    nuevoAdmin.personaID = usuario.id_Persona;
                     dBGfit.Administrador.Add(nuevoAdmin);
                     dBGfit.SaveChanges();
                     MessageBox.Show("Administrador añadido correctamente");
-                }                                
+                }
             }
             reseteaForm();
         }
@@ -181,7 +186,7 @@ namespace GenteFitApp.Vistas
                 {
                     Monitor nuevoMonitor = new Monitor();
                     nuevoMonitor.personaID = usuario.id_Persona;
-                    nuevoMonitor.precioHora = decimal.Parse(tbSueldo.Text);                    
+                    nuevoMonitor.precioHora = decimal.Parse(tbSueldo.Text);
                     dBGfit.Entry(nuevoMonitor).State = EntityState.Modified;
                     dBGfit.SaveChanges();
                 }

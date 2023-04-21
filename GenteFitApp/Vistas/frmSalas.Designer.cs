@@ -60,7 +60,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(502, 61);
+            this.label1.Location = new System.Drawing.Point(456, 63);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 22);
             this.label1.TabIndex = 1;
@@ -70,7 +70,7 @@
             // 
             this.btnMostrar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnMostrar.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.btnMostrar.Location = new System.Drawing.Point(653, 81);
+            this.btnMostrar.Location = new System.Drawing.Point(607, 83);
             this.btnMostrar.Name = "btnMostrar";
             this.btnMostrar.Size = new System.Drawing.Size(87, 35);
             this.btnMostrar.TabIndex = 2;
@@ -88,7 +88,7 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(483, 122);
+            this.panel1.Location = new System.Drawing.Point(437, 124);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(273, 165);
             this.panel1.TabIndex = 4;
@@ -98,6 +98,7 @@
             this.tbVDimen.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.tbVDimen.Location = new System.Drawing.Point(157, 111);
             this.tbVDimen.Name = "tbVDimen";
+            this.tbVDimen.ReadOnly = true;
             this.tbVDimen.Size = new System.Drawing.Size(100, 29);
             this.tbVDimen.TabIndex = 6;
             // 
@@ -106,6 +107,7 @@
             this.tbVNPlazas.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.tbVNPlazas.Location = new System.Drawing.Point(157, 76);
             this.tbVNPlazas.Name = "tbVNPlazas";
+            this.tbVNPlazas.ReadOnly = true;
             this.tbVNPlazas.Size = new System.Drawing.Size(100, 29);
             this.tbVNPlazas.TabIndex = 5;
             // 
@@ -114,6 +116,7 @@
             this.tbVnum.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.tbVnum.Location = new System.Drawing.Point(157, 41);
             this.tbVnum.Name = "tbVnum";
+            this.tbVnum.ReadOnly = true;
             this.tbVnum.Size = new System.Drawing.Size(100, 29);
             this.tbVnum.TabIndex = 4;
             // 
@@ -162,7 +165,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(548, 314);
+            this.label6.Location = new System.Drawing.Point(504, 341);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(123, 26);
             this.label6.TabIndex = 5;
@@ -172,7 +175,7 @@
             // 
             this.tbDimension.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbDimension.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.tbDimension.Location = new System.Drawing.Point(608, 400);
+            this.tbDimension.Location = new System.Drawing.Point(564, 427);
             this.tbDimension.Name = "tbDimension";
             this.tbDimension.Size = new System.Drawing.Size(100, 29);
             this.tbDimension.TabIndex = 10;
@@ -181,7 +184,7 @@
             // 
             this.tbPlazas.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbPlazas.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.tbPlazas.Location = new System.Drawing.Point(608, 365);
+            this.tbPlazas.Location = new System.Drawing.Point(564, 392);
             this.tbPlazas.Name = "tbPlazas";
             this.tbPlazas.Size = new System.Drawing.Size(100, 29);
             this.tbPlazas.TabIndex = 9;
@@ -191,7 +194,7 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.label7.Location = new System.Drawing.Point(478, 403);
+            this.label7.Location = new System.Drawing.Point(434, 430);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(124, 21);
             this.label7.TabIndex = 8;
@@ -202,7 +205,7 @@
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.label8.Location = new System.Drawing.Point(515, 368);
+            this.label8.Location = new System.Drawing.Point(471, 395);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(87, 21);
             this.label8.TabIndex = 7;
@@ -212,7 +215,7 @@
             // 
             this.btnCrear.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCrear.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.btnCrear.Location = new System.Drawing.Point(608, 448);
+            this.btnCrear.Location = new System.Drawing.Point(564, 475);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(87, 35);
             this.btnCrear.TabIndex = 11;
@@ -224,7 +227,7 @@
             // 
             this.btnSalir.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnSalir.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.btnSalir.Location = new System.Drawing.Point(481, 558);
+            this.btnSalir.Location = new System.Drawing.Point(99, 651);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(110, 40);
             this.btnSalir.TabIndex = 12;
@@ -236,7 +239,7 @@
             // 
             this.pBSalas.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pBSalas.Image = global::GenteFitApp.Properties.Resources.salas;
-            this.pBSalas.Location = new System.Drawing.Point(809, 61);
+            this.pBSalas.Location = new System.Drawing.Point(763, 63);
             this.pBSalas.Name = "pBSalas";
             this.pBSalas.Size = new System.Drawing.Size(174, 103);
             this.pBSalas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -249,7 +252,7 @@
             this.comboBox1.DisplayMember = "id_Sala";
             this.comboBox1.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(499, 85);
+            this.comboBox1.Location = new System.Drawing.Point(453, 87);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 29);
             this.comboBox1.TabIndex = 26;
@@ -261,7 +264,7 @@
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(804, 314);
+            this.label9.Location = new System.Drawing.Point(760, 341);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(141, 26);
             this.label9.TabIndex = 27;
@@ -272,7 +275,7 @@
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(816, 340);
+            this.label10.Location = new System.Drawing.Point(772, 367);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(43, 22);
             this.label10.TabIndex = 29;
@@ -282,7 +285,7 @@
             // 
             this.btnEliminar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.btnEliminar.Location = new System.Drawing.Point(809, 448);
+            this.btnEliminar.Location = new System.Drawing.Point(765, 475);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(87, 35);
             this.btnEliminar.TabIndex = 30;
@@ -296,7 +299,7 @@
             this.comboBox2.DisplayMember = "id_Sala";
             this.comboBox2.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(809, 368);
+            this.comboBox2.Location = new System.Drawing.Point(765, 395);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 29);
             this.comboBox2.TabIndex = 31;

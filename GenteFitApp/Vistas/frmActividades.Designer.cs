@@ -62,29 +62,31 @@
             this.cBEliminar.DisplayMember = "nombre";
             this.cBEliminar.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.cBEliminar.FormattingEnabled = true;
-            this.cBEliminar.Location = new System.Drawing.Point(825, 404);
+            this.cBEliminar.Location = new System.Drawing.Point(798, 405);
             this.cBEliminar.Name = "cBEliminar";
             this.cBEliminar.Size = new System.Drawing.Size(121, 29);
             this.cBEliminar.TabIndex = 47;
             this.cBEliminar.ValueMember = "id_Actividad";
+            this.cBEliminar.Click += new System.EventHandler(this.cBEliminar_Click);
             // 
             // btnEliminar
             // 
             this.btnEliminar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.btnEliminar.Location = new System.Drawing.Point(825, 536);
+            this.btnEliminar.Location = new System.Drawing.Point(798, 537);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(87, 35);
             this.btnEliminar.TabIndex = 46;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // label10
             // 
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(825, 372);
+            this.label10.Location = new System.Drawing.Point(798, 373);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(87, 22);
             this.label10.TabIndex = 45;
@@ -95,7 +97,7 @@
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(820, 326);
+            this.label9.Location = new System.Drawing.Point(793, 327);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(194, 26);
             this.label9.TabIndex = 44;
@@ -107,7 +109,7 @@
             this.cBMostrar.DisplayMember = "nombre";
             this.cBMostrar.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.cBMostrar.FormattingEnabled = true;
-            this.cBMostrar.Location = new System.Drawing.Point(482, 85);
+            this.cBMostrar.Location = new System.Drawing.Point(455, 86);
             this.cBMostrar.Name = "cBMostrar";
             this.cBMostrar.Size = new System.Drawing.Size(121, 29);
             this.cBMostrar.TabIndex = 43;
@@ -118,7 +120,7 @@
             // 
             this.pBSalas.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pBSalas.Image = global::GenteFitApp.Properties.Resources.actividades;
-            this.pBSalas.Location = new System.Drawing.Point(808, 63);
+            this.pBSalas.Location = new System.Drawing.Point(781, 64);
             this.pBSalas.Name = "pBSalas";
             this.pBSalas.Size = new System.Drawing.Size(174, 103);
             this.pBSalas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -129,7 +131,7 @@
             // 
             this.btnSalir.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnSalir.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.btnSalir.Location = new System.Drawing.Point(241, 613);
+            this.btnSalir.Location = new System.Drawing.Point(99, 651);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(110, 40);
             this.btnSalir.TabIndex = 41;
@@ -141,19 +143,20 @@
             // 
             this.btnCrear.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCrear.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.btnCrear.Location = new System.Drawing.Point(589, 536);
+            this.btnCrear.Location = new System.Drawing.Point(562, 537);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(87, 35);
             this.btnCrear.TabIndex = 40;
             this.btnCrear.Text = "Crear";
             this.btnCrear.UseVisualStyleBackColor = true;
+            this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
             // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(515, 326);
+            this.label6.Location = new System.Drawing.Point(488, 327);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(176, 26);
             this.label6.TabIndex = 35;
@@ -168,7 +171,7 @@
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Location = new System.Drawing.Point(464, 122);
+            this.panel1.Location = new System.Drawing.Point(437, 123);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(316, 189);
             this.panel1.TabIndex = 34;
@@ -178,6 +181,7 @@
             this.tbVMonitor.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.tbVMonitor.Location = new System.Drawing.Point(125, 152);
             this.tbVMonitor.Name = "tbVMonitor";
+            this.tbVMonitor.ReadOnly = true;
             this.tbVMonitor.Size = new System.Drawing.Size(159, 29);
             this.tbVMonitor.TabIndex = 6;
             // 
@@ -187,6 +191,7 @@
             this.tbVDescrip.Location = new System.Drawing.Point(125, 61);
             this.tbVDescrip.Multiline = true;
             this.tbVDescrip.Name = "tbVDescrip";
+            this.tbVDescrip.ReadOnly = true;
             this.tbVDescrip.Size = new System.Drawing.Size(159, 78);
             this.tbVDescrip.TabIndex = 5;
             // 
@@ -195,6 +200,7 @@
             this.tbVNombre.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.tbVNombre.Location = new System.Drawing.Point(125, 18);
             this.tbVNombre.Name = "tbVNombre";
+            this.tbVNombre.ReadOnly = true;
             this.tbVNombre.Size = new System.Drawing.Size(159, 29);
             this.tbVNombre.TabIndex = 4;
             // 
@@ -232,7 +238,7 @@
             // 
             this.btnMostrar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnMostrar.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.btnMostrar.Location = new System.Drawing.Point(651, 81);
+            this.btnMostrar.Location = new System.Drawing.Point(624, 82);
             this.btnMostrar.Name = "btnMostrar";
             this.btnMostrar.Size = new System.Drawing.Size(97, 35);
             this.btnMostrar.TabIndex = 33;
@@ -245,7 +251,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(485, 61);
+            this.label1.Location = new System.Drawing.Point(458, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 22);
             this.label1.TabIndex = 32;
@@ -255,27 +261,29 @@
             // 
             this.tbDescripcion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbDescripcion.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.tbDescripcion.Location = new System.Drawing.Point(589, 404);
+            this.tbDescripcion.Location = new System.Drawing.Point(562, 405);
             this.tbDescripcion.Multiline = true;
             this.tbDescripcion.Name = "tbDescripcion";
             this.tbDescripcion.Size = new System.Drawing.Size(159, 66);
             this.tbDescripcion.TabIndex = 52;
+            this.tbDescripcion.Enter += new System.EventHandler(this.tbDescripcion_Enter);
             // 
             // tbNombre
             // 
             this.tbNombre.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbNombre.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.tbNombre.Location = new System.Drawing.Point(589, 361);
+            this.tbNombre.Location = new System.Drawing.Point(562, 362);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(159, 29);
             this.tbNombre.TabIndex = 51;
+            this.tbNombre.Enter += new System.EventHandler(this.tbNombre_Enter);
             // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.label2.Location = new System.Drawing.Point(478, 491);
+            this.label2.Location = new System.Drawing.Point(451, 492);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 21);
             this.label2.TabIndex = 50;
@@ -286,7 +294,7 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.label11.Location = new System.Drawing.Point(478, 407);
+            this.label11.Location = new System.Drawing.Point(451, 408);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(102, 21);
             this.label11.TabIndex = 49;
@@ -297,7 +305,7 @@
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.label12.Location = new System.Drawing.Point(478, 364);
+            this.label12.Location = new System.Drawing.Point(451, 365);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(77, 21);
             this.label12.TabIndex = 48;
@@ -309,11 +317,12 @@
             this.cBMonitor.DisplayMember = "nombre";
             this.cBMonitor.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.cBMonitor.FormattingEnabled = true;
-            this.cBMonitor.Location = new System.Drawing.Point(589, 488);
+            this.cBMonitor.Location = new System.Drawing.Point(562, 489);
             this.cBMonitor.Name = "cBMonitor";
             this.cBMonitor.Size = new System.Drawing.Size(159, 29);
             this.cBMonitor.TabIndex = 53;
             this.cBMonitor.ValueMember = "id_Persona";
+            this.cBMonitor.Click += new System.EventHandler(this.cBMonitor_Click);
             // 
             // frmActividades
             // 

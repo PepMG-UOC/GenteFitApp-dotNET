@@ -27,34 +27,44 @@ namespace GenteFitApp.Conrolers
             }
         }
 
-        public static Actividad getActividadById(int IDActividad)
+        public static Actividad getActividadByNombre(string nombre)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
                 return dBGfit.Actividad.Include(a => a.Monitor)
                     .Include(a => a.Clase)
-                    .FirstOrDefault(a => a.id_Actividad == IDActividad);
+                    .FirstOrDefault(a => a.nombre == nombre);
             }
         }
-
-        public static void bajaActividad(int IDActividad)
+        public static List<string> getNombresActividades()
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
-                Actividad borrarActividad = dBGfit.Actividad.Find(IDActividad);
-
-                if (borrarActividad != null)
+                List<string> list = new List<string>();
+                var actividadesList = dBGfit.Actividad.ToList();
+                foreach(Actividad activ in actividadesList)
                 {
-                    dBGfit.Actividad.Remove(borrarActividad);
-                    dBGfit.SaveChanges();
+                    list.Add(activ.nombre);
                 }
+                return list;
             }
         }
 
-       
+        public static void bajaActividad(Actividad actividad)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                Actividad actividadAEliminar = dBGfit.Actividad.FirstOrDefault(a => a.id_Actividad == actividad.id_Actividad);
+                borrarClasesDeActividad(actividadAEliminar);
+                dBGfit.Actividad.Remove(actividadAEliminar);
+                dBGfit.SaveChanges();
+            }               
+        }
+
+
 
         // ---
-
+        
         public static void altaSala(int numPlazas, int dimensionM2)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
@@ -83,13 +93,14 @@ namespace GenteFitApp.Conrolers
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
-                Sala sala = getSalaById(IDSala);                
-                if (sala != null)                
-                {                    
-                    foreach (Clase clase in sala.Clase)
+                Sala sala = dBGfit.Sala.FirstOrDefault(s => s.id_Sala == IDSala);
+                if (sala != null)
+                {
+                    List<Clase> clases = dBGfit.Clase.Where(c => c.salaID == IDSala).ToList();
+                    foreach (Clase clase in clases)
                     {
                         List<Reserva> reservas = dBGfit.Reserva.Where(r => r.claseID == clase.id_Clase).ToList();
-                        foreach (Reserva reserva in clase.Reserva)
+                        foreach (Reserva reserva in reservas)
                         {
                             dBGfit.Reserva.Remove(reserva);
                         }
@@ -162,6 +173,20 @@ namespace GenteFitApp.Conrolers
                 return clases;
             }
         } 
+        public static void borrarClasesDeActividad(Actividad actividad)
+        {
+            // Eliminar todas las Clases que pertenecen a la Actividad
+            using (var dBGfit = new GenteFitDBEntities())
+            {
+                Actividad actividadAEliminar = dBGfit.Actividad.FirstOrDefault(a => a.id_Actividad == actividad.id_Actividad);
+                foreach (var clase in actividadAEliminar.Clase.ToList())
+                {
+                    EventosCalendar.borraReservasDeClase(clase);
+                    dBGfit.Clase.Remove(clase);
+                }
+                dBGfit.SaveChanges();
+            }
+        }
 
 
 

@@ -41,7 +41,7 @@
             // 
             this.btnSalir.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnSalir.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.btnSalir.Location = new System.Drawing.Point(399, 650);
+            this.btnSalir.Location = new System.Drawing.Point(99, 651);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(110, 40);
             this.btnSalir.TabIndex = 8;

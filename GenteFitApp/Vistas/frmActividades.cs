@@ -20,38 +20,97 @@ namespace GenteFitApp.Vistas
             InitializeComponent();
         }
 
-        private void cBMostrar_Click(object sender, EventArgs e)
+        private void resetCamposNEW()
         {
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
-            {
-                var actividadesShow = dBGfit.Actividad.ToList();
-                cBMostrar.DataSource = actividadesShow;
-            }
+            tbNombre.Text = string.Empty;
+            tbDescripcion.Text = string.Empty;
+            cBMonitor.SelectedIndex = -1;
+        }
+
+        private void resetCamposShow()
+        {
+            tbVNombre.Text = string.Empty;
+            tbVDescrip.Text = string.Empty;
+            tbVMonitor.Text = string.Empty;
+        }
+
+        private void cBMostrar_Click(object sender, EventArgs e)
+        {            
+            cBMostrar.DataSource = GestionCentro.getNombresActividades();
+            resetCamposNEW();
+            cBMonitor.SelectedIndex = -1;
+            cBEliminar.SelectedIndex = -1;
         }
 
         private void btnMostrar_Click(object sender, EventArgs e)
-        {
-            Actividad estaActividad= new Actividad();            
-            if(cBMostrar!=null)
+        {                       
+            if(cBMostrar.SelectedItem != null)
             {
-                estaActividad = GestionCentro.getActividadById((int)cBMostrar.SelectedValue);
-            }
-            tbVNombre.Text = estaActividad.nombre;
-            tbVDescrip.Text = estaActividad.descripcion;
-            var monitor = Usuarios.getMonitorById(estaActividad.Monitor.id_Monitor);            
-            tbVMonitor.Text = monitor.Persona.nombre + " " + monitor.Persona.apellido1;
-            cBMostrar.SelectedIndex = -1;            
+                var estaActividad = GestionCentro.getActividadByNombre(cBMostrar.SelectedItem.ToString());
+                tbVNombre.Text = estaActividad.nombre;
+                tbVDescrip.Text = estaActividad.descripcion;
+                var monitor = Usuarios.getMonitorById(estaActividad.Monitor.id_Monitor);
+                tbVMonitor.Text = monitor.Persona.nombre + " " + monitor.Persona.apellido1;
+                cBMostrar.SelectedIndex = -1;
+            }                        
         }
 
+        private void cBMonitor_Click(object sender, EventArgs e)
+        {
+            cBMonitor.DataSource= Usuarios.getNombresMonitores();   
+            cBEliminar.SelectedIndex= -1;
+            cBMostrar.SelectedIndex= -1;
+        }
 
+        private void btnCrear_Click(object sender, EventArgs e)
+        {
+            if(tbNombre.Text!="" && cBMonitor.SelectedItem !=null)
+            {
+                var monitor = Usuarios.getMonitorByNombre(cBMonitor.SelectedItem.ToString());
+                GestionCentro.altaActividad(tbNombre.Text, tbDescripcion.Text, monitor.id_Monitor);
+                MessageBox.Show("Actividad creada correctamente.");
+                resetCamposNEW();
+                cBMonitor.SelectedIndex= -1;
+            } else MessageBox.Show("Debe rellenar los campos.");
+        }
 
-
+        private void cBEliminar_Click(object sender, EventArgs e)
+        {
+            cBEliminar.DataSource = GestionCentro.getNombresActividades();
+            cBMostrar.SelectedIndex = -1;
+            cBMonitor.SelectedIndex= -1;
+            resetCamposNEW();
+            resetCamposShow();
+        }
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if(cBEliminar.SelectedItem!=null)
+            {
+                var estaActividad = GestionCentro.getActividadByNombre(cBEliminar.SelectedItem.ToString());
+                GestionCentro.bajaActividad(estaActividad);
+                MessageBox.Show("Actividad eliminada correctamente.");
+            } else MessageBox.Show("Debe seleccionar una actividad a eliminar.");
+        }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
             frmGestionCentro gestionCentro = new frmGestionCentro();
             gestionCentro.Show();
             this.Close();
+        }
+
+        private void tbNombre_Enter(object sender, EventArgs e)
+        {
+            cBEliminar.SelectedIndex = -1;
+            cBMostrar.SelectedIndex = -1;
+            resetCamposShow();
+        }
+
+        private void tbDescripcion_Enter(object sender, EventArgs e)
+        {
+            cBEliminar.SelectedIndex = -1;
+            cBMostrar.SelectedIndex = -1;
+            resetCamposShow();
         }
     }
 }
