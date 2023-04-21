@@ -63,6 +63,36 @@ namespace GenteFitApp.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap actividades {
+            get {
+                object obj = ResourceManager.GetObject("actividades", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap casa {
+            get {
+                object obj = ResourceManager.GetObject("casa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap clases {
+            get {
+                object obj = ResourceManager.GetObject("clases", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ExitBtn {
             get {
                 object obj = ResourceManager.GetObject("ExitBtn", resourceCulture);
@@ -166,6 +196,16 @@ namespace GenteFitApp.Properties {
         internal static System.Drawing.Bitmap mnuClMiClases {
             get {
                 object obj = ResourceManager.GetObject("mnuClMiClases", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap salas {
+            get {
+                object obj = ResourceManager.GetObject("salas", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

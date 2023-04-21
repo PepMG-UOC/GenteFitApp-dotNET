@@ -135,6 +135,7 @@ namespace GenteFitApp.Vistas
         }
         private void btnAlta_Click(object sender, EventArgs e)
         {
+            usuario = new Persona();
             cargaDatosToUsuario();
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
@@ -156,11 +157,14 @@ namespace GenteFitApp.Vistas
                     nuevoMonitor.fechaAlta = DateTime.Now;
                     dBGfit.Monitor.Add(nuevoMonitor);
                     dBGfit.SaveChanges();
+                    MessageBox.Show("Monitor añadido correctamente");
                 } else if (rBAdmin.Checked)
                 {
                     Administrador nuevoAdmin = new Administrador();
                     nuevoAdmin.personaID= usuario.id_Persona;
                     dBGfit.Administrador.Add(nuevoAdmin);
+                    dBGfit.SaveChanges();
+                    MessageBox.Show("Administrador añadido correctamente");
                 }                                
             }
             reseteaForm();
