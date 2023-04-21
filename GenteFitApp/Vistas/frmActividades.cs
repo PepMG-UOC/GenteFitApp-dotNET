@@ -69,6 +69,8 @@ namespace GenteFitApp.Vistas
                 var monitor = Usuarios.getMonitorByNombre(cBMonitor.SelectedItem.ToString());
                 GestionCentro.altaActividad(tbNombre.Text, tbDescripcion.Text, monitor.id_Monitor);
                 MessageBox.Show("Actividad creada correctamente.");
+                resetCamposNEW();
+                cBMonitor.SelectedIndex= -1;
             } else MessageBox.Show("Debe rellenar los campos.");
         }
 
