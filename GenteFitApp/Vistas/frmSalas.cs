@@ -17,6 +17,7 @@ namespace GenteFitApp.Vistas
         public frmSalas()
         {
             InitializeComponent();
+
         }
 
         private void comboBox1_Click(object sender, EventArgs e)
