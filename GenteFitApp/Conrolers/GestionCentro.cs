@@ -54,14 +54,7 @@ namespace GenteFitApp.Conrolers
 
 
         // ---
-        public static List<int> getIDsSalas()
-        {
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
-            {
-                var idSalas = dBGfit.Sala.Select(s => s.id_Sala).ToList();
-                return idSalas;
-            }
-        }
+        
         public static void altaSala(int numPlazas, int dimensionM2)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
@@ -90,13 +83,14 @@ namespace GenteFitApp.Conrolers
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
-                Sala sala = getSalaById(IDSala);                
-                if (sala != null)                
-                {                    
-                    foreach (Clase clase in sala.Clase)
+                Sala sala = dBGfit.Sala.FirstOrDefault(s => s.id_Sala == IDSala);
+                if (sala != null)
+                {
+                    List<Clase> clases = dBGfit.Clase.Where(c => c.salaID == IDSala).ToList();
+                    foreach (Clase clase in clases)
                     {
                         List<Reserva> reservas = dBGfit.Reserva.Where(r => r.claseID == clase.id_Clase).ToList();
-                        foreach (Reserva reserva in clase.Reserva)
+                        foreach (Reserva reserva in reservas)
                         {
                             dBGfit.Reserva.Remove(reserva);
                         }

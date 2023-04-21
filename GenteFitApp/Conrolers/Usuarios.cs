@@ -190,44 +190,6 @@ namespace GenteFitApp.Conrolers
                 return persona;
             }
         }
-
-        public static bool altaUsuario(bool esCliente, bool esMonitor, bool esAdmin, TextBox tbSueldo, Persona usuario)
-        {
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
-            {
-                dBGfit.Persona.Add(usuario);
-                dBGfit.SaveChanges();
-                if (esCliente)
-                {
-                    Cliente nuevoCliente = new Cliente();
-                    nuevoCliente.personaID = usuario.id_Persona;
-                    nuevoCliente.fechaAlta = DateTime.Now;
-                    dBGfit.Cliente.Add(nuevoCliente);
-                    dBGfit.SaveChanges();
-                    return true;
-                }
-                else if (esMonitor)//
-                {
-                    Monitor nuevoMonitor = new Monitor();
-                    nuevoMonitor.personaID = usuario.id_Persona;
-                    nuevoMonitor.precioHora = decimal.Parse(tbSueldo.Text);
-                    nuevoMonitor.fechaAlta = DateTime.Now;
-                    dBGfit.Monitor.Add(nuevoMonitor);
-                    dBGfit.SaveChanges();
-                    return true; ;
-                }
-                else if (esAdmin)//
-                {
-                    Administrador nuevoAdmin = new Administrador();
-                    nuevoAdmin.personaID = usuario.id_Persona;
-                    dBGfit.Administrador.Add(nuevoAdmin);
-                    dBGfit.SaveChanges();
-                    return true;
-                }
-                else return false;
-            }
-        }
-
         public static bool modificarUsuario(bool esMonitor, TextBox tbSueldo,Persona usuario)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())

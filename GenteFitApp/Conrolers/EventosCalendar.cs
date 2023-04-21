@@ -57,7 +57,7 @@ namespace GenteFitApp.Conrolers
         public static Color colorLinea(Clase miClase)
         {
             int numReservas = ConsultasBase.reservasDeClase(miClase);
-            if (miClase.Sala.numPlazas >= numReservas)
+            if (miClase.Sala.numPlazas > numReservas)
             {
                 return Color.YellowGreen;
             }

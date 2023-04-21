@@ -20,12 +20,20 @@ namespace GenteFitApp.Vistas
         }
 
         private void comboBox1_Click(object sender, EventArgs e)
-        {       
-            comboBox1.DataSource = GestionCentro.getIDsSalas();           
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                var idSalas = dBGfit.Sala.Select(s => s.id_Sala).ToList();
+                comboBox1.DataSource = idSalas;
+            }
         }
         private void comboBox2_Click(object sender, EventArgs e)
-        {            
-            comboBox2.DataSource = GestionCentro.getIDsSalas();           
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                var idSalas = dBGfit.Sala.Select(s => s.id_Sala).ToList();
+                comboBox2.DataSource = idSalas;
+            }
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
