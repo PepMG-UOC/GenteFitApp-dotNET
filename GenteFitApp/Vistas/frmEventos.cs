@@ -20,10 +20,11 @@ namespace GenteFitApp.Vistas
         private Cliente cliente;
         private Monitor monitor;
         private int numReservas;
-        public frmEventos(int IDClase)
+        public frmEventos(int IDClase, Color miColor)
         {
             InitializeComponent();
-            this.estaClase = ConsultasBase.getClasebyID(IDClase);            
+            this.estaClase = ConsultasBase.getClasebyID(IDClase);
+            BackColor = miColor;
         }
 
         private void frmEventos_Load(object sender, EventArgs e)
@@ -101,5 +102,6 @@ namespace GenteFitApp.Vistas
         {
             this.Close();
         }
+                
     }
 }
