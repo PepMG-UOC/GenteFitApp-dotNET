@@ -62,6 +62,30 @@ namespace GenteFitApp.Conrolers
         }
 
 
+        public static void altaClase(int actvID, int salaID, DateTime fechaH)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                Clase nuevaClase = new Clase
+                {
+                    actividadID= actvID,
+                    salaID= salaID,
+                    fechaHora= fechaH                    
+                };
+                dBGfit.Clase.Add(nuevaClase);
+                dBGfit.SaveChanges();
+            }
+        }
+        public static void bajaClase(Clase clase)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                Clase claseAEliminar = dBGfit.Clase.FirstOrDefault(c => c.id_Clase== clase.id_Clase);
+                EventosCalendar.borraReservasDeClase(claseAEliminar);                
+                dBGfit.Clase.Remove(claseAEliminar);
+                dBGfit.SaveChanges();
+            }
+        }
 
         // ---
         
@@ -87,7 +111,30 @@ namespace GenteFitApp.Conrolers
                     .FirstOrDefault(s => s.id_Sala== IdSala);                                 
             }
         }
-
+        public static List<int> getSalasIds()
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                List<int> list = new List<int>();
+                var salasLst = dBGfit.Sala.ToList();
+                foreach (Sala unasala in salasLst)
+                {
+                    list.Add(unasala.id_Sala);
+                }
+                return list;
+            }
+        }
+        public static string detallesSala(int id)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {                
+                var sala = dBGfit.Sala.FirstOrDefault(s => s.id_Sala == id);
+                if(sala!=null)
+                {
+                    return "Sala ID: " + sala.id_Sala + " NºPlazas: " + sala.numPlazas + " m2: " + sala.dimensionM2;
+                } else return string.Empty;
+            }
+        }
 
         public static void bajaSalaById(int IDSala)
         {
@@ -110,11 +157,6 @@ namespace GenteFitApp.Conrolers
                     dBGfit.SaveChanges();
                 }
             }
-        }
-
-        public static void altaClase()
-        {
-
         }
 
         public static Clase getClaseByID(int id)

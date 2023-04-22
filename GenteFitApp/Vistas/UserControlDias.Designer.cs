@@ -54,6 +54,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(123, 75);
             this.listBox1.TabIndex = 1;
+            this.listBox1.Click += new System.EventHandler(this.listBox1_Click);
             this.listBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox1_DrawItem);
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 

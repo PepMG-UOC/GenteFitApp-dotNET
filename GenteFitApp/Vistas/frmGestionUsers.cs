@@ -83,6 +83,9 @@ namespace GenteFitApp.Vistas
                         reseteaForm();
                         gBDetallesUser.Enabled = true;
                         gBTipo.Enabled = true;
+                        rBCliente.Enabled = true;
+                        rBMonitor.Enabled = true;
+                        rBAdmin.Enabled = true;
                         btnAlta.Visible = true;
                         btnBaja.Visible=true;
                         e.SuppressKeyPress = true;

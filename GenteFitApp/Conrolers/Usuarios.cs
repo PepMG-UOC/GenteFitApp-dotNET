@@ -188,6 +188,7 @@ namespace GenteFitApp.Conrolers
                 {
                     Persona persona = dBGfit.Persona.Single(p => p.email == eMail && p.password == password);
                     Session.idPersona = persona.id_Persona;
+                    Session.Tipo = null;
                     return true;                   
                 }
             }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GenteFitApp.Conrolers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,8 +19,10 @@ namespace GenteFitApp.Vistas
         }
 
         private void pBClases_Click(object sender, EventArgs e)
-        {
-
+        {            
+                frmCalendario AdminCalendar = new frmCalendario("admin");
+                AdminCalendar.Show();
+                this.Close();            
         }
 
         private void pBActividades_Click(object sender, EventArgs e)
