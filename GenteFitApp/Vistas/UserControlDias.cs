@@ -73,8 +73,7 @@ namespace GenteFitApp.Vistas
                 var item = listBox1.Items[listBox1.SelectedIndex];
                 int idClase = ((dynamic)item).Datos;
                 Color colorFondo = ((dynamic)item).ColorFondo;
-                listBox1.SelectedItems.Clear();
-                this.Refresh();
+                listBox1.SelectedItems.Clear();                
                 if (idClase != 0)
                 {
                     frmEventos _frmEvento = new frmEventos(idClase,colorFondo);
