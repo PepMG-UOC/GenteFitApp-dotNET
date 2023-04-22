@@ -16,15 +16,17 @@ namespace GenteFitApp.Vistas
     public partial class UserControlDias : UserControl
     {
         public static string dia;
+        public DateTime myDia;
 
         public UserControlDias()
         {
             InitializeComponent();           
         }
 
-        public void dias(int numdia)
+        public void dias(int numdia, DateTime fechadia)
         {
-            lbdias.Text = numdia.ToString();            
+            lbdias.Text = numdia.ToString();  
+            myDia= fechadia;            
         }
 
         public void CargaClasesDelDia(DateTime fecha)
@@ -51,55 +53,63 @@ namespace GenteFitApp.Vistas
 
         private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
         {
+            if (e.Index < 0)
+            {                
+                return;
+            }
             e.DrawBackground();
             e.DrawFocusRectangle();
             var item = listBox1.Items[e.Index];
-            string textoFila = ((dynamic)item).Texto;            
-            //int id_Clase = ((dynamic)item).Datos;
-            //DateTime fechaHora = ((dynamic)item).miFecha;
+            string textoFila = ((dynamic)item).Texto;
             Color colorFondo = ((dynamic)item).ColorFondo;
             Brush brushFondo = new SolidBrush(colorFondo);
             Brush brushTexto = new SolidBrush(Color.Black);
             e.Graphics.FillRectangle(brushFondo, e.Bounds);
             e.Graphics.DrawString(textoFila, e.Font, brushTexto, e.Bounds);
             brushFondo.Dispose();
-            brushTexto.Dispose();
+            brushTexto.Dispose();                        
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBox1.SelectedItem != null)
-            {                
-                var item = listBox1.Items[listBox1.SelectedIndex];
-                int idClase = ((dynamic)item).Datos;
-                Color colorFondo = ((dynamic)item).ColorFondo;
-                listBox1.SelectedItems.Clear();                
-                if (idClase != 0)
+            {
+                if (Session.Tipo.Equals("Cliente"))
                 {
-                    frmEventos _frmEvento = new frmEventos(idClase,colorFondo);
-                    _frmEvento.BringToFront();
-                    _frmEvento.ShowDialog(); 
-                }
-                
+                    // Para Cliente
+                    var item = listBox1.Items[listBox1.SelectedIndex];
+                    int idClase = ((dynamic)item).Datos;
+                    Color colorFondo = ((dynamic)item).ColorFondo;
+                    listBox1.SelectedItems.Clear();
+                    if (idClase != 0)
+                    {
+                        frmEventos _frmEvento = new frmEventos(idClase, colorFondo);
+                        _frmEvento.BringToFront();
+                        _frmEvento.ShowDialog();
+                    }
+                } else listBox1.SelectedItems.Clear();
+
+                // Para Admin
+
             }
         }
 
-        //private void dGVEventos_CellClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    if (e.RowIndex >= 0)
-        //    {
-        //        DataGridViewRow row = dGVEventos.Rows[e.RowIndex];
-        //        int idClase = Convert.ToInt32(row.Cells[0].Value);
-        //        dGVEventos.CurrentCell = null;
-        //        row.Selected = true;
-        //        if (idClase > 0)
-        //        {
-        //            frmEventos _frmEvento = new frmEventos(idClase);
-        //            _frmEvento.BringToFront();
-        //            _frmEvento.Show();
-        //        }
-
-        //    }
-        //}
+        private void listBox1_Click(object sender, EventArgs e)
+        {
+            if (Session.Tipo.Equals("Admin")) 
+            {
+                if (myDia > DateTime.Now)
+                {
+                    Form form = this.FindForm();
+                    if (form != null)
+                    {
+                        frmClasesAdmin clasesAdmin = new frmClasesAdmin(myDia);
+                        clasesAdmin.Show();
+                        form.Close();
+                    }
+                }        
+                
+            } 
+        }
     }
 }

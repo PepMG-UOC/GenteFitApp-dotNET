@@ -57,6 +57,7 @@ namespace GenteFitApp.Vistas
                 DateTime fecha = DateTime.Parse($"{año}-{mes}-{i}");
                 diasContenedor.Controls.Add(EventosCalendar.rellenaDia(fecha));
             }
+
         }
             
         private void btnAnterior_Click(object sender, EventArgs e)

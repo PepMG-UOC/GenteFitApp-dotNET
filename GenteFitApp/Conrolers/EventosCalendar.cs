@@ -23,7 +23,7 @@ namespace GenteFitApp.Conrolers
             
             UserControlDias ucdias = new UserControlDias();
             //ConsultasBase.ObtenerClasesPorFecha(fecha);
-            ucdias.dias(fecha.Day);
+            ucdias.dias(fecha.Day, fecha);
             ucdias.CargaClasesDelDia(fecha);  
             return ucdias;
         }
