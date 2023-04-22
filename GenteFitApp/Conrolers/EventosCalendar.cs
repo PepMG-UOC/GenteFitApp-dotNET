@@ -54,8 +54,9 @@ namespace GenteFitApp.Conrolers
             }
         }        
 
-        public static Color colorLinea(Clase miClase)
+        public static Color colorLinea(int idClase)
         {
+            Clase miClase = GestionCentro.getClaseByID(idClase);
             int numReservas = ConsultasBase.reservasDeClase(miClase);
             if (miClase.Sala.numPlazas > numReservas)
             {

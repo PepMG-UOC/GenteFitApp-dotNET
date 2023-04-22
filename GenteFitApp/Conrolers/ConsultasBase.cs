@@ -31,6 +31,7 @@ namespace GenteFitApp.Conrolers
                 var clases = dBGfit.Clase.Where(c => DbFunctions.TruncateTime(c.fechaHora) == fecha.Date)
                     .Include(c => c.Actividad)
                     .Include(c => c.Sala)
+                    .OrderBy(c => c.fechaHora)
                     .ToList();
                 return clases;
             }
