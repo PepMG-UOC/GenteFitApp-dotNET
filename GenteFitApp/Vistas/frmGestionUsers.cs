@@ -102,9 +102,53 @@ namespace GenteFitApp.Vistas
             {
                 e.SuppressKeyPress = true;
             }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                SelectNextControl((Control)sender, true, true, true, true);
+            }        
         }
 
-
+        private void tbNombre_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+        private void tbApellido_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+        private void tbApellido2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+        private void tbDireccion_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+        private void tbProvincia_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
         private void tbCodigoPost_KeyDown(object sender, KeyEventArgs e)
         {
             // Solo permitir números
@@ -112,6 +156,11 @@ namespace GenteFitApp.Vistas
             {
                 // Si no es un número, suprimir la tecla presionada
                 e.SuppressKeyPress = true;
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                SelectNextControl((Control)sender, true, true, true, true);
             }
         }
 
@@ -143,59 +192,74 @@ namespace GenteFitApp.Vistas
         {
             usuario = new Persona();
             cargaDatosToUsuario();
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            if(usuario.email!=null && Usuarios.formatoEmailCorrecto(usuario.email))
             {
-                dBGfit.Persona.Add(usuario);
-                dBGfit.SaveChanges();
-                if (rBCliente.Checked)
+                if(usuario.nombre!=string.Empty && usuario.apellido1!=string.Empty 
+                    && usuario.dniNifNie!=string.Empty && usuario.password!=string.Empty)
                 {
-                    Cliente nuevoCliente = new Cliente();
-                    nuevoCliente.personaID = usuario.id_Persona;
-                    nuevoCliente.fechaAlta = DateTime.Now;
-                    dBGfit.Cliente.Add(nuevoCliente);
-                    dBGfit.SaveChanges();
-                    MessageBox.Show("Cliente añadido correctamente");
-                }
-                else if (rBMonitor.Checked)
-                {
-                    Monitor nuevoMonitor = new Monitor();
-                    nuevoMonitor.personaID = usuario.id_Persona;
-                    nuevoMonitor.precioHora = decimal.Parse(tbSueldo.Text);
-                    nuevoMonitor.fechaAlta = DateTime.Now;
-                    dBGfit.Monitor.Add(nuevoMonitor);
-                    dBGfit.SaveChanges();
-                    MessageBox.Show("Monitor añadido correctamente");
-                }
-                else if (rBAdmin.Checked)
-                {
-                    Administrador nuevoAdmin = new Administrador();
-                    nuevoAdmin.personaID = usuario.id_Persona;
-                    dBGfit.Administrador.Add(nuevoAdmin);
-                    dBGfit.SaveChanges();
-                    MessageBox.Show("Administrador añadido correctamente");
-                }
-            }
-            reseteaForm();
+                    using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+                    {
+                        dBGfit.Persona.Add(usuario);
+                        dBGfit.SaveChanges();
+                        if (rBCliente.Checked)
+                        {
+                            Cliente nuevoCliente = new Cliente();
+                            nuevoCliente.personaID = usuario.id_Persona;
+                            nuevoCliente.fechaAlta = DateTime.Now;
+                            dBGfit.Cliente.Add(nuevoCliente);
+                            dBGfit.SaveChanges();
+                            MessageBox.Show("Cliente añadido correctamente");
+                        }
+                        else if (rBMonitor.Checked)
+                        {
+                            Monitor nuevoMonitor = new Monitor();
+                            nuevoMonitor.personaID = usuario.id_Persona;
+                            nuevoMonitor.precioHora = decimal.Parse(tbSueldo.Text);
+                            nuevoMonitor.fechaAlta = DateTime.Now;
+                            dBGfit.Monitor.Add(nuevoMonitor);
+                            dBGfit.SaveChanges();
+                            MessageBox.Show("Monitor añadido correctamente");
+                        }
+                        else if (rBAdmin.Checked)
+                        {
+                            Administrador nuevoAdmin = new Administrador();
+                            nuevoAdmin.personaID = usuario.id_Persona;
+                            dBGfit.Administrador.Add(nuevoAdmin);
+                            dBGfit.SaveChanges();
+                            MessageBox.Show("Administrador añadido correctamente");
+                        }
+                    }
+                    reseteaForm();
+                } else MessageBox.Show("Los campos Nombre, Apellido, DNI y Password son abligados.");
+            } else MessageBox.Show("Debe introducir un eMail");
+
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
             cargaDatosToUsuario();
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            if (usuario.email != null && Usuarios.formatoEmailCorrecto(usuario.email))
             {
-                dBGfit.Entry(usuario).State = EntityState.Modified;
-                dBGfit.SaveChanges();
-                if (rBMonitor.Checked)
+                if (usuario.nombre != string.Empty && usuario.apellido1 != string.Empty
+                    && usuario.dniNifNie != string.Empty && usuario.password != string.Empty)
                 {
-                    Monitor nuevoMonitor = new Monitor();
-                    nuevoMonitor.personaID = usuario.id_Persona;
-                    nuevoMonitor.precioHora = decimal.Parse(tbSueldo.Text);
-                    dBGfit.Entry(nuevoMonitor).State = EntityState.Modified;
-                    dBGfit.SaveChanges();
-                }
-                MessageBox.Show("Usuario modificado correctamente");
-            }
-            reseteaForm();
+                    using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+                    {
+                        dBGfit.Entry(usuario).State = EntityState.Modified;
+                        dBGfit.SaveChanges();
+                        if (rBMonitor.Checked)
+                        {
+                            Monitor nuevoMonitor = new Monitor();
+                            nuevoMonitor.personaID = usuario.id_Persona;
+                            nuevoMonitor.precioHora = decimal.Parse(tbSueldo.Text);
+                            dBGfit.Entry(nuevoMonitor).State = EntityState.Modified;
+                            dBGfit.SaveChanges();
+                        }
+                        MessageBox.Show("Usuario modificado correctamente");
+                    }
+                    reseteaForm();
+                } else MessageBox.Show("Los campos Nombre, Apellido, DNI y Password son abligados.");
+            } else MessageBox.Show("Debe introducir un eMail");
         }
 
         private void btnBaja_Click(object sender, EventArgs e)

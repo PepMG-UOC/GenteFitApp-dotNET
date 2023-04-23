@@ -13,15 +13,17 @@ namespace GenteFitApp.Vistas
 {
     public partial class frmReservasAdmin : Form
     {
+        private int IDLaClase { get; set; }
         public frmReservasAdmin(int IDClase)
         {
             InitializeComponent();
-            ShowClaseDetails(IDClase);
+            IDLaClase = IDClase;
+            ShowClaseDetails();
         }
 
-        private void ShowClaseDetails(int IDClase)
+        private void ShowClaseDetails()
         {
-            var estaClase = GestionCentro.getClaseByID(IDClase);
+            var estaClase = GestionCentro.getClaseByID(IDLaClase);
             txtbxActividad.Text = estaClase.Actividad.nombre;
             var estaActividad = GestionCentro.getActividadByNombre(estaClase.Actividad.nombre);
             var monitor = Usuarios.getMonitorById(estaActividad.Monitor.id_Monitor);
@@ -29,14 +31,25 @@ namespace GenteFitApp.Vistas
             txtbxFecha.Text = estaClase.fechaHora.ToString("dd/MM/yyyy");
             txtbxHora.Text = estaClase.fechaHora.ToString("HH:mm");            
             txtbxAforo.Text = estaClase.Sala.numPlazas.ToString();
-            int numReservas = ConsultasBase.reservasDeClase(estaClase);
+            int numReservas = ConsultasBase.numReservasClase(IDLaClase);
             if (estaClase.Sala.numPlazas >= numReservas)
             {
                 txtbxPlazas.Text = (estaClase.Sala.numPlazas - numReservas).ToString();
             }
             else txtbxPlazas.Text = "0";
-            
+            usuariosConPlaza();
+            listaDeEspera();
 
+        }
+
+        private void usuariosConPlaza()
+        {            
+            lBUsersPlaza.DataSource = ConsultasBase.clientesConPlaza(IDLaClase);            
+        }
+
+        private void listaDeEspera()
+        {
+            lBListaEspera.DataSource = ConsultasBase.clientesEnEspera(IDLaClase);              
         }
 
         private void btnVolver_Click(object sender, EventArgs e)

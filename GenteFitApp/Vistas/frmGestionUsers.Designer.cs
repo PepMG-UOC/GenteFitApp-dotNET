@@ -87,7 +87,7 @@
             this.tbEmail.Location = new System.Drawing.Point(349, 126);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(231, 29);
-            this.tbEmail.TabIndex = 6;
+            this.tbEmail.TabIndex = 1;
             this.tbEmail.Text = "eMail";
             this.tbEmail.Enter += new System.EventHandler(this.tbEmail_Enter);
             this.tbEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbEmail_KeyDown);
@@ -100,7 +100,7 @@
             this.tbDNI.Location = new System.Drawing.Point(100, 11);
             this.tbDNI.Name = "tbDNI";
             this.tbDNI.Size = new System.Drawing.Size(190, 29);
-            this.tbDNI.TabIndex = 17;
+            this.tbDNI.TabIndex = 2;
             this.tbDNI.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbDNI_KeyDown);
             // 
             // label2
@@ -155,7 +155,7 @@
             this.btnModificar.Location = new System.Drawing.Point(327, 560);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(110, 40);
-            this.btnModificar.TabIndex = 22;
+            this.btnModificar.TabIndex = 25;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
@@ -178,7 +178,8 @@
             this.tbNombre.Location = new System.Drawing.Point(100, 55);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(190, 29);
-            this.tbNombre.TabIndex = 24;
+            this.tbNombre.TabIndex = 3;
+            this.tbNombre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbNombre_KeyDown);
             // 
             // tbApellido
             // 
@@ -187,7 +188,8 @@
             this.tbApellido.Location = new System.Drawing.Point(100, 100);
             this.tbApellido.Name = "tbApellido";
             this.tbApellido.Size = new System.Drawing.Size(190, 29);
-            this.tbApellido.TabIndex = 25;
+            this.tbApellido.TabIndex = 4;
+            this.tbApellido.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbApellido_KeyDown);
             // 
             // label4
             // 
@@ -240,7 +242,8 @@
             this.tbDireccion.Location = new System.Drawing.Point(100, 188);
             this.tbDireccion.Name = "tbDireccion";
             this.tbDireccion.Size = new System.Drawing.Size(190, 29);
-            this.tbDireccion.TabIndex = 30;
+            this.tbDireccion.TabIndex = 6;
+            this.tbDireccion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbDireccion_KeyDown);
             // 
             // tbProvincia
             // 
@@ -249,7 +252,8 @@
             this.tbProvincia.Location = new System.Drawing.Point(100, 233);
             this.tbProvincia.Name = "tbProvincia";
             this.tbProvincia.Size = new System.Drawing.Size(190, 29);
-            this.tbProvincia.TabIndex = 31;
+            this.tbProvincia.TabIndex = 7;
+            this.tbProvincia.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbProvincia_KeyDown);
             // 
             // tbCodigoPost
             // 
@@ -258,7 +262,7 @@
             this.tbCodigoPost.Location = new System.Drawing.Point(100, 278);
             this.tbCodigoPost.Name = "tbCodigoPost";
             this.tbCodigoPost.Size = new System.Drawing.Size(190, 29);
-            this.tbCodigoPost.TabIndex = 32;
+            this.tbCodigoPost.TabIndex = 8;
             this.tbCodigoPost.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbCodigoPost_KeyDown);
             // 
             // pictureBox2
@@ -292,7 +296,7 @@
             this.rBCliente.Location = new System.Drawing.Point(6, 28);
             this.rBCliente.Name = "rBCliente";
             this.rBCliente.Size = new System.Drawing.Size(81, 25);
-            this.rBCliente.TabIndex = 37;
+            this.rBCliente.TabIndex = 20;
             this.rBCliente.TabStop = true;
             this.rBCliente.Text = "Cliente";
             this.rBCliente.UseVisualStyleBackColor = true;
@@ -304,7 +308,7 @@
             this.rBMonitor.Location = new System.Drawing.Point(6, 60);
             this.rBMonitor.Name = "rBMonitor";
             this.rBMonitor.Size = new System.Drawing.Size(90, 25);
-            this.rBMonitor.TabIndex = 38;
+            this.rBMonitor.TabIndex = 21;
             this.rBMonitor.Text = "Monitor";
             this.rBMonitor.UseVisualStyleBackColor = true;
             this.rBMonitor.CheckedChanged += new System.EventHandler(this.rBMonitor_CheckedChanged);
@@ -316,7 +320,7 @@
             this.rBAdmin.Location = new System.Drawing.Point(6, 92);
             this.rBAdmin.Name = "rBAdmin";
             this.rBAdmin.Size = new System.Drawing.Size(136, 25);
-            this.rBAdmin.TabIndex = 39;
+            this.rBAdmin.TabIndex = 22;
             this.rBAdmin.Text = "Administrador";
             this.rBAdmin.UseVisualStyleBackColor = true;
             // 
@@ -369,7 +373,7 @@
             this.tbPass.Location = new System.Drawing.Point(100, 324);
             this.tbPass.Name = "tbPass";
             this.tbPass.Size = new System.Drawing.Size(190, 29);
-            this.tbPass.TabIndex = 36;
+            this.tbPass.TabIndex = 9;
             // 
             // label9
             // 
@@ -389,7 +393,8 @@
             this.tbApellido2.Location = new System.Drawing.Point(100, 145);
             this.tbApellido2.Name = "tbApellido2";
             this.tbApellido2.Size = new System.Drawing.Size(190, 29);
-            this.tbApellido2.TabIndex = 33;
+            this.tbApellido2.TabIndex = 5;
+            this.tbApellido2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbApellido2_KeyDown);
             // 
             // label8
             // 
@@ -409,7 +414,7 @@
             this.tbSueldo.Location = new System.Drawing.Point(700, 448);
             this.tbSueldo.Name = "tbSueldo";
             this.tbSueldo.Size = new System.Drawing.Size(54, 29);
-            this.tbSueldo.TabIndex = 43;
+            this.tbSueldo.TabIndex = 30;
             this.tbSueldo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbSueldo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSueldo_KeyDown);
             // 

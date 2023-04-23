@@ -37,11 +37,11 @@ namespace GenteFitApp.Conrolers
             }
         }
            
-        public static int reservasDeClase(Clase estaClase)
+        public static int numReservasClase(int idClase)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
-                return dBGfit.Reserva.Count(r => r.claseID == estaClase.id_Clase);
+                return dBGfit.Reserva.Count(r => r.claseID == idClase);
             }
                 
         }
@@ -81,10 +81,39 @@ namespace GenteFitApp.Conrolers
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {  
-                return dBGfit.Reserva.Where(r => r.claseID == IDClase).ToList();
+                return dBGfit.Reserva.Where(r => r.claseID == IDClase)
+                    .OrderBy(r => r.id_Reserva)
+                    .ToList();
             }
         }
 
+        public static List<string> clientesConPlaza(int IDClase)
+        {
+            List<string> result = new List<string>();
+            foreach(Reserva reserv in listarReservasClase(IDClase))
+            {
+                if(reserv.confirmada)
+                {
+                    var persona = Usuarios.getPersonaDeCliente(reserv.clienteID);
+                    result.Add(persona.nombre + "\t" + persona.apellido1);
+                }                
+            }
+            return result;
+        }
+
+        public static List<string> clientesEnEspera(int IDClase)
+        {
+            List<string> result = new List<string>();
+            foreach (Reserva reserv in listarReservasClase(IDClase))
+            {
+                if (!reserv.confirmada)
+                {
+                    var persona = Usuarios.getPersonaDeCliente(reserv.clienteID);
+                    result.Add(persona.nombre + "\t" + persona.apellido1);
+                }
+            }
+            return result;
+        }
         public static List<ReservaView> listarReservas()
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())

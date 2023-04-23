@@ -16,16 +16,12 @@ namespace GenteFitApp.Conrolers
     {
         public static bool formatoEmailCorrecto(string eMailCheck)
         {
-            String sFormato;
-            sFormato = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
-            if (Regex.IsMatch(eMailCheck, sFormato))
-            {
-                if (Regex.Replace(eMailCheck, sFormato, String.Empty).Length == 0)
-                {
-                    return true;
-                }
-                else return false;                
-            } else return false;
+            // expresión regular para verificar si el email es válido
+            string patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            // crear objeto Regex con el patrón
+            Regex regex = new Regex(patron);
+            // verificar si la cadena cumple con el formato del email
+            return regex.IsMatch(eMailCheck);
         }
 
         public static List<AdministradorView> listarAdministradores()
@@ -132,6 +128,15 @@ namespace GenteFitApp.Conrolers
             }
         }
 
+        public static Persona getPersonaDeCliente(int idCliente)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                var unCliente = dBGfit.Cliente.FirstOrDefault(c => c.id_Cliente == idCliente);
+                var unaPersona = dBGfit.Persona.FirstOrDefault(c => c.id_Persona == unCliente.personaID);
+                return unaPersona;
+            }
+        }
         public static List<string> getNombresMonitores() 
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())

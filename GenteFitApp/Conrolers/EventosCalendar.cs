@@ -35,6 +35,68 @@ namespace GenteFitApp.Conrolers
             }
         }
 
+        public static bool reservarClase(int IDclase, int IDcliente)
+        {
+            try
+            {
+                using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+                {
+                    Clase miClase = GestionCentro.getClaseByID(IDclase);
+                    Reserva nuevaReserva = new Reserva();
+                    int numReservas = ConsultasBase.numReservasClase(IDclase);
+                    //nuevaReserva.posicion = numReservas + 1;
+                    nuevaReserva.claseID = IDclase;
+                    nuevaReserva.clienteID = IDcliente;
+                    if (numReservas + 1 <= miClase.Sala.numPlazas) nuevaReserva.confirmada = true;
+                    else nuevaReserva.confirmada = false;
+                    dBGfit.Reserva.Add(nuevaReserva);
+                    dBGfit.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("La operacion no se ha realizado: " + ex.Message);
+                return false;
+            }
+        }
+
+        public static bool desapuntarDeClase(int IDclase, int IDcliente)
+        {
+            try
+            {
+                using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+                {
+                    var reservasList = ConsultasBase.listarReservasClase(IDclase);
+                    var miReserva = getReservaClaseCliente(IDclase, IDcliente);
+                    bool siguienteReservaEncontrada = false;
+                    foreach (Reserva reserva in reservasList)
+                    {
+                        if (siguienteReservaEncontrada && !reserva.confirmada)
+                        {
+                            reserva.confirmada = true;
+                            dBGfit.Entry(reserva).State = EntityState.Modified;
+                            break;
+                        }
+                        if (reserva.id_Reserva == miReserva.id_Reserva)
+                        {
+                            siguienteReservaEncontrada = true;
+                        }
+                    }                   
+                    Reserva eliminaReserva = dBGfit.Reserva.FirstOrDefault(r => r.id_Reserva == miReserva.id_Reserva);
+                    dBGfit.Reserva.Remove(eliminaReserva);
+                    dBGfit.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("La operacion no se ha realizado: " + ex.Message);
+                return false;
+            }
+
+        }
+
         public static void eliminaReservasDeCliente(int idCliente)
         {
             using (var dBGfit = new GenteFitDBEntities()) 
@@ -52,7 +114,7 @@ namespace GenteFitApp.Conrolers
         public static Color colorLinea(int idClase)
         {
             Clase miClase = GestionCentro.getClaseByID(idClase);
-            int numReservas = ConsultasBase.reservasDeClase(miClase);
+            int numReservas = ConsultasBase.numReservasClase(idClase);
             if (miClase.Sala.numPlazas > numReservas)
             {
                 return Color.YellowGreen;
@@ -73,6 +135,8 @@ namespace GenteFitApp.Conrolers
                 dBGfit.SaveChanges();
             }
         }
+
+        
 
 
     }
