@@ -155,6 +155,7 @@
             // 
             // dGVClases
             // 
+            this.dGVClases.AllowUserToAddRows = false;
             this.dGVClases.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dGVClases.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGVClases.Location = new System.Drawing.Point(481, 110);
