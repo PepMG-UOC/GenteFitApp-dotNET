@@ -65,10 +65,13 @@ namespace GenteFitApp.Vistas
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            if(dGVClases.SelectedRows.Count == 0) return;
             int rowIndex = dGVClases.SelectedRows[0].Index;
             int id = Convert.ToInt32(dGVClases.Rows[rowIndex].Cells["ID"].Value);
             var clase = GestionCentro.getClaseByID(id);
             GestionCentro.bajaClase(clase);
+            MessageBox.Show("La Clase se ha eliminado correctamente.");
+            clasesDelDia(myFecha);
         }
 
         private void cBActividad_Click(object sender, EventArgs e)

@@ -98,7 +98,7 @@ namespace GenteFitApp.Vistas
         {
             if (Session.Tipo.Equals("Admin")) 
             {
-                if (myDia > DateTime.Now)
+                if (myDia.Date >= DateTime.Now.Date)
                 {
                     Form form = this.FindForm();
                     if (form != null)
