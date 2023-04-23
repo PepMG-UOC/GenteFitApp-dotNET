@@ -43,10 +43,8 @@
             this.txtbxMonitor = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.dGVUsersPlaza = new System.Windows.Forms.DataGridView();
-            this.dGVUsersEspera = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dGVUsersPlaza)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dGVUsersEspera)).BeginInit();
+            this.lBUsersPlaza = new System.Windows.Forms.ListBox();
+            this.lBListaEspera = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // txtbxHora
@@ -63,7 +61,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.label6.Location = new System.Drawing.Point(294, 159);
+            this.label6.Location = new System.Drawing.Point(294, 185);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(127, 21);
             this.label6.TabIndex = 40;
@@ -73,8 +71,9 @@
             // 
             this.txtbxAforo.Enabled = false;
             this.txtbxAforo.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.txtbxAforo.Location = new System.Drawing.Point(485, 506);
+            this.txtbxAforo.Location = new System.Drawing.Point(227, 146);
             this.txtbxAforo.Name = "txtbxAforo";
+            this.txtbxAforo.ReadOnly = true;
             this.txtbxAforo.Size = new System.Drawing.Size(43, 29);
             this.txtbxAforo.TabIndex = 39;
             // 
@@ -82,7 +81,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.label5.Location = new System.Drawing.Point(298, 509);
+            this.label5.Location = new System.Drawing.Point(40, 149);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(106, 21);
             this.label5.TabIndex = 38;
@@ -92,8 +91,9 @@
             // 
             this.txtbxPlazas.Enabled = false;
             this.txtbxPlazas.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.txtbxPlazas.Location = new System.Drawing.Point(406, 506);
+            this.txtbxPlazas.Location = new System.Drawing.Point(148, 146);
             this.txtbxPlazas.Name = "txtbxPlazas";
+            this.txtbxPlazas.ReadOnly = true;
             this.txtbxPlazas.Size = new System.Drawing.Size(46, 29);
             this.txtbxPlazas.TabIndex = 37;
             // 
@@ -101,7 +101,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.label4.Location = new System.Drawing.Point(37, 159);
+            this.label4.Location = new System.Drawing.Point(40, 185);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(157, 21);
             this.label4.TabIndex = 36;
@@ -130,7 +130,7 @@
             // btnVolver
             // 
             this.btnVolver.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.btnVolver.Location = new System.Drawing.Point(22, 517);
+            this.btnVolver.Location = new System.Drawing.Point(41, 508);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(135, 40);
             this.btnVolver.TabIndex = 31;
@@ -192,46 +192,46 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(455, 509);
+            this.label9.Location = new System.Drawing.Point(197, 149);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(29, 21);
             this.label9.TabIndex = 47;
             this.label9.Text = "de";
             // 
-            // dGVUsersPlaza
+            // lBUsersPlaza
             // 
-            this.dGVUsersPlaza.AllowUserToAddRows = false;
-            this.dGVUsersPlaza.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dGVUsersPlaza.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGVUsersPlaza.Location = new System.Drawing.Point(30, 188);
-            this.dGVUsersPlaza.MultiSelect = false;
-            this.dGVUsersPlaza.Name = "dGVUsersPlaza";
-            this.dGVUsersPlaza.ReadOnly = true;
-            this.dGVUsersPlaza.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dGVUsersPlaza.Size = new System.Drawing.Size(224, 297);
-            this.dGVUsersPlaza.TabIndex = 49;
+            this.lBUsersPlaza.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lBUsersPlaza.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lBUsersPlaza.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
+            this.lBUsersPlaza.FormattingEnabled = true;
+            this.lBUsersPlaza.ItemHeight = 21;
+            this.lBUsersPlaza.Location = new System.Drawing.Point(41, 209);
+            this.lBUsersPlaza.Name = "lBUsersPlaza";
+            this.lBUsersPlaza.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lBUsersPlaza.Size = new System.Drawing.Size(205, 273);
+            this.lBUsersPlaza.TabIndex = 51;
             // 
-            // dGVUsersEspera
+            // lBListaEspera
             // 
-            this.dGVUsersEspera.AllowUserToAddRows = false;
-            this.dGVUsersEspera.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dGVUsersEspera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGVUsersEspera.Location = new System.Drawing.Point(288, 188);
-            this.dGVUsersEspera.MultiSelect = false;
-            this.dGVUsersEspera.Name = "dGVUsersEspera";
-            this.dGVUsersEspera.ReadOnly = true;
-            this.dGVUsersEspera.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dGVUsersEspera.Size = new System.Drawing.Size(224, 297);
-            this.dGVUsersEspera.TabIndex = 50;
+            this.lBListaEspera.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lBListaEspera.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lBListaEspera.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
+            this.lBListaEspera.FormattingEnabled = true;
+            this.lBListaEspera.ItemHeight = 21;
+            this.lBListaEspera.Location = new System.Drawing.Point(287, 209);
+            this.lBListaEspera.Name = "lBListaEspera";
+            this.lBListaEspera.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lBListaEspera.Size = new System.Drawing.Size(205, 273);
+            this.lBListaEspera.TabIndex = 52;
             // 
             // frmReservasAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.ClientSize = new System.Drawing.Size(571, 569);
-            this.Controls.Add(this.dGVUsersEspera);
-            this.Controls.Add(this.dGVUsersPlaza);
+            this.ClientSize = new System.Drawing.Size(543, 569);
+            this.Controls.Add(this.lBListaEspera);
+            this.Controls.Add(this.lBUsersPlaza);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtbxMonitor);
             this.Controls.Add(this.label8);
@@ -251,8 +251,6 @@
             this.Name = "frmReservasAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmReservasAdmin";
-            ((System.ComponentModel.ISupportInitialize)(this.dGVUsersPlaza)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dGVUsersEspera)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,7 +272,7 @@
         private System.Windows.Forms.TextBox txtbxMonitor;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DataGridView dGVUsersPlaza;
-        private System.Windows.Forms.DataGridView dGVUsersEspera;
+        private System.Windows.Forms.ListBox lBUsersPlaza;
+        private System.Windows.Forms.ListBox lBListaEspera;
     }
 }
