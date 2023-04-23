@@ -210,6 +210,12 @@
     <Compile Include="Vistas\frmMenuCliente.Designer.cs">
       <DependentUpon>frmMenuCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\frmReservasAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\frmReservasAdmin.Designer.cs">
+      <DependentUpon>frmReservasAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\frmSalas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -263,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\frmMenuCliente.resx">
       <DependentUpon>frmMenuCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\frmReservasAdmin.resx">
+      <DependentUpon>frmReservasAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\frmSalas.resx">
       <DependentUpon>frmSalas.cs</DependentUpon>

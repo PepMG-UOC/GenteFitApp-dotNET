@@ -20,9 +20,10 @@ namespace GenteFitApp.Vistas
 
         private void pBClases_Click(object sender, EventArgs e)
         {            
-                frmCalendario AdminCalendar = new frmCalendario("admin");
-                AdminCalendar.Show();
-                this.Close();            
+            frmCalendario adminCalendar = new frmCalendario();
+            adminCalendar.Origen = "Admin_Clases";
+            adminCalendar.Show();
+            this.Close();            
         }
 
         private void pBActividades_Click(object sender, EventArgs e)

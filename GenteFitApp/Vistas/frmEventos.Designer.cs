@@ -53,6 +53,7 @@
             this.txtbxFecha.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.txtbxFecha.Location = new System.Drawing.Point(27, 104);
             this.txtbxFecha.Name = "txtbxFecha";
+            this.txtbxFecha.ReadOnly = true;
             this.txtbxFecha.Size = new System.Drawing.Size(182, 29);
             this.txtbxFecha.TabIndex = 1;
             // 
@@ -104,6 +105,7 @@
             this.txtbxDescrip.Location = new System.Drawing.Point(27, 166);
             this.txtbxDescrip.Multiline = true;
             this.txtbxDescrip.Name = "txtbxDescrip";
+            this.txtbxDescrip.ReadOnly = true;
             this.txtbxDescrip.Size = new System.Drawing.Size(346, 65);
             this.txtbxDescrip.TabIndex = 17;
             // 
@@ -134,6 +136,7 @@
             this.txtbxPlazas.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.txtbxPlazas.Location = new System.Drawing.Point(165, 293);
             this.txtbxPlazas.Name = "txtbxPlazas";
+            this.txtbxPlazas.ReadOnly = true;
             this.txtbxPlazas.Size = new System.Drawing.Size(68, 29);
             this.txtbxPlazas.TabIndex = 20;
             // 
@@ -163,6 +166,7 @@
             this.txtbxListaEspera.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.txtbxListaEspera.Location = new System.Drawing.Point(165, 338);
             this.txtbxListaEspera.Name = "txtbxListaEspera";
+            this.txtbxListaEspera.ReadOnly = true;
             this.txtbxListaEspera.Size = new System.Drawing.Size(68, 29);
             this.txtbxListaEspera.TabIndex = 22;
             // 
@@ -172,6 +176,7 @@
             this.txtbxHora.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.txtbxHora.Location = new System.Drawing.Point(257, 104);
             this.txtbxHora.Name = "txtbxHora";
+            this.txtbxHora.ReadOnly = true;
             this.txtbxHora.Size = new System.Drawing.Size(116, 29);
             this.txtbxHora.TabIndex = 24;
             // 
@@ -181,6 +186,7 @@
             this.txtbxAforo.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.txtbxAforo.Location = new System.Drawing.Point(165, 249);
             this.txtbxAforo.Name = "txtbxAforo";
+            this.txtbxAforo.ReadOnly = true;
             this.txtbxAforo.Size = new System.Drawing.Size(68, 29);
             this.txtbxAforo.TabIndex = 25;
             // 
@@ -211,6 +217,7 @@
             this.txtbxActividad.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.txtbxActividad.Location = new System.Drawing.Point(27, 43);
             this.txtbxActividad.Name = "txtbxActividad";
+            this.txtbxActividad.ReadOnly = true;
             this.txtbxActividad.Size = new System.Drawing.Size(182, 29);
             this.txtbxActividad.TabIndex = 16;
             // 

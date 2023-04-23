@@ -13,17 +13,12 @@ using GenteFitApp.Vistas;
 namespace GenteFitApp.Conrolers
 {
     public static class EventosCalendar
-    {
-        // ucdias = rellenaDia(i, mes, año);
-        
-
-        public static UserControlDias rellenaDia (DateTime fecha)
+    { 
+        public static UserControlDias rellenaDia (DateTime fecha, string origen)
         {            
-            DateTime ahora = DateTime.Now;
-            
-            UserControlDias ucdias = new UserControlDias();
-            //ConsultasBase.ObtenerClasesPorFecha(fecha);
-            ucdias.dias(fecha.Day, fecha);
+            UserControlDias ucdias = new UserControlDias(); 
+            ucdias.Origen = origen;
+            ucdias.setMyDia(fecha);
             ucdias.CargaClasesDelDia(fecha);  
             return ucdias;
         }
