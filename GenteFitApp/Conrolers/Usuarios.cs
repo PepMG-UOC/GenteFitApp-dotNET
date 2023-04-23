@@ -249,6 +249,7 @@ namespace GenteFitApp.Conrolers
                 dBGfit.SaveChanges();
             }
         }
+
         private static void bajaMonitorCascada(int idMonitor)
         {
             using (var dBGfit = new GenteFitDBEntities())

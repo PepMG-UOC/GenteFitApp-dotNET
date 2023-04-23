@@ -15,23 +15,22 @@ namespace GenteFitApp.Vistas
 {
     public partial class UserControlDias : UserControl
     {
-        public static string dia;
-        public DateTime myDia;
-
+        public string Origen { get; set; }
+        private DateTime myDia;
         public UserControlDias()
         {
             InitializeComponent();           
         }
 
-        public void dias(int numdia, DateTime fechadia)
+        public void setMyDia(DateTime fechadia)
         {
-            lbdias.Text = numdia.ToString();  
+            lbdias.Text = fechadia.Day.ToString();  
             myDia= fechadia;            
         }
 
-        public void CargaClasesDelDia(DateTime fecha)
+        public void CargaClasesDelDia(DateTime fechaDelDia)
         {                        
-            var clasesEventos = ConsultasBase.listarClasesPorFecha(fecha);           
+            var clasesEventos = ConsultasBase.listarClasesPorFecha(fechaDelDia);           
 
             foreach (var unaclase in clasesEventos)
             {                
@@ -74,11 +73,11 @@ namespace GenteFitApp.Vistas
         {
             if (listBox1.SelectedItem != null)
             {
-                if (Session.Tipo.Equals("Cliente"))
+                var item = listBox1.Items[listBox1.SelectedIndex];
+                int idClase = ((dynamic)item).Datos;
+                if (Origen.Equals("MenuCliente_Clases"))
                 {
-                    // Para Cliente
-                    var item = listBox1.Items[listBox1.SelectedIndex];
-                    int idClase = ((dynamic)item).Datos;
+                    // Para Cliente                    
                     Color colorFondo = ((dynamic)item).ColorFondo;
                     listBox1.SelectedItems.Clear();
                     if (idClase != 0)
@@ -87,28 +86,34 @@ namespace GenteFitApp.Vistas
                         _frmEvento.BringToFront();
                         _frmEvento.ShowDialog();
                     }
-                } else listBox1.SelectedItems.Clear();
+                } else if(Origen.Equals("MenuAdmin_Reservas"))
+                {
+                    // Para Admin
+                    frmReservasAdmin infoReservasAdmin = new frmReservasAdmin(idClase);
+                    infoReservasAdmin.BringToFront();
+                    infoReservasAdmin.ShowDialog();
+                }
+                listBox1.SelectedItems.Clear();
+                
 
-                // Para Admin
 
             }
         }
 
         private void listBox1_Click(object sender, EventArgs e)
         {
-            if (Session.Tipo.Equals("Admin")) 
-            {
+            if (Origen.Equals("Admin_Clases")) 
+            {                
                 if (myDia.Date >= DateTime.Now.Date)
-                {
+                {                    
                     Form form = this.FindForm();
                     if (form != null)
                     {
                         frmClasesAdmin clasesAdmin = new frmClasesAdmin(myDia);
                         clasesAdmin.Show();
                         form.Close();
-                    }
-                }        
-                
+                    }                                        
+                }   
             } 
         }
     }

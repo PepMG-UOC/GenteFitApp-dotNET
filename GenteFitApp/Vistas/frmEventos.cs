@@ -17,8 +17,7 @@ namespace GenteFitApp.Vistas
     {
         private Clase estaClase;
         private Reserva miReserva;
-        private Cliente cliente;
-        private Monitor monitor;
+        private Cliente cliente;        
         private int numReservas;
         public frmEventos(int IDClase, Color miColor)
         {
@@ -35,8 +34,7 @@ namespace GenteFitApp.Vistas
             txtbxDescrip.Text = estaClase.Actividad.descripcion;
             txtbxAforo.Text = estaClase.Sala.numPlazas.ToString();
             numReservas = ConsultasBase.reservasDeClase(estaClase);
-            cliente = Usuarios.getClienteDePersona(Session.idPersona);
-            monitor = Usuarios.getMonitorDePersona(Session.idPersona);
+            cliente = Usuarios.getClienteDePersona(Session.idPersona);            
             
             if (cliente != null)
             {

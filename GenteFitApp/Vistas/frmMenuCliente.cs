@@ -19,22 +19,25 @@ namespace GenteFitApp.Vistas
         }
 
         private void pbClases_Click(object sender, EventArgs e)
-        {
-            var monitor = Usuarios.getMonitorDePersona(Session.idPersona);
-            if(monitor!=null)
+        {         
+            if(Session.Tipo.Equals("Monitor"))
             {
                 MessageBox.Show("Los monitores no pueden registrarse a las clases.");
             } else
             {
-                frmCalendario clientCalendar = new frmCalendario("cliente");
+                frmCalendario clientCalendar = new frmCalendario();
+                clientCalendar.Origen = "MenuCliente_Clases";
                 clientCalendar.Show();
                 this.Close();
             }            
         }
 
         private void pbMisClases_Click(object sender, EventArgs e)
-        {
-
+        {            
+            frmCalendario clientCalendar = new frmCalendario();
+            clientCalendar.Origen = "MenuCliente_MisClases";
+            clientCalendar.Show();
+            this.Close();            
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

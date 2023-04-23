@@ -51,8 +51,9 @@ namespace GenteFitApp.Vistas
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            frmCalendario clientCalendar = new frmCalendario("admin");
-            clientCalendar.Show();            
+            frmCalendario adminCalendar = new frmCalendario();
+            adminCalendar.Origen = "Admin_Clases";
+            adminCalendar.Show();            
             this.Close();
         }
 
