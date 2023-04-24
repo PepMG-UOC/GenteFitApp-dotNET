@@ -62,20 +62,30 @@ namespace GenteFitApp.Conrolers
         }
 
 
+        // Esta función crea una nueva instancia de la clase Clase y la agrega a la base de datos.
+        // Se utiliza el Entity Framework para acceder a la base de datos.
+        // La función utiliza los parámetros actvID, salaID y fechaH para crear una nueva instancia de la clase Clase.
+        // Posteriormente, la nueva instancia se agrega a la base de datos y se guardan los cambios.
         public static void altaClase(int actvID, int salaID, DateTime fechaH)
         {
+            // Crea un objeto de la clase GenteFitDBEntities para acceder a la base de datos
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
+                // Crea una nueva instancia de la clase Clase con los parámetros recibidos
                 Clase nuevaClase = new Clase
                 {
-                    actividadID= actvID,
-                    salaID= salaID,
-                    fechaHora= fechaH                    
+                    actividadID = actvID,
+                    salaID = salaID,
+                    fechaHora = fechaH
                 };
+                // Agrega la nueva instancia de la clase Clase a la base de datos
                 dBGfit.Clase.Add(nuevaClase);
+
+                // Guarda los cambios realizados en la base de datos
                 dBGfit.SaveChanges();
             }
         }
+
         public static void bajaClase(Clase clase)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
@@ -86,9 +96,7 @@ namespace GenteFitApp.Conrolers
                 dBGfit.SaveChanges();
             }
         }
-
-        // ---
-        
+                       
         public static void altaSala(int numPlazas, int dimensionM2)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
@@ -103,14 +111,26 @@ namespace GenteFitApp.Conrolers
             }
         }
 
+
+        // Esta función obtiene una instancia de la clase Sala a partir de su Id.
+        // Se utiliza el Entity Framework para acceder a la base de datos.
+        // La función utiliza una expresión lambda para filtrar la búsqueda de la sala con el Id especificado.
+        // Además, incluye la información de la propiedad Clase de la sala en la búsqueda.
         public static Sala getSalaById(int IdSala)
         {
+            // Crea un objeto de la clase GenteFitDBEntities para acceder a la base de datos
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
+                // Retorna la primera sala que cumpla con el filtro de búsqueda.
+                // La propiedad "Include" permite especificar las propiedades relacionadas que se desean incluir en la búsqueda.
+                // En este caso, se incluye la propiedad "Clase" de la sala para evitar cargar la propiedad de forma diferida (lazy loading).
+                // La expresión lambda especifica que se desea buscar la sala con el Id especificado.
                 return dBGfit.Sala.Include(s => s.Clase)
-                    .FirstOrDefault(s => s.id_Sala== IdSala);                                 
+                    .FirstOrDefault(s => s.id_Sala == IdSala);
             }
         }
+
+
         public static List<int> getSalasIds()
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
@@ -124,6 +144,7 @@ namespace GenteFitApp.Conrolers
                 return list;
             }
         }
+
         public static string detallesSala(int id)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
@@ -215,21 +236,29 @@ namespace GenteFitApp.Conrolers
                 return clases;
             }
         } 
+
+        
+        // Esta función borra todas las clases de una actividad y sus respectivas reservas en cascada.
+        // Primero, busca la actividad en la base de datos y luego, utiliza un bucle foreach para recorrer todas las clases asociadas.
+        // Por cada clase, se llama a la función "borraReservasDeClase" para borrar sus reservas de la base de datos.
+        // Finalmente, se elimina la clase de la base de datos y se guarda la transacción.
         public static void borrarClasesDeActividad(Actividad actividad)
         {
-            // Eliminar todas las Clases que pertenecen a la Actividad
             using (var dBGfit = new GenteFitDBEntities())
             {
+                // Busca la actividad en la base de datos
                 Actividad actividadAEliminar = dBGfit.Actividad.FirstOrDefault(a => a.id_Actividad == actividad.id_Actividad);
+                // Recorre todas las clases asociadas a la actividad y borra sus reservas
                 foreach (var clase in actividadAEliminar.Clase.ToList())
                 {
                     EventosCalendar.borraReservasDeClase(clase);
+                    // Elimina la clase de la base de datos
                     dBGfit.Clase.Remove(clase);
                 }
+                // Guarda la transacción
                 dBGfit.SaveChanges();
             }
         }
-
 
 
     }

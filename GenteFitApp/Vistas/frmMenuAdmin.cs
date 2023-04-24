@@ -28,7 +28,7 @@ namespace GenteFitApp.Vistas
         private void pbReservas_Click(object sender, EventArgs e)
         {
             frmCalendario adminCalendar = new frmCalendario();
-            adminCalendar.Origen = "MenuAdmin_Reservas";
+            adminCalendar.Origen = "Info. Reservas de Clase Administrador";
             adminCalendar.Show();
             this.Close();
         }

@@ -26,7 +26,7 @@ namespace GenteFitApp.Vistas
             } else
             {
                 frmCalendario clientCalendar = new frmCalendario();
-                clientCalendar.Origen = "MenuCliente_Clases";
+                clientCalendar.Origen = "Oferta de Clases";
                 clientCalendar.Show();
                 this.Close();
             }            
@@ -35,7 +35,7 @@ namespace GenteFitApp.Vistas
         private void pbMisClases_Click(object sender, EventArgs e)
         {            
             frmCalendario clientCalendar = new frmCalendario();
-            clientCalendar.Origen = "MenuCliente_MisClases";
+            clientCalendar.Origen = "Mis Clases";
             clientCalendar.Show();
             this.Close();            
         }

@@ -1,14 +1,6 @@
 ﻿using GenteFitApp.Conrolers;
-using GenteFitApp.Modelo;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GenteFitApp.Vistas
@@ -27,9 +19,38 @@ namespace GenteFitApp.Vistas
             lbdias.Text = fechadia.Day.ToString();  
             myDia= fechadia;            
         }
+        
+        public void CargaMisClasesCliente(DateTime fechaDelDia, int idCliente)
+        {
+            var clasesEventos = ConsultasBase.listarClasesPorFecha(fechaDelDia);   
 
-        public void CargaClasesDelDia(DateTime fechaDelDia)
-        {                        
+            foreach (var unaclase in clasesEventos)
+            {               
+                var miReserva = EventosCalendar.getReservaClaseCliente(unaclase.id_Clase, idCliente);
+                if(miReserva != null)
+                {
+                    string textoFila = string.Format("{0:HH:mm}\t{1}", unaclase.fechaHora, unaclase.Actividad.nombre);
+                    Color colorFondo;
+                    if (unaclase.fechaHora > DateTime.Now)
+                    {
+                        if (miReserva.confirmada) colorFondo = Color.YellowGreen;
+                        else colorFondo = Color.Yellow;
+                        listBox1.Enabled = true;
+                    }
+                    else
+                    {
+                        colorFondo = Color.Gray;
+                        listBox1.Enabled = false;
+                    }
+                    listBox1.Items.Add(new { miFecha = unaclase.fechaHora, Texto = textoFila, Datos = unaclase.id_Clase, ColorFondo = colorFondo });
+                }              
+                
+            }
+        }
+        
+
+        public void CargaClasesDisponibles(DateTime fechaDelDia)
+        {        
             var clasesEventos = ConsultasBase.listarClasesPorFecha(fechaDelDia);           
 
             foreach (var unaclase in clasesEventos)
@@ -75,7 +96,7 @@ namespace GenteFitApp.Vistas
             {
                 var item = listBox1.Items[listBox1.SelectedIndex];
                 int idClase = ((dynamic)item).Datos;
-                if (Origen.Equals("MenuCliente_Clases"))
+                if (Origen.Equals("Oferta de Clases"))
                 {
                     // Para Cliente                    
                     Color colorFondo = ((dynamic)item).ColorFondo;
@@ -86,7 +107,7 @@ namespace GenteFitApp.Vistas
                         _frmEvento.BringToFront();
                         _frmEvento.ShowDialog();
                     }
-                } else if(Origen.Equals("MenuAdmin_Reservas"))
+                } else if(Origen.Equals("Info. Reservas de Clase Administrador"))
                 {
                     // Para Admin
                     frmReservasAdmin infoReservasAdmin = new frmReservasAdmin(idClase);
@@ -102,7 +123,7 @@ namespace GenteFitApp.Vistas
 
         private void listBox1_Click(object sender, EventArgs e)
         {
-            if (Origen.Equals("Admin_Clases")) 
+            if (Origen.Equals("Administracion De Clases")) 
             {                
                 if (myDia.Date >= DateTime.Now.Date)
                 {                    

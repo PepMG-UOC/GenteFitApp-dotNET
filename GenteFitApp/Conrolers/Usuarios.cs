@@ -88,25 +88,6 @@ namespace GenteFitApp.Conrolers
                 return Personas;
             }
         }
-
-        //public static Persona getPersonadeMonitor(int idMonitor)
-        //{
-        //    using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
-        //    {
-
-        //        dBGfit.Persona.Where(p => p.id_Persona == idMonitor)
-        //    }
-        //}
-        //public static Monitor getMonitor(int idMonitor)
-        //{
-        //    using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
-        //    {
-
-        //        var monitor = dBGfit.Monitor.Where(m => m.id_Monitor == idMonitor);
-        //        return monitor;
-        //    }
-
-        //}
         public static Monitor getMonitorById(int id)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
@@ -117,8 +98,6 @@ namespace GenteFitApp.Conrolers
             }
                 
         }
-
-
         public static Cliente getClienteDePersona(int idPersona)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
@@ -127,7 +106,6 @@ namespace GenteFitApp.Conrolers
                 return cliente;                                
             }
         }
-
         public static Persona getPersonaDeCliente(int idCliente)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
@@ -192,7 +170,7 @@ namespace GenteFitApp.Conrolers
                 if (dBGfit.Persona.Where(p => p.email == eMail && p.password == password).Any())
                 {
                     Persona persona = dBGfit.Persona.Single(p => p.email == eMail && p.password == password);
-                    Session.idPersona = persona.id_Persona;
+                    Session.idPersona = persona.id_Persona;                    
                     Session.Tipo = null;
                     return true;                   
                 }
@@ -322,13 +300,9 @@ namespace GenteFitApp.Conrolers
                 } else
                 {
                     MessageBox.Show("El usuario no pudo borrarse");
-                }
-                
+                }                
             }            
         }
-
-
-
 
     }
 }
