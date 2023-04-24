@@ -8,9 +8,7 @@ namespace GenteFitApp.Conrolers
 {
     public static class Session
     {
-        public static int idPersona { get; set; }
-        public static string Usermail { get; set; }
-        public static string Password { get; set; }
+        public static int idPersona { get; set; }        
         private static string tipo;
         public static string Tipo
         {
@@ -32,12 +30,9 @@ namespace GenteFitApp.Conrolers
 
         public static void ResetSession()
         {
-            idPersona= 0;
-            Usermail= string.Empty;
-            Password = string.Empty;
+            idPersona= 0;      
             Tipo = string.Empty;
         }
-
 
     }
 }

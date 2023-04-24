@@ -17,10 +17,10 @@ namespace GenteFitApp.Vistas
     {
         /// <summary>
         /// Origen de instancia del form:
-        /// MenuCliente_Clases
-        /// MenuCliente_MisClases
-        /// MenuAdmin_Reservas
-        /// Admin_Clases
+        /// "Administracion De Clases"
+        /// "Info. Reservas de Clase Administrador"
+        /// "Oferta de Clases"
+        /// "Mis Clases"
         /// </summary>
         public string Origen { get; set; }
         public static int mes, año, dia;
@@ -44,6 +44,11 @@ namespace GenteFitApp.Vistas
         {        
             string mesNombre = DateTimeFormatInfo.CurrentInfo.GetMonthName(mes).ToUpper();
             lbMesAnyo.Text = mesNombre + " " + año;            
+            lbClaendariName.Text = Origen;
+            if(Origen.Equals("Mis Clases")) 
+            {
+                pLeyenda.Visible = true;
+            } else pLeyenda.Visible=false;
             // Determinamos primer dia del mes.
             DateTime inicioDeMes = new DateTime(año, mes, 1);
 
@@ -103,12 +108,12 @@ namespace GenteFitApp.Vistas
                 frmMenuCliente menuCliente = new frmMenuCliente();
                 menuCliente.Show();
                 this.Close();                
-            } else if(Origen.Equals("MenuAdmin_Reservas"))
+            } else if(Origen.Equals("Info. Reservas de Clase Administrador"))
             {
                 frmMenuAdmin menuAdmin = new frmMenuAdmin();
                 menuAdmin.Show();
                 this.Close();
-            } else if(Origen.Equals("Admin_Clases"))
+            } else if(Origen.Equals("Administracion De Clases"))
             {
                 frmGestionCentro gestionCentro = new frmGestionCentro();
                 gestionCentro.Show();

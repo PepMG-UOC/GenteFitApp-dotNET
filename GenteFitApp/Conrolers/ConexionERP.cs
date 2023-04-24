@@ -12,7 +12,7 @@ using System.Xml;
 namespace GenteFitApp.Conrolers
 {
     public class ConexionERP
-    {
+    {           // Los metodos de esta clase estan sin proteger su integridad de BBDD ni a prueba de fallos-> Pendiente Producto 4
 
         public static void  ActividadToXML(string filePath)
         {

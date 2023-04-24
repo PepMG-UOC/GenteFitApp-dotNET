@@ -66,7 +66,7 @@ namespace GenteFitApp.Vistas
         {
             if(EventosCalendar.reservarClase(estaClase.id_Clase, cliente.id_Cliente))
             {
-                MessageBox.Show("Reserva correctamente");
+                MessageBox.Show("Reservada correctamente");
             }
             this.Close();
         }
