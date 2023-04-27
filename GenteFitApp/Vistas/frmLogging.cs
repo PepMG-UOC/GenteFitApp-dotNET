@@ -80,7 +80,7 @@ namespace GenteFitApp.Vistas
             }
             else
             {
-                MessageBox.Show("Credenciales inválidas. Intente de nuevo.");
+                MessageBox.Show("Credenciales inválidas o conexion con BBDD fallida. Intente de nuevo.");
             }
         }
 

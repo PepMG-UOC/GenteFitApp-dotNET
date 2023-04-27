@@ -165,17 +165,24 @@ namespace GenteFitApp.Conrolers
 
         public static bool logging(string eMail, string password)
         {
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            try
             {
-                if (dBGfit.Persona.Where(p => p.email == eMail && p.password == password).Any())
+                using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
                 {
-                    Persona persona = dBGfit.Persona.Single(p => p.email == eMail && p.password == password);
-                    Session.idPersona = persona.id_Persona;                    
-                    Session.Tipo = null;
-                    return true;                   
+                    if (dBGfit.Persona.Where(p => p.email == eMail && p.password == password).Any())
+                    {
+                        Persona persona = dBGfit.Persona.Single(p => p.email == eMail && p.password == password);
+                        Session.idPersona = persona.id_Persona;
+                        Session.Tipo = null;
+                        return true;
+                    }
                 }
+                return false;
             }
-            return false;            
+            catch (Exception ex)
+            {   
+                return false;
+            }                       
         }
 
         public static Persona personaByMail(string eMail)

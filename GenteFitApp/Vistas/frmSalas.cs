@@ -91,9 +91,11 @@ namespace GenteFitApp.Vistas
         {            
             if (comboBox2.SelectedValue != null)
             {
-                GestionCentro.bajaSalaById((int)comboBox2.SelectedValue);
+                if(GestionCentro.bajaSalaById((int)comboBox2.SelectedValue))
+                {                   
+                    MessageBox.Show("La sala se ha eliminado correctamente.");
+                } else MessageBox.Show("La operacion no se ha realizado. ");
                 comboBox2.SelectedIndex = -1;
-                MessageBox.Show("La sala se ha eliminado correctamente.");
             }
         }
     }
