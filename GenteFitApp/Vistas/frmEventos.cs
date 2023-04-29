@@ -17,13 +17,13 @@ namespace GenteFitApp.Vistas
     {
         private Clase estaClase;
         private Reserva miReserva;
-        private Cliente cliente;
-        private Monitor monitor;
+        private Cliente cliente;        
         private int numReservas;
-        public frmEventos(int IDClase)
+        public frmEventos(int IDClase, Color miColor)
         {
             InitializeComponent();
-            this.estaClase = ConsultasBase.getClasebyID(IDClase);            
+            this.estaClase = ConsultasBase.getClasebyID(IDClase);
+            BackColor = miColor;
         }
 
         private void frmEventos_Load(object sender, EventArgs e)
@@ -33,9 +33,8 @@ namespace GenteFitApp.Vistas
             txtbxHora.Text = estaClase.fechaHora.ToString("HH:mm");
             txtbxDescrip.Text = estaClase.Actividad.descripcion;
             txtbxAforo.Text = estaClase.Sala.numPlazas.ToString();
-            numReservas = ConsultasBase.reservasDeClase(estaClase);
-            cliente = Usuarios.getClienteDePersona(Session.idPersona);
-            monitor = Usuarios.getMonitorDePersona(Session.idPersona);
+            numReservas = ConsultasBase.numReservasClase(estaClase.id_Clase);
+            cliente = Usuarios.getClienteDePersona(Session.idPersona);            
             
             if (cliente != null)
             {
@@ -61,45 +60,30 @@ namespace GenteFitApp.Vistas
                     txtbxListaEspera.Text = (numReservas - estaClase.Sala.numPlazas).ToString();
                 }
             }
-                     
-
         }
 
         private void btnApunta_Click(object sender, EventArgs e)
         {
-            Reserva nuevaReserva = new Reserva();
-            nuevaReserva.posicion = numReservas + 1;
-            nuevaReserva.claseID = estaClase.id_Clase;
-            nuevaReserva.clienteID = cliente.id_Cliente;
-            if (nuevaReserva.posicion <= estaClase.Sala.numPlazas) nuevaReserva.confirmada = true;
-            else nuevaReserva.confirmada = false;
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            if(EventosCalendar.reservarClase(estaClase.id_Clase, cliente.id_Cliente))
             {
-                dBGfit.Reserva.Add(nuevaReserva);
-                dBGfit.SaveChanges();
-                MessageBox.Show("Reserva correctamente");
-                this.Close();
+                MessageBox.Show("Reservada correctamente");
             }
+            this.Close();
         }
 
         private void btnDesapunta_Click(object sender, EventArgs e)
         {
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            if(EventosCalendar.desapuntarDeClase(estaClase.id_Clase, cliente.id_Cliente))
             {
-                if (miReserva != null)
-                {
-                    dBGfit.Reserva.Attach(miReserva);
-                    dBGfit.Reserva.Remove(miReserva);
-                    dBGfit.SaveChanges();
-                    MessageBox.Show("Reserva eliminada correctamente");
-                    this.Close();
-                }
+                MessageBox.Show("Reserva eliminada correctamente");
             }
+            this.Close();            
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+                
     }
 }

@@ -80,19 +80,13 @@ namespace GenteFitApp.Vistas
             }
             else
             {
-                MessageBox.Show("Credenciales inválidas. Intente de nuevo.");
+                MessageBox.Show("Credenciales inválidas o conexion con BBDD fallida. Intente de nuevo.");
             }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            frmImportExportXML importaExportaXML = new frmImportExportXML();
-            importaExportaXML.ShowDialog();
         }
     }
 }

@@ -27,7 +27,10 @@ namespace GenteFitApp.Vistas
 
         private void pbReservas_Click(object sender, EventArgs e)
         {
-
+            frmCalendario adminCalendar = new frmCalendario();
+            adminCalendar.Origen = "Info. Reservas de Clase Administrador";
+            adminCalendar.Show();
+            this.Close();
         }
 
         private void pbCentro_Click(object sender, EventArgs e)
@@ -39,8 +42,7 @@ namespace GenteFitApp.Vistas
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Session.idPersona = 0;
-
+            Session.ResetSession();
             frmLogging loggingForm = new frmLogging();
             loggingForm.Show();
             this.Close();

@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {            
             this.lbdias = new System.Windows.Forms.Label();
-            this.dGVEventos = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dGVEventos)).BeginInit();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // lbdias
@@ -44,37 +43,30 @@
             this.lbdias.TabIndex = 0;
             this.lbdias.Text = "00";
             // 
-            // dGVEventos
+            // listBox1
             // 
-            this.dGVEventos.AllowUserToAddRows = false;
-            this.dGVEventos.AllowUserToDeleteRows = false;
-            this.dGVEventos.AllowUserToResizeColumns = false;
-            this.dGVEventos.AllowUserToResizeRows = false;
-            this.dGVEventos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
-            this.dGVEventos.BackgroundColor = System.Drawing.Color.White;
-            this.dGVEventos.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dGVEventos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dGVEventos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGVEventos.ColumnHeadersVisible = false;
-            this.dGVEventos.EnableHeadersVisualStyles = false;
-            this.dGVEventos.Location = new System.Drawing.Point(30, 5);
-            this.dGVEventos.Name = "dGVEventos";
-            this.dGVEventos.RowHeadersVisible = false;
-            this.dGVEventos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dGVEventos.Size = new System.Drawing.Size(132, 77);
-            this.dGVEventos.TabIndex = 1;
-            this.dGVEventos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVEventos_CellClick);
+            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.listBox1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Location = new System.Drawing.Point(39, 3);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(123, 80);
+            this.listBox1.TabIndex = 1;
+            this.listBox1.Click += new System.EventHandler(this.listBox1_Click);
+            this.listBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox1_DrawItem);
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // UserControlDias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.dGVEventos);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.lbdias);
             this.Name = "UserControlDias";
             this.Size = new System.Drawing.Size(165, 85);
-            ((System.ComponentModel.ISupportInitialize)(this.dGVEventos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -83,6 +75,6 @@
         #endregion
 
         private System.Windows.Forms.Label lbdias;
-        private System.Windows.Forms.DataGridView dGVEventos;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

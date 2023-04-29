@@ -16,16 +16,12 @@ namespace GenteFitApp.Conrolers
     {
         public static bool formatoEmailCorrecto(string eMailCheck)
         {
-            String sFormato;
-            sFormato = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
-            if (Regex.IsMatch(eMailCheck, sFormato))
-            {
-                if (Regex.Replace(eMailCheck, sFormato, String.Empty).Length == 0)
-                {
-                    return true;
-                }
-                else return false;                
-            } else return false;
+            // expresión regular para verificar si el email es válido
+            string patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            // crear objeto Regex con el patrón
+            Regex regex = new Regex(patron);
+            // verificar si la cadena cumple con el formato del email
+            return regex.IsMatch(eMailCheck);
         }
 
         public static List<AdministradorView> listarAdministradores()
@@ -92,25 +88,6 @@ namespace GenteFitApp.Conrolers
                 return Personas;
             }
         }
-
-        //public static Persona getPersonadeMonitor(int idMonitor)
-        //{
-        //    using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
-        //    {
-
-        //        dBGfit.Persona.Where(p => p.id_Persona == idMonitor)
-        //    }
-        //}
-        //public static Monitor getMonitor(int idMonitor)
-        //{
-        //    using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
-        //    {
-
-        //        var monitor = dBGfit.Monitor.Where(m => m.id_Monitor == idMonitor);
-        //        return monitor;
-        //    }
-
-        //}
         public static Monitor getMonitorById(int id)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
@@ -121,8 +98,6 @@ namespace GenteFitApp.Conrolers
             }
                 
         }
-
-
         public static Cliente getClienteDePersona(int idPersona)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
@@ -131,7 +106,15 @@ namespace GenteFitApp.Conrolers
                 return cliente;                                
             }
         }
-
+        public static Persona getPersonaDeCliente(int idCliente)
+        {
+            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            {
+                var unCliente = dBGfit.Cliente.FirstOrDefault(c => c.id_Cliente == idCliente);
+                var unaPersona = dBGfit.Persona.FirstOrDefault(c => c.id_Persona == unCliente.personaID);
+                return unaPersona;
+            }
+        }
         public static List<string> getNombresMonitores() 
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
@@ -182,16 +165,24 @@ namespace GenteFitApp.Conrolers
 
         public static bool logging(string eMail, string password)
         {
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            try
             {
-                if (dBGfit.Persona.Where(p => p.email == eMail && p.password == password).Any())
+                using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
                 {
-                    Persona persona = dBGfit.Persona.Single(p => p.email == eMail && p.password == password);
-                    Session.idPersona = persona.id_Persona;
-                    return true;                   
+                    if (dBGfit.Persona.Where(p => p.email == eMail && p.password == password).Any())
+                    {
+                        Persona persona = dBGfit.Persona.Single(p => p.email == eMail && p.password == password);
+                        Session.idPersona = persona.id_Persona;
+                        Session.Tipo = null;
+                        return true;
+                    }
                 }
+                return false;
             }
-            return false;            
+            catch (Exception ex)
+            {   
+                return false;
+            }                       
         }
 
         public static Persona personaByMail(string eMail)
@@ -248,6 +239,7 @@ namespace GenteFitApp.Conrolers
                 dBGfit.SaveChanges();
             }
         }
+
         private static void bajaMonitorCascada(int idMonitor)
         {
             using (var dBGfit = new GenteFitDBEntities())
@@ -315,13 +307,9 @@ namespace GenteFitApp.Conrolers
                 } else
                 {
                     MessageBox.Show("El usuario no pudo borrarse");
-                }
-                
+                }                
             }            
         }
-
-
-
 
     }
 }

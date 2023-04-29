@@ -15,15 +15,21 @@ namespace GenteFitApp.Vistas
 {
     public partial class frmCalendario : Form
     {
+        /// <summary>
+        /// Origen de instancia del form:
+        /// "Administracion De Clases"
+        /// "Info. Reservas de Clase Administrador"
+        /// "Oferta de Clases"
+        /// "Mis Clases"
+        /// </summary>
+        public string Origen { get; set; }
         public static int mes, año, dia;
-        public int mesActual, añoActual, diaActual;
-        private string origen;        
+        public int mesActual, añoActual, diaActual;               
         public DateTime ahora;
 
-        public frmCalendario(string orig)
+        public frmCalendario()
         {
-            InitializeComponent();
-            origen = orig;
+            InitializeComponent();            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -38,25 +44,31 @@ namespace GenteFitApp.Vistas
         {        
             string mesNombre = DateTimeFormatInfo.CurrentInfo.GetMonthName(mes).ToUpper();
             lbMesAnyo.Text = mesNombre + " " + año;            
+            lbClaendariName.Text = Origen;
+            if(Origen.Equals("Mis Clases")) 
+            {
+                pLeyenda.Visible = true;
+            } else pLeyenda.Visible=false;
             // Determinamos primer dia del mes.
             DateTime inicioDeMes = new DateTime(año, mes, 1);
 
-            int dias = DateTime.DaysInMonth(año, mes);
-            int diasDelaSemana = Convert.ToInt32(inicioDeMes.DayOfWeek.ToString("d"));
-            if (diasDelaSemana == 0) diasDelaSemana = 7;
-            // creamos un usercontrol en blanco para los dias sobrantes del mes
-            for (int i=1; i< diasDelaSemana; i++)
+            int cantidadDiasMes = DateTime.DaysInMonth(año, mes);
+            int diaSemanaInitMes = Convert.ToInt32(inicioDeMes.DayOfWeek.ToString("d"));
+            if (diaSemanaInitMes == 0) diaSemanaInitMes = 7;
+            // creamos un usercontrol en blanco para los cantidadDiasMes sobrantes del mes
+            for (int i=1; i< diaSemanaInitMes; i++)
             {
                 UserControlBlank ucblank = new UserControlBlank();
                 diasContenedor.Controls.Add(ucblank);
             }
 
-            // creamos un usercontrol para los dias existentes del mes
-            for(int i= 1; i<=dias; i++)
+            // creamos un usercontrol para los cantidadDiasMes existentes del mes
+            for(int i= 1; i<=cantidadDiasMes; i++)
             {
                 DateTime fecha = DateTime.Parse($"{año}-{mes}-{i}");
-                diasContenedor.Controls.Add(EventosCalendar.rellenaDia(fecha));
+                diasContenedor.Controls.Add(EventosCalendar.rellenaDia(fecha, Origen));
             }
+
         }
             
         private void btnAnterior_Click(object sender, EventArgs e)
@@ -91,19 +103,22 @@ namespace GenteFitApp.Vistas
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            switch (origen)
+            if(Session.Tipo.Equals("Cliente") || Session.Tipo.Equals("Monitor"))
             {
-                case "cliente":
-                    frmMenuCliente menuCliente = new frmMenuCliente();
-                    menuCliente.Show();
-                    this.Close();
-                    break;
-                case "admin":
-                    frmMenuAdmin menuAdmin = new frmMenuAdmin();
-                    menuAdmin.Show();
-                    this.Close();
-                    break;
-            }
+                frmMenuCliente menuCliente = new frmMenuCliente();
+                menuCliente.Show();
+                this.Close();                
+            } else if(Origen.Equals("Info. Reservas de Clase Administrador"))
+            {
+                frmMenuAdmin menuAdmin = new frmMenuAdmin();
+                menuAdmin.Show();
+                this.Close();
+            } else if(Origen.Equals("Administracion De Clases"))
+            {
+                frmGestionCentro gestionCentro = new frmGestionCentro();
+                gestionCentro.Show();
+                this.Close();
+            }           
         }
     }
     

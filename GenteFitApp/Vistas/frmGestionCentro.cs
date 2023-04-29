@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GenteFitApp.Conrolers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,8 +19,11 @@ namespace GenteFitApp.Vistas
         }
 
         private void pBClases_Click(object sender, EventArgs e)
-        {
-
+        {            
+            frmCalendario adminCalendar = new frmCalendario();
+            adminCalendar.Origen = "Administracion De Clases";
+            adminCalendar.Show();
+            this.Close();            
         }
 
         private void pBActividades_Click(object sender, EventArgs e)
@@ -46,8 +50,8 @@ namespace GenteFitApp.Vistas
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            frmImportExportXML importaExportaXML = new frmImportExportXML();
-            importaExportaXML.ShowDialog();
+            //frmImportExportXML importaExportaXML = new frmImportExportXML();
+            //importaExportaXML.ShowDialog();
         }
     }
 }
