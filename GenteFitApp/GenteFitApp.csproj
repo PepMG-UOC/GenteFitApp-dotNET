@@ -64,7 +64,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\GenteFit.ico</ApplicationIcon>
+    <ApplicationIcon>GenteFit.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -330,6 +333,7 @@
     <None Include="Resources\keypass.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GenteFit.ico" />
     <Content Include="Modelo\EntyFrmwGenteFitDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>EntyFrmwGenteFitDB.edmx</DependentUpon>
