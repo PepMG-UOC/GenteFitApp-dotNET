@@ -157,27 +157,35 @@ namespace GenteFitApp.Conrolers
             }
         }
 
-        public static void bajaSalaById(int IDSala)
+        public static bool bajaSalaById(int IDSala)
         {
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+            try 
             {
-                Sala sala = dBGfit.Sala.FirstOrDefault(s => s.id_Sala == IDSala);
-                if (sala != null)
+                using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
                 {
-                    List<Clase> clases = dBGfit.Clase.Where(c => c.salaID == IDSala).ToList();
-                    foreach (Clase clase in clases)
+                    Sala sala = dBGfit.Sala.FirstOrDefault(s => s.id_Sala == IDSala);
+                    if (sala != null)
                     {
-                        List<Reserva> reservas = dBGfit.Reserva.Where(r => r.claseID == clase.id_Clase).ToList();
-                        foreach (Reserva reserva in reservas)
+                        List<Clase> clases = dBGfit.Clase.Where(c => c.salaID == IDSala).ToList();
+                        foreach (Clase clase in clases)
                         {
-                            dBGfit.Reserva.Remove(reserva);
+                            List<Reserva> reservas = dBGfit.Reserva.Where(r => r.claseID == clase.id_Clase).ToList();
+                            foreach (Reserva reserva in reservas)
+                            {
+                                dBGfit.Reserva.Remove(reserva);
+                            }
+                            dBGfit.Clase.Remove(clase);
                         }
-                        dBGfit.Clase.Remove(clase);
+                        dBGfit.Sala.Remove(sala);
+                        dBGfit.SaveChanges();
                     }
-                    dBGfit.Sala.Remove(sala);
-                    dBGfit.SaveChanges();
                 }
-            }
+                return true;
+            } 
+            catch (Exception ex)
+            {   
+                return false;                
+            }            
         }
 
         public static Clase getClaseByID(int id)
