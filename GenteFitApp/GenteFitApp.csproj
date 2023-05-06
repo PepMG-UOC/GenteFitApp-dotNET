@@ -340,6 +340,7 @@
       <DependentUpon>EntyFrmwGenteFitDB.edmx</DependentUpon>
       <LastGenOutput>EntyFrmwGenteFitDB.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\OdooIMG.PNG" />
     <None Include="Resources\casa.png" />
     <None Include="Resources\salas.PNG" />
     <None Include="Resources\clases.PNG" />

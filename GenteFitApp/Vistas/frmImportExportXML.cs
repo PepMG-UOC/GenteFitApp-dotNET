@@ -1,7 +1,9 @@
 ﻿using GenteFitApp.Conrolers;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GenteFitApp.Vistas
 {
@@ -11,7 +13,12 @@ namespace GenteFitApp.Vistas
         {
             InitializeComponent();
         }
-               
+
+        private void frmImportExportXML_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void cbTablaSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
            
@@ -52,97 +59,126 @@ namespace GenteFitApp.Vistas
             }
         }
 
+       
         private void btnExport_Click(object sender, EventArgs e)
         {            
             string filePath;
-            // Inicializo el folderBrowserdialog en la carpeta documentos del usuario.
+            // Inicializo el la ruta de los archivos en la carpeta Documentos por defecto del ordenador
             string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
-            folderBrowserDialog1.SelectedPath = documentsPath;
+            filePath = documentsPath + @"\_XMLfiles";
 
-            DialogResult result = folderBrowserDialog1.ShowDialog();
-            if (result == DialogResult.OK)
+            if (cbTablaSelect.SelectedIndex != -1) 
             { 
-                filePath = folderBrowserDialog1.SelectedPath;
                 switch (cbTablaSelect.SelectedItem)
                 {
                     case "Actividad":
                         filePath = Path.Combine(filePath, "Actividad.xml");
                         ConexionERP.ActividadToXML(filePath);
+                        ConexionERP.fromAppToOdoo(filePath);
                         break;
                     case "Administrador":
                         filePath = Path.Combine(filePath, "Administrador.xml");
                         ConexionERP.AdministradorToXML(filePath);
+                        ConexionERP.fromAppToOdoo(filePath);
                         break;
                     case "Clase":
                         filePath = Path.Combine(filePath, "Clase.xml");
                         ConexionERP.ClaseToXML(filePath);
+                        ConexionERP.fromAppToOdoo(filePath);
                         break;
                     case "Cliente":
                         filePath = Path.Combine(filePath, "Cliente.xml");
                         ConexionERP.ClienteToXML(filePath);
+                        ConexionERP.fromAppToOdoo(filePath);
                         break;
                     case "Monitor":
                         filePath = Path.Combine(filePath, "Monitor.xml");
                         ConexionERP.MonitorToXML(filePath);
+                        ConexionERP.fromAppToOdoo(filePath);
                         break;
                     case "Persona":
                         filePath = Path.Combine(filePath, "Persona.xml");
                         ConexionERP.PersonaToXML(filePath);
+                        ConexionERP.fromAppToOdoo(filePath);
                         break;
                     case "Reserva":
                         filePath = Path.Combine(filePath, "Reserva.xml");
                         ConexionERP.ReservaToXML(filePath);
+                        ConexionERP.fromAppToOdoo(filePath);
                         break;
                     case "Sala":
                         filePath = Path.Combine(filePath, "Sala.xml");
                         ConexionERP.SalaToXML(filePath);
+                        ConexionERP.fromAppToOdoo(filePath);
                         break;                    
                 }
                 MessageBox.Show("El archivo XML se a Exportado con exito.");
-            }             
+            } else MessageBox.Show("Seleccione una tabla de datos.");
         }
 
         private void btnImport_Click(object sender, EventArgs e)
         {
             string filePath;
-            cbTablaSelect.SelectedItem = null;
-            dataGridView1.DataSource = null;
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                filePath = openFileDialog1.FileName;
-                string fileName = Path.GetFileName(filePath);
+            // Inicializo el la ruta de los archivos en la carpeta Documentos por defecto del ordenador
+            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            filePath = documentsPath + @"\_XMLfiles";
 
-                switch(fileName)
+            if (cbTablaSelect.SelectedIndex != -1)
+            {
+                switch (cbTablaSelect.SelectedItem)
                 {
-                    case "Actividad.xml":
+                    case "Actividad":
+                        filePath = Path.Combine(filePath, "Actividad.xml");
+                        ConexionERP.fromOdooToApp(filePath);
                         ConexionERP.XmlToActividad(filePath);
                         break;
-                    case "Administrador.xml":
-                        ConexionERP.XmlToAdministrador(filePath);
+                    case "Administrador":
+                        filePath = Path.Combine(filePath, "Administrador.xml");
+                        ConexionERP.fromOdooToApp(filePath);
+                        ConexionERP.XmlToAdministrador(filePath);                        
                         break;
-                    case "Clase.xml":
-                        ConexionERP.XmlToClase(filePath);
+                    case "Clase":
+                        filePath = Path.Combine(filePath, "Clase.xml");
+                        ConexionERP.fromOdooToApp(filePath);
+                        ConexionERP.XmlToClase(filePath);                        
                         break;
-                    case "Cliente.xml":
-                        ConexionERP.XmlToCliente(filePath);
+                    case "Cliente":
+                        filePath = Path.Combine(filePath, "Cliente.xml");
+                        ConexionERP.fromOdooToApp(filePath);
+                        ConexionERP.XmlToCliente(filePath);                        
                         break;
-                    case "Monitor.xml":
-                        ConexionERP.XmlToMonitor(filePath);
+                    case "Monitor":
+                        filePath = Path.Combine(filePath, "Monitor.xml");
+                        ConexionERP.fromOdooToApp(filePath);
+                        ConexionERP.XmlToMonitor(filePath);                        
                         break;
-                    case "Persona.xml":
-                        ConexionERP.XmlToPersona(filePath);
+                    case "Persona":
+                        filePath = Path.Combine(filePath, "Persona.xml");
+                        ConexionERP.fromOdooToApp(filePath);
+                        ConexionERP.XmlToPersona(filePath);                        
                         break;
-                    case "Reserva.xml":
+                    case "Reserva":
+                        filePath = Path.Combine(filePath, "Reserva.xml");
+                        ConexionERP.fromOdooToApp(filePath);
                         ConexionERP.XmlToReserva(filePath);
                         break;
-                    case "Sala.xml":
+                    case "Sala":
+                        filePath = Path.Combine(filePath, "Sala.xml");
+                        ConexionERP.fromOdooToApp(filePath);
                         ConexionERP.XmlToSala(filePath);
                         break;
                 }
                 MessageBox.Show("El archivo XML se a Importado con exito.");
-            }            
+            } else MessageBox.Show("Seleccione una tabla de datos.");
         }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            frmMenuAdmin menuAdmin = new frmMenuAdmin();
+            menuAdmin.Show();
+            this.Close();
+        }
+
+        
     }
 }

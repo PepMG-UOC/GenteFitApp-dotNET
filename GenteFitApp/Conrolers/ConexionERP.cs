@@ -8,11 +8,89 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Data.Entity;
 using System.Xml;
+using System.Diagnostics;
+using System.Drawing;
+using System.Reflection;
 
 namespace GenteFitApp.Conrolers
 {
     public class ConexionERP
-    {           // Los metodos de esta clase estan sin proteger su integridad de BBDD ni a prueba de fallos-> Pendiente Producto 4
+    {
+        public static void CheckAndCopyFiles()
+        {
+            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string folderPath = Path.Combine(documentsPath, "_XMLfiles");
+            string[] fileNames = { 
+                "FromAppToOdooSala.py",
+                "FromAppToOdooClase.py",
+                "FromAppToOdooPersona.py",
+                "FromAppToOdooMonitor.py" };
+
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            foreach (string fileName in fileNames)
+            {
+                string filePath = Path.Combine(folderPath, fileName);
+
+                if (!File.Exists(filePath))
+                {
+                    Assembly assembly = Assembly.GetExecutingAssembly();
+                    string resourceName = "TuProyecto." + fileName;
+
+                    using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+                    {
+                        using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            stream.CopyTo(fileStream);
+                        }
+                    }
+                }
+            }
+        }
+
+        public static void fromAppToOdoo(string filePath)
+        {
+            string ruta = Path.GetDirectoryName(filePath);
+            string tablaName = Path.GetFileNameWithoutExtension(filePath);
+            var scripName = ruta + @"\FromAppToOdoo" + tablaName + ".py";
+            var ejecutaPY = new ProcessStartInfo();
+            //ejecutaPY.FileName = @"C:\Users\Pep-Admin\AppData\Local\Programs\Python\Python310\python.exe";
+            string rutaPython = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Programs", "Python", "Python310", "python.exe");
+            ejecutaPY.FileName = rutaPython;
+
+            ejecutaPY.Arguments = $"\"{scripName}\"";
+            Process bgrProceso = new Process();
+            bgrProceso.StartInfo = ejecutaPY;
+            bgrProceso.StartInfo.UseShellExecute = false;
+            bgrProceso.StartInfo.RedirectStandardInput = true;
+            bgrProceso.StartInfo.RedirectStandardOutput = true;
+            bgrProceso.Start();
+
+        }
+
+        public static void fromOdooToApp(string filePath)
+        {
+            string ruta = Path.GetDirectoryName(filePath);
+            string tablaName = Path.GetFileNameWithoutExtension(filePath);
+            var scripName = ruta + @"\FromOdooToApp" + tablaName + ".py";
+            var ejecutaPY = new ProcessStartInfo();
+            //ejecutaPY.FileName = @"C:\Users\Pep-Admin\AppData\Local\Programs\Python\Python310\python.exe";
+            string rutaPython = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Programs", "Python", "Python310", "python.exe");
+            ejecutaPY.FileName = rutaPython;
+
+            ejecutaPY.Arguments = $"\"{scripName}\"";
+            Process bgrProceso = new Process();
+            bgrProceso.StartInfo = ejecutaPY;
+            bgrProceso.StartInfo.UseShellExecute = false;
+            bgrProceso.StartInfo.RedirectStandardInput = true;
+            bgrProceso.StartInfo.RedirectStandardOutput = true;
+            bgrProceso.Start();
+
+        }
+
 
         public static void  ActividadToXML(string filePath)
         {
