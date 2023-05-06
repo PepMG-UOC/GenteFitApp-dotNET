@@ -203,6 +203,16 @@ namespace GenteFitApp.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap OdooIMG {
+            get {
+                object obj = ResourceManager.GetObject("OdooIMG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap salas {
             get {
                 object obj = ResourceManager.GetObject("salas", resourceCulture);

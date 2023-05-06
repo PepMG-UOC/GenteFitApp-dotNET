@@ -33,10 +33,12 @@
             this.pbReservas = new System.Windows.Forms.PictureBox();
             this.pbCentro = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pbOdoo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbReservas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCentro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOdoo)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSalir
@@ -91,18 +93,31 @@
             // 
             this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox3.Image = global::GenteFitApp.Properties.Resources.GenteFit_Entrena_y_vive;
-            this.pictureBox3.Location = new System.Drawing.Point(944, 50);
+            this.pictureBox3.Location = new System.Drawing.Point(898, 50);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(222, 235);
+            this.pictureBox3.Size = new System.Drawing.Size(168, 164);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 11;
             this.pictureBox3.TabStop = false;
+            // 
+            // pbOdoo
+            // 
+            this.pbOdoo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pbOdoo.Image = global::GenteFitApp.Properties.Resources.OdooIMG;
+            this.pbOdoo.Location = new System.Drawing.Point(898, 436);
+            this.pbOdoo.Name = "pbOdoo";
+            this.pbOdoo.Size = new System.Drawing.Size(206, 191);
+            this.pbOdoo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOdoo.TabIndex = 12;
+            this.pbOdoo.TabStop = false;
+            this.pbOdoo.Click += new System.EventHandler(this.pbOdoo_Click);
             // 
             // frmMenuAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1267, 714);
+            this.Controls.Add(this.pbOdoo);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pbCentro);
             this.Controls.Add(this.pbReservas);
@@ -116,6 +131,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbReservas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCentro)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOdoo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -127,5 +143,6 @@
         private System.Windows.Forms.PictureBox pbReservas;
         private System.Windows.Forms.PictureBox pbCentro;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pbOdoo;
     }
 }

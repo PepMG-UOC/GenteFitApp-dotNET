@@ -47,5 +47,12 @@ namespace GenteFitApp.Vistas
             loggingForm.Show();
             this.Close();
         }
+
+        private void pbOdoo_Click(object sender, EventArgs e)
+        {
+            frmImportExportXML importExportOdoo= new frmImportExportXML();
+            importExportOdoo.Show();
+            this.Close();
+        }
     }
 }

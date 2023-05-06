@@ -8,11 +8,32 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Data.Entity;
 using System.Xml;
+using System.Diagnostics;
+using System.Drawing;
 
 namespace GenteFitApp.Conrolers
 {
     public class ConexionERP
-    {           // Los metodos de esta clase estan sin proteger su integridad de BBDD ni a prueba de fallos-> Pendiente Producto 4
+    {          
+
+        public static void fromAppToOdoo(string filePath)
+        {
+            string ruta = Path.GetDirectoryName(filePath);
+            string tablaName = Path.GetFileNameWithoutExtension(filePath);
+            var scripName = ruta + @"\FromAppToOdoo" + tablaName + ".py";
+            var ejecutaPY = new ProcessStartInfo();
+            ejecutaPY.FileName = @"C:\Users\Pep-Admin\AppData\Local\Programs\Python\Python310\python.exe";
+            
+            ejecutaPY.Arguments = $"\"{scripName}\"";
+            Process bgrProceso = new Process();
+            bgrProceso.StartInfo = ejecutaPY;
+            bgrProceso.StartInfo.UseShellExecute = false;
+            bgrProceso.StartInfo.RedirectStandardInput = true;
+            bgrProceso.StartInfo.RedirectStandardOutput = true;
+            bgrProceso.Start();
+
+        }
+
 
         public static void  ActividadToXML(string filePath)
         {
