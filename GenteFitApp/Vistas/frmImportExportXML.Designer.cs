@@ -136,6 +136,7 @@
             this.Name = "frmImportExportXML";
             this.Text = "Import-Export XMLs";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmImportExportXML_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

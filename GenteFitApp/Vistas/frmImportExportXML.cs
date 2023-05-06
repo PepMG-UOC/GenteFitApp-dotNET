@@ -13,7 +13,12 @@ namespace GenteFitApp.Vistas
         {
             InitializeComponent();
         }
-               
+
+        private void frmImportExportXML_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void cbTablaSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
            
@@ -123,28 +128,44 @@ namespace GenteFitApp.Vistas
                 switch (cbTablaSelect.SelectedItem)
                 {
                     case "Actividad":
-                        ConexionERP.XmlToActividad(filePath + @"\Actividad.xml");
+                        filePath = Path.Combine(filePath, "Actividad.xml");
+                        ConexionERP.fromOdooToApp(filePath);
+                        ConexionERP.XmlToActividad(filePath);
                         break;
                     case "Administrador":
-                        ConexionERP.XmlToAdministrador(filePath + @"\Administrador.xml");
+                        filePath = Path.Combine(filePath, "Administrador.xml");
+                        ConexionERP.fromOdooToApp(filePath);
+                        ConexionERP.XmlToAdministrador(filePath);                        
                         break;
                     case "Clase":
-                        ConexionERP.XmlToClase(filePath + @"\Clase.xml");
+                        filePath = Path.Combine(filePath, "Clase.xml");
+                        ConexionERP.fromOdooToApp(filePath);
+                        ConexionERP.XmlToClase(filePath);                        
                         break;
                     case "Cliente":
-                        ConexionERP.XmlToCliente(filePath + @"\Cliente.xml");
+                        filePath = Path.Combine(filePath, "Cliente.xml");
+                        ConexionERP.fromOdooToApp(filePath);
+                        ConexionERP.XmlToCliente(filePath);                        
                         break;
                     case "Monitor":
-                        ConexionERP.XmlToMonitor(filePath + @"\Monitor.xml");
+                        filePath = Path.Combine(filePath, "Monitor.xml");
+                        ConexionERP.fromOdooToApp(filePath);
+                        ConexionERP.XmlToMonitor(filePath);                        
                         break;
                     case "Persona":
-                        ConexionERP.XmlToPersona(filePath + @"\Persona.xml");
+                        filePath = Path.Combine(filePath, "Persona.xml");
+                        ConexionERP.fromOdooToApp(filePath);
+                        ConexionERP.XmlToPersona(filePath);                        
                         break;
                     case "Reserva":
-                        ConexionERP.XmlToReserva(filePath + @"\Reserva.xml");
+                        filePath = Path.Combine(filePath, "Reserva.xml");
+                        ConexionERP.fromOdooToApp(filePath);
+                        ConexionERP.XmlToReserva(filePath);
                         break;
                     case "Sala":
-                        ConexionERP.XmlToSala(filePath + @"\Sala.xml");
+                        filePath = Path.Combine(filePath, "Sala.xml");
+                        ConexionERP.fromOdooToApp(filePath);
+                        ConexionERP.XmlToSala(filePath);
                         break;
                 }
                 MessageBox.Show("El archivo XML se a Importado con exito.");
@@ -157,5 +178,7 @@ namespace GenteFitApp.Vistas
             menuAdmin.Show();
             this.Close();
         }
+
+        
     }
 }
