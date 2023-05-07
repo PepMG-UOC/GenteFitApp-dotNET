@@ -50,7 +50,7 @@ namespace GenteFitApp.Conrolers
                 if (!File.Exists(filePath))
                 {
                     Assembly assembly = Assembly.GetExecutingAssembly();
-                    string resourceName = "GenteFitApp.Properties.Resources." + fileName;
+                    string resourceName = "GenteFitApp.Resources." + fileName;
 
                     using (Stream stream = assembly.GetManifestResourceStream(resourceName))
                     {
@@ -65,20 +65,24 @@ namespace GenteFitApp.Conrolers
 
         public static void fromAppToOdoo(string filePath)
         {
-            string ruta = Path.GetDirectoryName(filePath);
-            string tablaName = Path.GetFileNameWithoutExtension(filePath);
-            var scripName = ruta + @"\FromAppToOdoo" + tablaName + ".py";
-            var ejecutaPY = new ProcessStartInfo();           
-            string rutaPython = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Programs", "Python", "Python310", "python.exe");
-            ejecutaPY.FileName = rutaPython;
+            if (File.Exists(filePath)) 
+            {
+                string ruta = Path.GetDirectoryName(filePath);
+                string tablaName = Path.GetFileNameWithoutExtension(filePath);
+                var scripName = ruta + @"\FromAppToOdoo" + tablaName + ".py";
+                var ejecutaPY = new ProcessStartInfo();
+                string rutaPython = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Programs", "Python", "Python310", "python.exe");
+                ejecutaPY.FileName = rutaPython;
 
-            ejecutaPY.Arguments = $"\"{scripName}\"";
-            Process bgrProceso = new Process();
-            bgrProceso.StartInfo = ejecutaPY;
-            bgrProceso.StartInfo.UseShellExecute = false;
-            bgrProceso.StartInfo.RedirectStandardInput = true;
-            bgrProceso.StartInfo.RedirectStandardOutput = true;
-            bgrProceso.Start();
+                ejecutaPY.Arguments = $"\"{scripName}\"";
+                Process bgrProceso = new Process();
+                bgrProceso.StartInfo = ejecutaPY;
+                bgrProceso.StartInfo.UseShellExecute = false;
+                bgrProceso.StartInfo.RedirectStandardInput = true;
+                bgrProceso.StartInfo.RedirectStandardOutput = true;
+                bgrProceso.StartInfo.CreateNoWindow = true;
+                bgrProceso.Start();
+            }               
 
         }
 
@@ -97,6 +101,7 @@ namespace GenteFitApp.Conrolers
             bgrProceso.StartInfo.UseShellExecute = false;
             bgrProceso.StartInfo.RedirectStandardInput = true;
             bgrProceso.StartInfo.RedirectStandardOutput = true;
+            bgrProceso.StartInfo.CreateNoWindow = true;
             bgrProceso.Start();
 
         }
