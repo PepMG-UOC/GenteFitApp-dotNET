@@ -11,6 +11,7 @@ using System.Xml;
 using System.Diagnostics;
 using System.Drawing;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace GenteFitApp.Conrolers
 {
@@ -63,9 +64,9 @@ namespace GenteFitApp.Conrolers
             }
         }
 
-        public static void fromAppToOdoo(string filePath)
+        public static string fromAppToOdoo(string filePath)
         {
-            if (File.Exists(filePath)) 
+            if (File.Exists(filePath))
             {
                 string ruta = Path.GetDirectoryName(filePath);
                 string tablaName = Path.GetFileNameWithoutExtension(filePath);
@@ -81,12 +82,18 @@ namespace GenteFitApp.Conrolers
                 bgrProceso.StartInfo.RedirectStandardInput = true;
                 bgrProceso.StartInfo.RedirectStandardOutput = true;
                 bgrProceso.StartInfo.CreateNoWindow = true;
+                Cursor.Current = Cursors.WaitCursor;
                 bgrProceso.Start();
-            }               
+                string resultMsg = bgrProceso.StandardOutput.ReadToEnd();
+                bgrProceso.WaitForExit();
+                Cursor.Current = Cursors.Default;
+                return resultMsg;
+            }
+            else return "No hay datos en la tabla.";             
 
         }
 
-        public static void fromOdooToApp(string filePath)
+        public static string fromOdooToApp(string filePath)
         {
             string ruta = Path.GetDirectoryName(filePath);
             string tablaName = Path.GetFileNameWithoutExtension(filePath);
@@ -102,7 +109,12 @@ namespace GenteFitApp.Conrolers
             bgrProceso.StartInfo.RedirectStandardInput = true;
             bgrProceso.StartInfo.RedirectStandardOutput = true;
             bgrProceso.StartInfo.CreateNoWindow = true;
+            Cursor.Current = Cursors.WaitCursor;
             bgrProceso.Start();
+            string resultMsg = bgrProceso.StandardOutput.ReadToEnd();
+            bgrProceso.WaitForExit();
+            Cursor.Current = Cursors.Default;
+            return resultMsg;
 
         }
 
