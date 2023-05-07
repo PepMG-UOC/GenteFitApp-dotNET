@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace GenteFitApp.Conrolers
 {
