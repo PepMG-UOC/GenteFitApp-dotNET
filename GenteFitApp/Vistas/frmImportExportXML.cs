@@ -16,7 +16,7 @@ namespace GenteFitApp.Vistas
 
         private void frmImportExportXML_Load(object sender, EventArgs e)
         {
-            //ConexionERP.CheckAndCopyFiles();
+            ConexionERP.CheckAndCopyFiles();
         }
 
         private void cbTablaSelect_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,6 +63,7 @@ namespace GenteFitApp.Vistas
         private void btnExport_Click(object sender, EventArgs e)
         {            
             string filePath;
+            string resultMsg= string.Empty;
             // Inicializo el la ruta de los archivos en la carpeta Documentos por defecto del ordenador
             string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             filePath = documentsPath + @"\_XMLfiles";
@@ -112,7 +113,7 @@ namespace GenteFitApp.Vistas
                         ConexionERP.fromAppToOdoo(filePath);
                         break;                    
                 }
-                MessageBox.Show("El archivo XML se a Exportado con exito.");
+                MessageBox.Show(resultMsg);
             } else MessageBox.Show("Seleccione una tabla de datos.");
         }
 
