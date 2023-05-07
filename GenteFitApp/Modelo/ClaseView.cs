@@ -21,6 +21,7 @@ namespace GenteFitApp.Modelo
         public int id_Clase { get; set; }
         public int actividadID { get; set; }
         public int salaID { get; set; }
+        [XmlElement("fechaHora", DataType = "dateTime")]
         public DateTime fechaHora { get; set; }
     }
 }

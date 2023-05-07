@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,14 @@ namespace GenteFitApp.Modelo
     {
         public int id_Cliente { get; set; }
         public int personaID { get; set; }
+        [XmlIgnore]
         public DateTime? fechaAlta { get; set; }
+
+        [XmlElement("fechaAlta")]
+        public string FechaAltaXml
+        {
+            get => fechaAlta?.ToString("yyyy-MM-ddTHH:mm:ss");
+            set => fechaAlta = DateTime.ParseExact(value, "yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
+        }
     }
 }

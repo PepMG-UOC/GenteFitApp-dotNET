@@ -57,6 +57,7 @@ namespace GenteFitApp.Conrolers
                     int numReservas = ConsultasBase.numReservasClase(IDclase);  // Obtiene el número de reservas para la clase.                  
                     nuevaReserva.claseID = IDclase;
                     nuevaReserva.clienteID = IDcliente;
+                    nuevaReserva.posicion = numReservas;
                     // Verifica si hay plazas disponibles para la clase.
                     if (numReservas + 1 <= miClase.Sala.numPlazas) nuevaReserva.confirmada = true;
                     else nuevaReserva.confirmada = false;
