@@ -130,6 +130,54 @@
   <data name="ExitBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ExitBtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="FromAppToOdooActividad" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FromAppToOdooActividad.py;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FromAppToOdooAdministrador" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FromAppToOdooAdministrador.py;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FromAppToOdooClase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FromAppToOdooClase.py;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FromAppToOdooCliente" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FromAppToOdooCliente.py;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FromAppToOdooMonitor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FromAppToOdooMonitor.py;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FromAppToOdooPersona" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FromAppToOdooPersona.py;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FromAppToOdooReserva" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FromAppToOdooReserva.py;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FromAppToOdooSala" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FromAppToOdooSala.py;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FromOdooToAppActividad" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FromOdooToAppActividad.py;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FromOdooToAppAdministrador" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FromOdooToAppAdministrador.py;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FromOdooToAppClase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FromOdooToAppClase.py;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FromOdooToAppCliente" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FromOdooToAppCliente.py;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FromOdooToAppMonitor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FromOdooToAppMonitor.py;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FromOdooToAppPersona" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FromOdooToAppPersona.py;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FromOdooToAppReserva" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FromOdooToAppReserva.py;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FromOdooToAppSala" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FromOdooToAppSala.py;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="GenteFit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GenteFit.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
