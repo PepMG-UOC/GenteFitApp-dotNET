@@ -145,31 +145,48 @@ namespace GenteFitApp.Conrolers
             }
         }
 
-        public static void bajaSalaById(int IDSala)
+        public static string detallesSala(int id)
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
-                Sala sala = getSalaById(IDSala);                
-                if (sala != null)                
-                {                    
-                    foreach (Clase clase in sala.Clase)
-                    {
-                        List<Reserva> reservas = dBGfit.Reserva.Where(r => r.claseID == clase.id_Clase).ToList();
-                        foreach (Reserva reserva in clase.Reserva)
-                        {
-                            dBGfit.Reserva.Remove(reserva);
-                        }
-                        dBGfit.Clase.Remove(clase);
-                    }
-                    dBGfit.Sala.Remove(sala);
-                    dBGfit.SaveChanges();
+                var sala = dBGfit.Sala.FirstOrDefault(s => s.id_Sala == id);
+                if (sala != null)
+                {
+                    return "Sala ID: " + sala.id_Sala + " NºPlazas: " + sala.numPlazas + " m2: " + sala.dimensionM2;
                 }
+                else return string.Empty;
             }
         }
 
-        public static void altaClase()
+        public static bool bajaSalaById(int IDSala)
         {
-
+            try
+            {
+                using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+                {
+                    Sala sala = dBGfit.Sala.FirstOrDefault(s => s.id_Sala == IDSala);
+                    if (sala != null)
+                    {
+                        List<Clase> clases = dBGfit.Clase.Where(c => c.salaID == IDSala).ToList();
+                        foreach (Clase clase in clases)
+                        {
+                            List<Reserva> reservas = dBGfit.Reserva.Where(r => r.claseID == clase.id_Clase).ToList();
+                            foreach (Reserva reserva in reservas)
+                            {
+                                dBGfit.Reserva.Remove(reserva);
+                            }
+                            dBGfit.Clase.Remove(clase);
+                        }
+                        dBGfit.Sala.Remove(sala);
+                        dBGfit.SaveChanges();
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         public static Clase getClaseByID(int id)
