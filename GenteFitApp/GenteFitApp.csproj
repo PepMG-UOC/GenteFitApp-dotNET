@@ -316,6 +316,22 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\FromAppToOdooActividad.py" />
+    <None Include="Resources\FromAppToOdooAdministrador.py" />
+    <None Include="Resources\FromAppToOdooClase.py" />
+    <None Include="Resources\FromAppToOdooCliente.py" />
+    <None Include="Resources\FromAppToOdooMonitor.py" />
+    <None Include="Resources\FromAppToOdooPersona.py" />
+    <None Include="Resources\FromAppToOdooReserva.py" />
+    <None Include="Resources\FromAppToOdooSala.py" />
+    <None Include="Resources\FromOdooToAppActividad.py" />
+    <None Include="Resources\FromOdooToAppAdministrador.py" />
+    <None Include="Resources\FromOdooToAppClase.py" />
+    <None Include="Resources\FromOdooToAppCliente.py" />
+    <None Include="Resources\FromOdooToAppMonitor.py" />
+    <None Include="Resources\FromOdooToAppPersona.py" />
+    <None Include="Resources\FromOdooToAppReserva.py" />
+    <None Include="Resources\FromOdooToAppSala.py" />
     <None Include="Resources\mailIcon.png" />
     <None Include="Resources\gestionUsuario.PNG" />
     <None Include="Resources\ExitBtn.png" />

@@ -16,7 +16,7 @@ namespace GenteFitApp.Vistas
 
         private void frmImportExportXML_Load(object sender, EventArgs e)
         {
-
+            //ConexionERP.CheckAndCopyFiles();
         }
 
         private void cbTablaSelect_SelectedIndexChanged(object sender, EventArgs e)
@@ -155,19 +155,20 @@ namespace GenteFitApp.Vistas
                     case "Persona":
                         filePath = Path.Combine(filePath, "Persona.xml");
                         ConexionERP.fromOdooToApp(filePath);
-                        ConexionERP.XmlToPersona(filePath);                        
+                        ConexionERP.XmlToPersona(filePath);                         
                         break;
                     case "Reserva":
                         filePath = Path.Combine(filePath, "Reserva.xml");
                         ConexionERP.fromOdooToApp(filePath);
-                        ConexionERP.XmlToReserva(filePath);
+                        ConexionERP.XmlToReserva(filePath);                        ;
                         break;
                     case "Sala":
                         filePath = Path.Combine(filePath, "Sala.xml");
                         ConexionERP.fromOdooToApp(filePath);
-                        ConexionERP.XmlToSala(filePath);
+                        ConexionERP.XmlToSala(filePath);                                            
                         break;
                 }
+                dataGridView1.Refresh();
                 MessageBox.Show("El archivo XML se a Importado con exito.");
             } else MessageBox.Show("Seleccione una tabla de datos.");
         }

@@ -24,7 +24,19 @@ namespace GenteFitApp.Conrolers
                 "FromAppToOdooSala.py",
                 "FromAppToOdooClase.py",
                 "FromAppToOdooPersona.py",
-                "FromAppToOdooMonitor.py" };
+                "FromAppToOdooMonitor.py",
+                "FromAppToOdooReserva.py",
+                "FromAppToOdooCliente.py",
+                "FromAppToOdooAdministrador.py",
+                "FromAppToOdooActividad.py",
+                "FromOdooToAppActividad.py",
+                "FromOdooToAppAdministrador.py",
+                "FromOdooToAppClase.py",
+                "FromOdooToAppCliente.py",
+                "FromOdooToAppMonitor.py",
+                "FromOdooToAppPersona.py",
+                "FromOdooToAppReserva.py",
+                "FromOdooToAppSala.py" };
 
             if (!Directory.Exists(folderPath))
             {
@@ -38,7 +50,7 @@ namespace GenteFitApp.Conrolers
                 if (!File.Exists(filePath))
                 {
                     Assembly assembly = Assembly.GetExecutingAssembly();
-                    string resourceName = "TuProyecto." + fileName;
+                    string resourceName = "GenteFitApp.Properties.Resources." + fileName;
 
                     using (Stream stream = assembly.GetManifestResourceStream(resourceName))
                     {
@@ -56,8 +68,7 @@ namespace GenteFitApp.Conrolers
             string ruta = Path.GetDirectoryName(filePath);
             string tablaName = Path.GetFileNameWithoutExtension(filePath);
             var scripName = ruta + @"\FromAppToOdoo" + tablaName + ".py";
-            var ejecutaPY = new ProcessStartInfo();
-            //ejecutaPY.FileName = @"C:\Users\Pep-Admin\AppData\Local\Programs\Python\Python310\python.exe";
+            var ejecutaPY = new ProcessStartInfo();           
             string rutaPython = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Programs", "Python", "Python310", "python.exe");
             ejecutaPY.FileName = rutaPython;
 
@@ -76,8 +87,7 @@ namespace GenteFitApp.Conrolers
             string ruta = Path.GetDirectoryName(filePath);
             string tablaName = Path.GetFileNameWithoutExtension(filePath);
             var scripName = ruta + @"\FromOdooToApp" + tablaName + ".py";
-            var ejecutaPY = new ProcessStartInfo();
-            //ejecutaPY.FileName = @"C:\Users\Pep-Admin\AppData\Local\Programs\Python\Python310\python.exe";
+            var ejecutaPY = new ProcessStartInfo();            
             string rutaPython = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Programs", "Python", "Python310", "python.exe");
             ejecutaPY.FileName = rutaPython;
 
@@ -98,12 +108,16 @@ namespace GenteFitApp.Conrolers
             {
                 // Recuperamos el objeto lista de objetos ActividadView
                 List<ActividadView> listaActividades = GestionCentro.listarActividades();
-                // Serializar el objeto (lista) en formato XML
-                XmlSerializer serializer = new XmlSerializer(typeof(List<ActividadView>), new XmlRootAttribute("ActividadLst"));
-                using (TextWriter writer = new StreamWriter(filePath))
+                if(listaActividades.Count > 0)
                 {
-                    serializer.Serialize(writer, listaActividades);
+                    // Serializar el objeto (lista) en formato XML
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<ActividadView>), new XmlRootAttribute("ActividadLst"));
+                    using (TextWriter writer = new StreamWriter(filePath))
+                    {
+                        serializer.Serialize(writer, listaActividades);
+                    }
                 }
+                
             }
         }
 
@@ -112,11 +126,15 @@ namespace GenteFitApp.Conrolers
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
                 List<AdministradorView> listaAdministradores = Usuarios.listarAdministradores();
-                XmlSerializer serializer = new XmlSerializer(typeof(List<AdministradorView>), new XmlRootAttribute("AdministradorLst"));
-                using (TextWriter writer = new StreamWriter(filePath))
+                if(listaAdministradores.Count > 0)
                 {
-                    serializer.Serialize(writer, listaAdministradores);
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<AdministradorView>), new XmlRootAttribute("AdministradorLst"));
+                    using (TextWriter writer = new StreamWriter(filePath))
+                    {
+                        serializer.Serialize(writer, listaAdministradores);
+                    }
                 }
+                
             }
         }
 
@@ -125,11 +143,15 @@ namespace GenteFitApp.Conrolers
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
                 List<ClaseView> listaClases = GestionCentro.listarClases();
-                XmlSerializer serializer = new XmlSerializer(typeof(List<ClaseView>), new XmlRootAttribute("ClaseLst"));
-                using (TextWriter writer = new StreamWriter(filePath))
+                if(listaClases.Count > 0)
                 {
-                    serializer.Serialize(writer, listaClases);
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<ClaseView>), new XmlRootAttribute("ClaseLst"));
+                    using (TextWriter writer = new StreamWriter(filePath))
+                    {
+                        serializer.Serialize(writer, listaClases);
+                    }
                 }
+                
             }
         }
 
@@ -138,11 +160,15 @@ namespace GenteFitApp.Conrolers
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
                 List<ClienteView> listaClientes = Usuarios.listarClientes();
-                XmlSerializer serializer = new XmlSerializer(typeof(List<ClienteView>), new XmlRootAttribute("ClienteLst"));
-                using (TextWriter writer = new StreamWriter(filePath))
+                if(listaClientes.Count > 0)
                 {
-                    serializer.Serialize(writer, listaClientes);
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<ClienteView>), new XmlRootAttribute("ClienteLst"));
+                    using (TextWriter writer = new StreamWriter(filePath))
+                    {
+                        serializer.Serialize(writer, listaClientes);
+                    }
                 }
+                
             }
         }
 
@@ -151,11 +177,15 @@ namespace GenteFitApp.Conrolers
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
                 List<MonitorView> listaMonitores = Usuarios.listarMonitores();
-                XmlSerializer serializer = new XmlSerializer(typeof(List<MonitorView>), new XmlRootAttribute("MonitorLst"));
-                using (TextWriter writer = new StreamWriter(filePath))
+                if(listaMonitores.Count > 0)
                 {
-                    serializer.Serialize(writer, listaMonitores);
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<MonitorView>), new XmlRootAttribute("MonitorLst"));
+                    using (TextWriter writer = new StreamWriter(filePath))
+                    {
+                        serializer.Serialize(writer, listaMonitores);
+                    }
                 }
+                
             }
         }
 
@@ -164,11 +194,15 @@ namespace GenteFitApp.Conrolers
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
                 List<PersonaView> listaPersonas = Usuarios.listarPersonas();
-                XmlSerializer serializer = new XmlSerializer(typeof(List<PersonaView>), new XmlRootAttribute("PersonaLst"));
-                using (TextWriter writer = new StreamWriter(filePath))
+                if(listaPersonas.Count > 0)
                 {
-                    serializer.Serialize(writer, listaPersonas);
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<PersonaView>), new XmlRootAttribute("PersonaLst"));
+                    using (TextWriter writer = new StreamWriter(filePath))
+                    {
+                        serializer.Serialize(writer, listaPersonas);
+                    }
                 }
+                
             }
         }
 
@@ -176,12 +210,16 @@ namespace GenteFitApp.Conrolers
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
-                List<ReservaView> listaReservas = ConsultasBase.listarReservas();                
-                XmlSerializer serializer = new XmlSerializer(typeof(List<ReservaView>), new XmlRootAttribute("ReservaLst"));
-                using (TextWriter writer = new StreamWriter(filePath))
+                List<ReservaView> listaReservas = ConsultasBase.listarReservas();   
+                if(listaReservas.Count > 0)
                 {
-                    serializer.Serialize(writer, listaReservas);
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<ReservaView>), new XmlRootAttribute("ReservaLst"));
+                    using (TextWriter writer = new StreamWriter(filePath))
+                    {
+                        serializer.Serialize(writer, listaReservas);
+                    }
                 }
+                
             }
         }
 
@@ -189,12 +227,16 @@ namespace GenteFitApp.Conrolers
         {
             using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
             {
-                List<SalaView> listaSalas = GestionCentro.listarSalas();               
-                XmlSerializer serializer = new XmlSerializer(typeof(List<SalaView>), new XmlRootAttribute("SalaLst"));
-                using (TextWriter writer = new StreamWriter(filePath))
+                List<SalaView> listaSalas = GestionCentro.listarSalas(); 
+                if(listaSalas.Count > 0)
                 {
-                    serializer.Serialize(writer, listaSalas);
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<SalaView>), new XmlRootAttribute("SalaLst"));
+                    using (TextWriter writer = new StreamWriter(filePath))
+                    {
+                        serializer.Serialize(writer, listaSalas);
+                    }
                 }
+                
             }
         }
 
@@ -204,432 +246,462 @@ namespace GenteFitApp.Conrolers
         {
             ActividadLst ActividadXmlLst = new ActividadLst();
             XmlSerializer serializer = new XmlSerializer(typeof(ActividadLst));
-            using (StreamReader reader = new StreamReader(filePath))
+            if (File.Exists(filePath))
             {
-                ActividadXmlLst = (ActividadLst)serializer.Deserialize(reader);              
-            }
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    ActividadXmlLst = (ActividadLst)serializer.Deserialize(reader);
+                }
 
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
-            {
-                // Recuperar todas las Actividades de la BD
-                var ActividadBDLst = dBGfit.Actividad.ToList();
-                foreach (var ActividadXml in ActividadXmlLst.Actividades)
+                using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
                 {
-                    // Buscar si la Actividad ya existe en la BD
-                    var ActividadBD = ActividadBDLst.FirstOrDefault(s => s.id_Actividad == ActividadXml.id_Actividad);
-                    if (ActividadBD != null)
-                    {   
-                        // Actualiza los datos
-                        ActividadBD.nombre = ActividadXml.nombre;
-                        ActividadBD.descripcion = ActividadXml.descripcion;
-                        ActividadBD.monitorID = ActividadXml.monitorID;                        
-                        dBGfit.Entry(ActividadBD).State = EntityState.Modified;
-                    }
-                    else
+                    // Recuperar todas las Actividades de la BD
+                    var ActividadBDLst = dBGfit.Actividad.ToList();
+                    foreach (var ActividadXml in ActividadXmlLst.Actividades)
                     {
-                        // La Actividad no existe en la BD, crear un nuevo objeto Actividad y agregarlo
-                        var ActividadNueva = new Actividad
+                        // Buscar si la Actividad ya existe en la BD
+                        var ActividadBD = ActividadBDLst.FirstOrDefault(s => s.id_Actividad == ActividadXml.id_Actividad);
+                        if (ActividadBD != null)
                         {
-                            id_Actividad = ActividadXml.id_Actividad,
-                            nombre = ActividadXml.nombre,
-                            descripcion = ActividadXml.descripcion,
-                            monitorID = ActividadXml.monitorID
-                        };
-                        dBGfit.Actividad.Add(ActividadNueva);
+                            // Actualiza los datos
+                            ActividadBD.nombre = ActividadXml.nombre;
+                            ActividadBD.descripcion = ActividadXml.descripcion;
+                            ActividadBD.monitorID = ActividadXml.monitorID;
+                            dBGfit.Entry(ActividadBD).State = EntityState.Modified;
+                        }
+                        else
+                        {
+                            // La Actividad no existe en la BD, crear un nuevo objeto Actividad y agregarlo
+                            var ActividadNueva = new Actividad
+                            {
+                                id_Actividad = ActividadXml.id_Actividad,
+                                nombre = ActividadXml.nombre,
+                                descripcion = ActividadXml.descripcion,
+                                monitorID = ActividadXml.monitorID
+                            };
+                            dBGfit.Actividad.Add(ActividadNueva);
+                        }
                     }
+                    //// Eliminar las Actividades de la BD que no aparecen en el archivo XML
+                    //foreach (var ActividadBD in ActividadBDLst)
+                    //{
+                    //    var ActividadXml = ActividadXmlLst.Actividades.FirstOrDefault(s => s.id_Actividad == ActividadBD.id_Actividad);
+                    //    if (ActividadXml == null)
+                    //    {
+                    //        dBGfit.Actividad.Remove(ActividadBD);
+                    //    }
+                    //}
+                    // Guardar los cambios en la BD
+                    dBGfit.SaveChanges();
                 }
-                // Eliminar las Actividades de la BD que no aparecen en el archivo XML
-                foreach (var ActividadBD in ActividadBDLst)
-                {
-                    var ActividadXml = ActividadXmlLst.Actividades.FirstOrDefault(s => s.id_Actividad == ActividadBD.id_Actividad);
-                    if (ActividadXml == null)
-                    {
-                        dBGfit.Actividad.Remove(ActividadBD);
-                    }
-                }
-                // Guardar los cambios en la BD
-                dBGfit.SaveChanges();
             }
+            
         }
 
         public static void XmlToAdministrador(string filePath)
         {
             AdministradorLst AdministradorXmlLst = new AdministradorLst();
             XmlSerializer serializer = new XmlSerializer(typeof(AdministradorLst));
-            using (StreamReader reader = new StreamReader(filePath))
+            if (File.Exists(filePath))
             {
-                AdministradorXmlLst = (AdministradorLst)serializer.Deserialize(reader);               
-            }
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    AdministradorXmlLst = (AdministradorLst)serializer.Deserialize(reader);
+                }
 
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
-            {
-                // Recuperar de la BD
-                var AdministradorBDLst = dBGfit.Administrador.ToList();
-                foreach (var AdministradorXml in AdministradorXmlLst.Administradores)
+                using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
                 {
-                    // Buscar si existe.
-                    var AdministradorBD = AdministradorBDLst.FirstOrDefault(s => s.id_Admin == AdministradorXml.id_Admin);
-                    if (AdministradorBD != null)
+                    // Recuperar de la BD
+                    var AdministradorBDLst = dBGfit.Administrador.ToList();
+                    foreach (var AdministradorXml in AdministradorXmlLst.Administradores)
                     {
-                        // Actualiza los datos
-                        AdministradorBD.personaID = AdministradorXml.personaID;                       
-                        dBGfit.Entry(AdministradorBD).State = EntityState.Modified;
-                    }
-                    else
-                    {
-                        // Crear nuevo
-                        var AdministradorNueva = new Administrador
+                        // Buscar si existe.
+                        var AdministradorBD = AdministradorBDLst.FirstOrDefault(s => s.id_Admin == AdministradorXml.id_Admin);
+                        if (AdministradorBD != null)
                         {
-                            id_Admin = AdministradorXml.id_Admin,
-                            personaID= AdministradorXml.personaID                        
-                        };
-                        dBGfit.Administrador.Add(AdministradorNueva);
+                            // Actualiza los datos
+                            AdministradorBD.personaID = AdministradorXml.personaID;
+                            dBGfit.Entry(AdministradorBD).State = EntityState.Modified;
+                        }
+                        else
+                        {
+                            // Crear nuevo
+                            var AdministradorNueva = new Administrador
+                            {
+                                id_Admin = AdministradorXml.id_Admin,
+                                personaID = AdministradorXml.personaID
+                            };
+                            dBGfit.Administrador.Add(AdministradorNueva);
+                        }
                     }
+                    //// Eliminar 
+                    //foreach (var AdministradorBD in AdministradorBDLst)
+                    //{
+                    //    var AdministradorXml = AdministradorXmlLst.Administradores.FirstOrDefault(s => s.id_Admin == AdministradorBD.id_Admin);
+                    //    if (AdministradorXml == null)
+                    //    {
+                    //        dBGfit.Administrador.Remove(AdministradorBD);
+                    //    }
+                    //}
+                    // Guardar 
+                    dBGfit.SaveChanges();
                 }
-                // Eliminar 
-                foreach (var AdministradorBD in AdministradorBDLst)
-                {
-                    var AdministradorXml = AdministradorXmlLst.Administradores.FirstOrDefault(s => s.id_Admin == AdministradorBD.id_Admin);
-                    if (AdministradorXml == null)
-                    {
-                        dBGfit.Administrador.Remove(AdministradorBD);
-                    }
-                }
-                // Guardar 
-                dBGfit.SaveChanges();
             }
+            
         }
 
         public static void XmlToClase(string filePath)
         {
             ClaseLst ClaseXmlLst = new ClaseLst();
             XmlSerializer serializer = new XmlSerializer(typeof(ClaseLst));
-            using (StreamReader reader = new StreamReader(filePath))
+            if (File.Exists(filePath)) 
             {
-                ClaseXmlLst = (ClaseLst)serializer.Deserialize(reader);
-            }
-
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
-            {
-                // Recuperar de la BD
-                var ClaseBDLst = dBGfit.Clase.ToList();
-                foreach (var ClaseXml in ClaseXmlLst.Clases)
+                using (StreamReader reader = new StreamReader(filePath))
                 {
-                    // Buscar si existe.
-                    var ClaseBD = ClaseBDLst.FirstOrDefault(s => s.id_Clase == ClaseXml.id_Clase);
-                    if (ClaseBD != null)
-                    {
-                        // Actualiza los datos
-                        ClaseBD.actividadID = ClaseXml.actividadID;
-                        ClaseBD.salaID= ClaseXml.salaID;
-                        ClaseBD.fechaHora= ClaseXml.fechaHora;
+                    ClaseXmlLst = (ClaseLst)serializer.Deserialize(reader);
+                }
 
-                        dBGfit.Entry(ClaseBD).State = EntityState.Modified;
-                    }
-                    else
+                using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+                {
+                    // Recuperar de la BD
+                    var ClaseBDLst = dBGfit.Clase.ToList();
+                    foreach (var ClaseXml in ClaseXmlLst.Clases)
                     {
-                        // Crear nuevo
-                        var ClaseNueva = new Clase
+                        // Buscar si existe.
+                        var ClaseBD = ClaseBDLst.FirstOrDefault(s => s.id_Clase == ClaseXml.id_Clase);
+                        if (ClaseBD != null)
                         {
-                            id_Clase = ClaseXml.id_Clase,
-                            actividadID = ClaseXml.actividadID,
-                            salaID = ClaseXml.salaID,
-                            fechaHora = ClaseXml.fechaHora                            
-                        };
-                        dBGfit.Clase.Add(ClaseNueva);
+                            // Actualiza los datos
+                            ClaseBD.actividadID = ClaseXml.actividadID;
+                            ClaseBD.salaID = ClaseXml.salaID;
+                            ClaseBD.fechaHora = ClaseXml.fechaHora;
+
+                            dBGfit.Entry(ClaseBD).State = EntityState.Modified;
+                        }
+                        else
+                        {
+                            // Crear nuevo
+                            var ClaseNueva = new Clase
+                            {
+                                id_Clase = ClaseXml.id_Clase,
+                                actividadID = ClaseXml.actividadID,
+                                salaID = ClaseXml.salaID,
+                                fechaHora = ClaseXml.fechaHora
+                            };
+                            dBGfit.Clase.Add(ClaseNueva);
+                        }
                     }
+                    //// Eliminar 
+                    //foreach (var ClaseBD in ClaseBDLst)
+                    //{
+                    //    var ClaseXml = ClaseXmlLst.Clases.FirstOrDefault(s => s.id_Clase == ClaseBD.id_Clase);
+                    //    if (ClaseXml == null)
+                    //    {
+                    //        dBGfit.Clase.Remove(ClaseBD);
+                    //    }
+                    //}
+                    // Guardar 
+                    dBGfit.SaveChanges();
                 }
-                // Eliminar 
-                foreach (var ClaseBD in ClaseBDLst)
-                {
-                    var ClaseXml = ClaseXmlLst.Clases.FirstOrDefault(s => s.id_Clase == ClaseBD.id_Clase);
-                    if (ClaseXml == null)
-                    {
-                        dBGfit.Clase.Remove(ClaseBD);
-                    }
-                }
-                // Guardar 
-                dBGfit.SaveChanges();
             }
+            
         }
 
         public static void XmlToCliente(string filePath)
         {
             ClienteLst ClienteXmlLst = new ClienteLst();
             XmlSerializer serializer = new XmlSerializer(typeof(ClienteLst));
-            using (StreamReader reader = new StreamReader(filePath))
+            if (File.Exists(filePath))
             {
-                ClienteXmlLst = (ClienteLst)serializer.Deserialize(reader);
-            }
-
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
-            {
-                // Recuperar de la BD
-                var ClienteBDLst = dBGfit.Cliente.ToList();
-                foreach (var ClienteXml in ClienteXmlLst.Clientes)
+                using (StreamReader reader = new StreamReader(filePath))
                 {
-                    // Buscar si existe.
-                    var ClienteBD = ClienteBDLst.FirstOrDefault(s => s.id_Cliente == ClienteXml.id_Cliente);
-                    if (ClienteBD != null)
-                    {
-                        // Actualiza los datos
-                        ClienteBD.personaID= ClienteXml.personaID;
-                        ClienteBD.fechaAlta = ClienteXml.fechaAlta;
+                    ClienteXmlLst = (ClienteLst)serializer.Deserialize(reader);
+                }
 
-                        dBGfit.Entry(ClienteBD).State = EntityState.Modified;
-                    }
-                    else
+                using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+                {
+                    // Recuperar de la BD
+                    var ClienteBDLst = dBGfit.Cliente.ToList();
+                    foreach (var ClienteXml in ClienteXmlLst.Clientes)
                     {
-                        // Crear nuevo
-                        var ClienteNueva = new Cliente
+                        // Buscar si existe.
+                        var ClienteBD = ClienteBDLst.FirstOrDefault(s => s.id_Cliente == ClienteXml.id_Cliente);
+                        if (ClienteBD != null)
                         {
-                            id_Cliente= ClienteXml.id_Cliente,
-                            personaID = ClienteXml.personaID,
-                            fechaAlta = ClienteXml.fechaAlta
-                           
-                        };
-                        dBGfit.Cliente.Add(ClienteNueva);
+                            // Actualiza los datos
+                            ClienteBD.personaID = ClienteXml.personaID;
+                            ClienteBD.fechaAlta = ClienteXml.fechaAlta;
+
+                            dBGfit.Entry(ClienteBD).State = EntityState.Modified;
+                        }
+                        else
+                        {
+                            // Crear nuevo
+                            var ClienteNueva = new Cliente
+                            {
+                                id_Cliente = ClienteXml.id_Cliente,
+                                personaID = ClienteXml.personaID,
+                                fechaAlta = ClienteXml.fechaAlta
+
+                            };
+                            dBGfit.Cliente.Add(ClienteNueva);
+                        }
                     }
+                    //// Eliminar 
+                    //foreach (var ClienteBD in ClienteBDLst)
+                    //{
+                    //    var ClienteXml = ClienteXmlLst.Clientes.FirstOrDefault(s => s.id_Cliente == ClienteBD.id_Cliente);
+                    //    if (ClienteXml == null)
+                    //    {
+                    //        dBGfit.Cliente.Remove(ClienteBD);
+                    //    }
+                    //}
+                    // Guardar 
+                    dBGfit.SaveChanges();
                 }
-                // Eliminar 
-                foreach (var ClienteBD in ClienteBDLst)
-                {
-                    var ClienteXml = ClienteXmlLst.Clientes.FirstOrDefault(s => s.id_Cliente == ClienteBD.id_Cliente);
-                    if (ClienteXml == null)
-                    {
-                        dBGfit.Cliente.Remove(ClienteBD);
-                    }
-                }
-                // Guardar 
-                dBGfit.SaveChanges();
             }
+            
         }
 
         public static void XmlToMonitor(string filePath)
         {
             MonitorLst MonitorXmlLst = new MonitorLst();
             XmlSerializer serializer = new XmlSerializer(typeof(MonitorLst));
-            using (StreamReader reader = new StreamReader(filePath))
+            if (File.Exists(filePath))
             {
-                MonitorXmlLst = (MonitorLst)serializer.Deserialize(reader);
-            }
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    MonitorXmlLst = (MonitorLst)serializer.Deserialize(reader);
+                }
 
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
-            {
-                // Recuperar de la BD
-                var MonitorBDLst = dBGfit.Monitor.ToList();
-                foreach (var MonitorXml in MonitorXmlLst.Monitores)
+                using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
                 {
-                    // Buscar si existe.
-                    var MonitorBD = MonitorBDLst.FirstOrDefault(s => s.id_Monitor == MonitorXml.id_Monitor);
-                    if (MonitorBD != null)
+                    // Recuperar de la BD
+                    var MonitorBDLst = dBGfit.Monitor.ToList();
+                    foreach (var MonitorXml in MonitorXmlLst.Monitores)
                     {
-                        // Actualiza los datos
-                        MonitorBD.personaID = MonitorXml.personaID;
-                        MonitorBD.precioHora= MonitorXml.precioHora;
-                        MonitorBD.fechaAlta= MonitorXml.fechaAlta;
-                     
-                        dBGfit.Entry(MonitorBD).State = EntityState.Modified;
-                    }
-                    else
-                    {
-                        // Crear nuevo
-                        var MonitorNueva = new Monitor
+                        // Buscar si existe.
+                        var MonitorBD = MonitorBDLst.FirstOrDefault(s => s.id_Monitor == MonitorXml.id_Monitor);
+                        if (MonitorBD != null)
                         {
-                            id_Monitor= MonitorXml.id_Monitor,
-                            personaID= MonitorXml.personaID,
-                            precioHora= MonitorXml.precioHora,
-                            fechaAlta= MonitorXml.fechaAlta
-                           
-                        };
-                        dBGfit.Monitor.Add(MonitorNueva);
+                            // Actualiza los datos
+                            MonitorBD.personaID = MonitorXml.personaID;
+                            MonitorBD.precioHora = MonitorXml.precioHora;
+                            MonitorBD.fechaAlta = MonitorXml.fechaAlta;
+
+                            dBGfit.Entry(MonitorBD).State = EntityState.Modified;
+                        }
+                        else
+                        {
+                            // Crear nuevo
+                            var MonitorNueva = new Monitor
+                            {
+                                id_Monitor = MonitorXml.id_Monitor,
+                                personaID = MonitorXml.personaID,
+                                precioHora = MonitorXml.precioHora,
+                                fechaAlta = MonitorXml.fechaAlta
+
+                            };
+                            dBGfit.Monitor.Add(MonitorNueva);
+                        }
                     }
+                    //// Eliminar 
+                    //foreach (var MonitorBD in MonitorBDLst)
+                    //{
+                    //    var MonitorXml = MonitorXmlLst.Monitores.FirstOrDefault(s => s.id_Monitor == MonitorBD.id_Monitor);
+                    //    if (MonitorXml == null)
+                    //    {
+                    //        dBGfit.Monitor.Remove(MonitorBD);
+                    //    }
+                    //}
+                    // Guardar 
+                    dBGfit.SaveChanges();
                 }
-                // Eliminar 
-                foreach (var MonitorBD in MonitorBDLst)
-                {
-                    var MonitorXml = MonitorXmlLst.Monitores.FirstOrDefault(s => s.id_Monitor == MonitorBD.id_Monitor);
-                    if (MonitorXml == null)
-                    {
-                        dBGfit.Monitor.Remove(MonitorBD);
-                    }
-                }
-                // Guardar 
-                dBGfit.SaveChanges();
             }
+            
         }
 
         public static void XmlToPersona(string filePath)
         {
             PersonaLst PersonaXmlLst = new PersonaLst();
             XmlSerializer serializer = new XmlSerializer(typeof(PersonaLst));
-            using (StreamReader reader = new StreamReader(filePath))
+            if (File.Exists(filePath))
             {
-                PersonaXmlLst = (PersonaLst)serializer.Deserialize(reader);
-            }
-
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
-            {
-                // Recuperar de la BD
-                var PersonaBDLst = dBGfit.Persona.ToList();
-                foreach (var PersonaXml in PersonaXmlLst.Personas)
+                using (StreamReader reader = new StreamReader(filePath))
                 {
-                    // Buscar si existe.
-                    var PersonaBD = PersonaBDLst.FirstOrDefault(s => s.id_Persona == PersonaXml.id_Persona);
-                    if (PersonaBD != null)
+                    PersonaXmlLst = (PersonaLst)serializer.Deserialize(reader);
+                }
+
+                using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+                {
+                    // Recuperar de la BD
+                    var PersonaBDLst = dBGfit.Persona.ToList();
+                    foreach (var PersonaXml in PersonaXmlLst.Personas)
                     {
-                        // Actualiza los datos
-                        PersonaBD.email= PersonaXml.email;
-                        PersonaBD.nombre= PersonaXml.nombre;
-                        PersonaBD.apellido1= PersonaXml.apellido1;
-                        PersonaBD.apellido2 = PersonaXml.apellido2;
-                        PersonaBD.direccion= PersonaXml.direccion;
-                        PersonaBD.codigoPostal= PersonaXml.codigoPostal;
-                        PersonaBD.provincia= PersonaXml.provincia;
-                        PersonaBD.dniNifNie= PersonaXml.dniNifNie;
-                        PersonaBD.password= PersonaXml.password;
-                        
-                        dBGfit.Entry(PersonaBD).State = EntityState.Modified;
-                    }
-                    else
-                    {
-                        // Crear nuevo
-                        var PersonaNueva = new Persona
+                        // Buscar si existe.
+                        var PersonaBD = PersonaBDLst.FirstOrDefault(s => s.id_Persona == PersonaXml.id_Persona);
+                        if (PersonaBD != null)
                         {
-                            id_Persona = PersonaXml.id_Persona,
-                            email= PersonaXml.email,
-                            nombre= PersonaXml.nombre,
-                            apellido1= PersonaXml.apellido1,
-                            apellido2= PersonaXml.apellido2,
-                            direccion= PersonaXml.direccion,
-                            codigoPostal= PersonaXml.codigoPostal,
-                            provincia= PersonaXml.provincia,
-                            dniNifNie= PersonaXml.dniNifNie,
-                            password= PersonaXml.password
+                            // Actualiza los datos
+                            PersonaBD.email = PersonaXml.email;
+                            PersonaBD.nombre = PersonaXml.nombre;
+                            PersonaBD.apellido1 = PersonaXml.apellido1;
+                            PersonaBD.apellido2 = PersonaXml.apellido2;
+                            PersonaBD.direccion = PersonaXml.direccion;
+                            PersonaBD.codigoPostal = PersonaXml.codigoPostal;
+                            PersonaBD.provincia = PersonaXml.provincia;
+                            PersonaBD.dniNifNie = PersonaXml.dniNifNie;
+                            PersonaBD.password = PersonaXml.password;
 
-                        };
-                        dBGfit.Persona.Add(PersonaNueva);
+                            dBGfit.Entry(PersonaBD).State = EntityState.Modified;
+                        }
+                        else
+                        {
+                            // Crear nuevo
+                            var PersonaNueva = new Persona
+                            {
+                                id_Persona = PersonaXml.id_Persona,
+                                email = PersonaXml.email,
+                                nombre = PersonaXml.nombre,
+                                apellido1 = PersonaXml.apellido1,
+                                apellido2 = PersonaXml.apellido2,
+                                direccion = PersonaXml.direccion,
+                                codigoPostal = PersonaXml.codigoPostal,
+                                provincia = PersonaXml.provincia,
+                                dniNifNie = PersonaXml.dniNifNie,
+                                password = PersonaXml.password
+
+                            };
+                            dBGfit.Persona.Add(PersonaNueva);
+                        }
                     }
+                    //// Eliminar 
+                    //foreach (var PersonaBD in PersonaBDLst)
+                    //{
+                    //    var PersonaXml = PersonaXmlLst.Personas.FirstOrDefault(s => s.id_Persona == PersonaBD.id_Persona);
+                    //    if (PersonaXml == null)
+                    //    {
+                    //        dBGfit.Persona.Remove(PersonaBD);
+                    //    }
+                    //}
+                    //// Guardar 
+                    dBGfit.SaveChanges();
                 }
-                // Eliminar 
-                foreach (var PersonaBD in PersonaBDLst)
-                {
-                    var PersonaXml = PersonaXmlLst.Personas.FirstOrDefault(s => s.id_Persona == PersonaBD.id_Persona);
-                    if (PersonaXml == null)
-                    {
-                        dBGfit.Persona.Remove(PersonaBD);
-                    }
-                }
-                // Guardar 
-                dBGfit.SaveChanges();
-            }
+            }            
         }
 
         public static void XmlToReserva(string filePath)
         {
             ReservaLst ReservaXmlLst = new ReservaLst();
             XmlSerializer serializer = new XmlSerializer(typeof(ReservaLst));
-            using (StreamReader reader = new StreamReader(filePath))
+            if (File.Exists(filePath))
             {
-                ReservaXmlLst = (ReservaLst)serializer.Deserialize(reader);
-            }
-
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
-            {
-                // Recuperar de la BD
-                var ReservaBDLst = dBGfit.Reserva.ToList();
-                foreach (var ReservaXml in ReservaXmlLst.Reservas)
+                using (StreamReader reader = new StreamReader(filePath))
                 {
-                    // Buscar si existe.
-                    var ReservaBD = ReservaBDLst.FirstOrDefault(s => s.id_Reserva == ReservaXml.id_Reserva);
-                    if (ReservaBD != null)
+                    ReservaXmlLst = (ReservaLst)serializer.Deserialize(reader);
+                }
+
+                using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
+                {
+                    // Recuperar de la BD
+                    var ReservaBDLst = dBGfit.Reserva.ToList();
+                    foreach (var ReservaXml in ReservaXmlLst.Reservas)
                     {
-                        // Actualiza los datos
-                        ReservaBD.posicion = ReservaXml.posicion;
-                        ReservaBD.claseID= ReservaXml.claseID;
-                        ReservaBD.clienteID = ReservaXml.clienteID;
-                        ReservaBD.confirmada = ReservaXml.confirmada;
-                        
-                        dBGfit.Entry(ReservaBD).State = EntityState.Modified;
-                    }
-                    else
-                    {
-                        // Crear nuevo
-                        var ReservaNueva = new Reserva
+                        // Buscar si existe.
+                        var ReservaBD = ReservaBDLst.FirstOrDefault(s => s.id_Reserva == ReservaXml.id_Reserva);
+                        if (ReservaBD != null)
                         {
-                            id_Reserva = ReservaXml.id_Reserva,
-                            posicion = ReservaXml.posicion,
-                            claseID = ReservaXml.claseID,
-                            clienteID = ReservaXml.clienteID,
-                            confirmada = ReservaXml.confirmada                    
-                        };
+                            // Actualiza los datos
+                            ReservaBD.posicion = ReservaXml.posicion;
+                            ReservaBD.claseID = ReservaXml.claseID;
+                            ReservaBD.clienteID = ReservaXml.clienteID;
+                            ReservaBD.confirmada = ReservaXml.confirmada;
 
-                        dBGfit.Reserva.Add(ReservaNueva);
+                            dBGfit.Entry(ReservaBD).State = EntityState.Modified;
+                        }
+                        else
+                        {
+                            // Crear nuevo
+                            var ReservaNueva = new Reserva
+                            {
+                                id_Reserva = ReservaXml.id_Reserva,
+                                posicion = ReservaXml.posicion,
+                                claseID = ReservaXml.claseID,
+                                clienteID = ReservaXml.clienteID,
+                                confirmada = ReservaXml.confirmada
+                            };
+
+                            dBGfit.Reserva.Add(ReservaNueva);
+                        }
                     }
+                    //// Eliminar 
+                    //foreach (var ReservaBD in ReservaBDLst)
+                    //{
+                    //    var ReservaXml = ReservaXmlLst.Reservas.FirstOrDefault(s => s.id_Reserva == ReservaBD.id_Reserva);
+                    //    if (ReservaXml == null)
+                    //    {
+                    //        dBGfit.Reserva.Remove(ReservaBD);
+                    //    }
+                    //}
+                    //// Guardar 
+                    dBGfit.SaveChanges();
                 }
-                // Eliminar 
-                foreach (var ReservaBD in ReservaBDLst)
-                {
-                    var ReservaXml = ReservaXmlLst.Reservas.FirstOrDefault(s => s.id_Reserva == ReservaBD.id_Reserva);
-                    if (ReservaXml == null)
-                    {
-                        dBGfit.Reserva.Remove(ReservaBD);
-                    }
-                }
-                // Guardar 
-                dBGfit.SaveChanges();
             }
+            
         }
 
         public static void XmlToSala(string filePath)
         {
             SalaLst salasXmlLst = new SalaLst();
             XmlSerializer serializer = new XmlSerializer(typeof(SalaLst));
-            using (StreamReader reader = new StreamReader(filePath))
+            if (File.Exists(filePath))
             {
-                salasXmlLst = (SalaLst)serializer.Deserialize(reader);
-                // hacer algo con la lista de salas...
-            }
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    salasXmlLst = (SalaLst)serializer.Deserialize(reader);
+                    // hacer algo con la lista de salas...
+                }
 
-            using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
-            {
-                // Recuperar todas las salas de la BD
-                var salaBDLst = dBGfit.Sala.ToList();
-                foreach (var salaXml in salasXmlLst.Salas)
+                using (GenteFitDBEntities dBGfit = new GenteFitDBEntities())
                 {
-                    // Buscar si la sala ya existe en la BD
-                    var salaBD = salaBDLst.FirstOrDefault(s => s.id_Sala == salaXml.id_Sala);
-                    if (salaBD != null)
+                    // Recuperar todas las salas de la BD
+                    var salaBDLst = dBGfit.Sala.ToList();
+                    foreach (var salaXml in salasXmlLst.Salas)
                     {
-                        // Actualizar los datos de la sala en la BD
-                        salaBD.numPlazas = salaXml.numPlazas;
-                        salaBD.dimensionM2 = salaXml.dimensionM2;
-                        dBGfit.Entry(salaBD).State = EntityState.Modified;
-                    }
-                    else
-                    {
-                        // La sala no existe en la BD, crear un nuevo objeto Sala y agregarlo
-                        var salaNueva = new Sala
+                        // Buscar si la sala ya existe en la BD
+                        var salaBD = salaBDLst.FirstOrDefault(s => s.id_Sala == salaXml.id_Sala);
+                        if (salaBD != null)
                         {
-                            id_Sala = salaXml.id_Sala,
-                            numPlazas = salaXml.numPlazas,
-                            dimensionM2 = salaXml.dimensionM2
-                        };
-                        dBGfit.Sala.Add(salaNueva);
+                            // Actualizar los datos de la sala en la BD
+                            salaBD.numPlazas = salaXml.numPlazas;
+                            salaBD.dimensionM2 = salaXml.dimensionM2;
+                            dBGfit.Entry(salaBD).State = EntityState.Modified;
+                        }
+                        else
+                        {
+                            // La sala no existe en la BD, crear un nuevo objeto Sala y agregarlo
+                            var salaNueva = new Sala
+                            {
+                                id_Sala = salaXml.id_Sala,
+                                numPlazas = salaXml.numPlazas,
+                                dimensionM2 = salaXml.dimensionM2
+                            };
+                            dBGfit.Sala.Add(salaNueva);
+                        }
                     }
+                    //// Eliminar las salas de la BD que no aparecen en el archivo XML
+                    //foreach (var salaBD in salaBDLst)
+                    //{
+                    //    var salaXml = salasXmlLst.Salas.FirstOrDefault(s => s.id_Sala == salaBD.id_Sala);
+                    //    if (salaXml == null)
+                    //    {
+                    //        dBGfit.Sala.Remove(salaBD);
+                    //    }
+                    //}
+                    // Guardar los cambios en la BD
+                    dBGfit.SaveChanges();
                 }
-                // Eliminar las salas de la BD que no aparecen en el archivo XML
-                foreach (var salaBD in salaBDLst)
-                {
-                    var salaXml = salasXmlLst.Salas.FirstOrDefault(s => s.id_Sala == salaBD.id_Sala);
-                    if (salaXml == null)
-                    {
-                        dBGfit.Sala.Remove(salaBD);
-                    }
-                }
-                // Guardar los cambios en la BD
-                dBGfit.SaveChanges();
-            }
+            }            
         }
 
 

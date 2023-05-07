@@ -101,6 +101,166 @@ namespace GenteFitApp.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] FromAppToOdooActividad {
+            get {
+                object obj = ResourceManager.GetObject("FromAppToOdooActividad", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] FromAppToOdooAdministrador {
+            get {
+                object obj = ResourceManager.GetObject("FromAppToOdooAdministrador", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] FromAppToOdooClase {
+            get {
+                object obj = ResourceManager.GetObject("FromAppToOdooClase", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] FromAppToOdooCliente {
+            get {
+                object obj = ResourceManager.GetObject("FromAppToOdooCliente", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] FromAppToOdooMonitor {
+            get {
+                object obj = ResourceManager.GetObject("FromAppToOdooMonitor", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] FromAppToOdooPersona {
+            get {
+                object obj = ResourceManager.GetObject("FromAppToOdooPersona", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] FromAppToOdooReserva {
+            get {
+                object obj = ResourceManager.GetObject("FromAppToOdooReserva", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] FromAppToOdooSala {
+            get {
+                object obj = ResourceManager.GetObject("FromAppToOdooSala", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] FromOdooToAppActividad {
+            get {
+                object obj = ResourceManager.GetObject("FromOdooToAppActividad", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] FromOdooToAppAdministrador {
+            get {
+                object obj = ResourceManager.GetObject("FromOdooToAppAdministrador", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] FromOdooToAppClase {
+            get {
+                object obj = ResourceManager.GetObject("FromOdooToAppClase", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] FromOdooToAppCliente {
+            get {
+                object obj = ResourceManager.GetObject("FromOdooToAppCliente", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] FromOdooToAppMonitor {
+            get {
+                object obj = ResourceManager.GetObject("FromOdooToAppMonitor", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] FromOdooToAppPersona {
+            get {
+                object obj = ResourceManager.GetObject("FromOdooToAppPersona", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] FromOdooToAppReserva {
+            get {
+                object obj = ResourceManager.GetObject("FromOdooToAppReserva", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] FromOdooToAppSala {
+            get {
+                object obj = ResourceManager.GetObject("FromOdooToAppSala", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
         /// </summary>
         internal static System.Drawing.Icon GenteFit {
