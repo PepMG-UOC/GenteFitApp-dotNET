@@ -33,7 +33,7 @@ if uid:
         tree = ET.ElementTree(root)
         xml_file = os.path.abspath(os.path.join(os.path.dirname(__file__), 'Persona.xml'))
         tree.write(xml_file, encoding="utf-8", xml_declaration=True)
-        print('Archivo XML importado correctamente')
+        print('Archivo XML Personas importado correctamente')
     else:
         print('No hay datos en el modelo')
 else:

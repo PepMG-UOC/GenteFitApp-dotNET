@@ -34,6 +34,7 @@
             this.btnExport = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
+            this.labelMsg = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,11 +116,24 @@
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
+            // labelMsg
+            // 
+            this.labelMsg.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelMsg.AutoSize = true;
+            this.labelMsg.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
+            this.labelMsg.Location = new System.Drawing.Point(687, 149);
+            this.labelMsg.Name = "labelMsg";
+            this.labelMsg.Size = new System.Drawing.Size(55, 21);
+            this.labelMsg.TabIndex = 28;
+            this.labelMsg.Text = "label2";
+            this.labelMsg.Visible = false;
+            // 
             // frmImportExportXML
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1267, 714);
+            this.Controls.Add(this.labelMsg);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.btnExport);
@@ -145,5 +159,6 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Button btnVolver;
+        private System.Windows.Forms.Label labelMsg;
     }
 }
